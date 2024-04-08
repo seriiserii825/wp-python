@@ -2,6 +2,7 @@
 
 from init import init
 from utils.aiwm import aiwmFunc
+from utils.plugins import pluginsFunc
 from wp_files.files import mainMenu
 from acf.acf import acfFunc
 
@@ -22,6 +23,6 @@ elif choice == '3':
 elif choice == '4':
     aiwmFunc()
 elif choice == '5':
-    print("Plugins")
+    pluginsFunc()
 elif choice == '6':
     exit()
