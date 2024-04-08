@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from init.init import init
+from init import init
 
 
 print("1) Init")

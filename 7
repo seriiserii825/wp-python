@@ -1,0 +1,9 @@
+import subprocess
+import os
+
+def init():
+    user = os.system('whoami')
+    path_to_wp_init = "/home/${user}/Documents/python/wp-python/wp-init.sh"
+    print(path_to_wp_init)
+    subprocess.call("./wp-init.sh", shell=True)
+    # os.system('sh wp-init.sh')
