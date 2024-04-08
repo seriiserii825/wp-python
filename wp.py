@@ -5,6 +5,7 @@ from init import init
 from utils.aiwm import aiwmFunc
 from utils.convert_fonts import convertFontsFunc
 from utils.plugins import pluginsFunc
+from utils.themes import wpThemesFunc
 from wp_files.files import mainMenu
 
 print("1) Init")
@@ -13,6 +14,7 @@ print("3) Acf")
 print("4) Backups")
 print("5) Plugins")
 print("6) Convert Fonts")
+print("7) Themes")
 print("99) Exit")
 
 choice = input("Enter your choice: ")
@@ -29,4 +31,4 @@ elif choice == '5':
 elif choice == '6':
     convertFontsFunc()
 elif choice == '7':
-    print("7")
+    wpThemesFunc()
