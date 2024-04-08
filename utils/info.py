@@ -1,17 +1,20 @@
 from simple_term_menu import os, subprocess
+from termcolor import colored
 
 
 def infoFunc():
-    print("1) Info")
-    print("2) Ignore")
+    print(colored("1) Info", "green"))
+    print(colored("2) Ignore", "blue"))
 
     choice = input("Enter your choice: ")
     if choice == '1':
         info()
         infoFunc()
-    else:
+    elif choice == '2':
         ignore()
         infoFunc()
+    else:
+        exit()
 
 def info():
     os.system('wp post list --post_type=page --orderby=title --order=asc')
