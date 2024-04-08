@@ -6,4 +6,3 @@ def init():
     path_to_wp_init = "/home/" + str(user) + "/Documents/python/wp-python/wp-init.sh"
     print(path_to_wp_init)
     subprocess.call(path_to_wp_init, shell=True)
-    # os.system('sh wp-init.sh')

@@ -2,6 +2,7 @@
 
 from init import init
 from wp_files.files import mainMenu
+from acf.acf import acfFunc
 
 print("1) Init")
 print("2) Files")
@@ -15,9 +16,8 @@ if choice == '1':
     init()
 elif choice == '2':
     mainMenu()
-    print("Files")
 elif choice == '3':
-    print("Acf")
+    acfFunc()
 elif choice == '4':
     print("Backups")
 elif choice == '5':
