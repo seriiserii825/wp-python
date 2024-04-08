@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from init import init
-
+from wp_files.files import mainMenu
 
 print("1) Init")
 print("2) Files")
@@ -14,6 +14,7 @@ choice = input("Enter your choice: ")
 if choice == '1':
     init()
 elif choice == '2':
+    mainMenu()
     print("Files")
 elif choice == '3':
     print("Acf")
