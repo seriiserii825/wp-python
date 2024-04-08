@@ -45,7 +45,6 @@ def pluginsFunc():
             {"add-to-any": False},
             {"woo-ajax-mini-cart": False},
             {"wp-smushit": False},
-            {"wps-limit-login": False},
             ]
 
 
