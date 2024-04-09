@@ -28,7 +28,7 @@ def createPhpIcon():
         os.system(f"bat {file_path}")
         file_path_without_extension = getFilePathWithoutExtension(file_path)
         result = f"""
-        <?php echo get_template_parts('{file_path_without_extension}'); ?>
+        <?php echo get_template_part('{file_path_without_extension}'); ?>
         """
         writeToFile('result.txt', result)
         command=f"sed -i '/^[[:space:]]*$/d' 'result.txt'"
