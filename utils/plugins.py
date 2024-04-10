@@ -18,6 +18,7 @@ def pluginsFunc():
             {"advanced-custom-fields-pro_6_0_6": "advanced-custom-fields-pro-6_0_6.zip"},
             {"advanced-custom-fields-pro-6_2_6_1": "advanced-custom-fields-pro-6_2_6_1.zip"},
             {"all-in-one-wp-migration": "all-in-one-wp-migration-7-79.zip"},
+            {"admin-columns-pro": "admin-columns-pro-5.4.3.zip"},
             {"classic-editor": False},
             {"tinymce-advanced": False},
             {"stops-core-theme-and-plugin-updates": False},
