@@ -5,6 +5,7 @@ from acf.acf_utils.fields.chooseRepeaterField import chooseRepeaterField
 from acf.acf_utils.fields.deleteField import deleteField
 from acf.acf_utils.fields.editField import editField
 from acf.acf_utils.fields.getFields import getFields
+from acf.acf_utils.group.copyGroup import copyGroup
 from acf.acf_utils.group.repeaterFieldsMenu import repeaterFieldsMenu
 
 from acf.acf_utils.group.showAll import showAll
@@ -19,6 +20,7 @@ def groupMenu(file_path, group_index):
     breadcrumbs(group['label'])
     showAll(file_path, group_index)
     print(colored("1) Show All:", "yellow"))
+    print(colored("1.1) Copy Group:", "yellow"))
     print(colored("2) Add Field:", "blue"))
     print(colored("3) Choose Repeater Field:", "green"))
     print(colored("4) Edit Field:", "blue"))
@@ -30,6 +32,9 @@ def groupMenu(file_path, group_index):
     action = input("Enter your choice: ")
     if action == "1":
         showAll(file_path)
+        groupMenu(file_path, group_index)
+    if action == "1.1":
+        copyGroup(file_path)
         groupMenu(file_path, group_index)
     if action == "2":
         addField(file_path, group_index)
