@@ -9,10 +9,10 @@ def infoFunc():
     choice = input("Enter your choice: ")
     if choice == '1':
         info()
-        infoFunc()
+        exit()
     elif choice == '2':
         ignore()
-        infoFunc()
+        exit()
     else:
         exit()
 
@@ -23,4 +23,4 @@ def ignore():
     info()
     user = os.getenv('USER')
     path_to_wp_init = "/home/" + str(user) + "/Documents/python/wp-python/utils/info.sh"
-    subprocess.call(path_to_wp_init, shell=True)
+    subprocess.run(["bash", path_to_wp_init])
