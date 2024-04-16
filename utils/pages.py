@@ -31,29 +31,30 @@ def listPages():
 
 def wpPages():
     def menu():
-        print(colored("1) Create One", "green"))
-        print(colored("2) Create Multiple", "green"))
-        print(colored("3) Delete One", "blue"))
-        print(colored("4) Delete Multiple", "yellow"))
-        print(colored("5) Exit", "red"))
+        print(colored("1) List pages", "green"))
+        print(colored("2) Create One", "green"))
+        print(colored("3) Create Multiple", "green"))
+        print(colored("4) Delete One", "blue"))
+        print(colored("5) Delete Multiple", "yellow"))
+        print(colored("6) Exit", "red"))
 
         choice = input("Make your choice:")
-        if choice == "1.1":
-            listPages()
-            menu()
         if choice == "1":
-            createOne()
             listPages()
             menu()
         if choice == "2":
+            createOne()
+            listPages()
+            menu()
+        if choice == "3":
             createMultiple()
             listPages()
             menu()
-        elif choice == "3":
+        elif choice == "4":
             deleteOne()
             listPages()
             menu()
-        elif choice == "4":
+        elif choice == "5":
             deleteMultiple()
             listPages()
             menu()
