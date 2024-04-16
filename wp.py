@@ -5,7 +5,6 @@ from acf.acf import acfFunc
 from init import init
 from utils.aiwm import aiwmFunc
 from utils.convert_fonts import convertFontsFunc
-from utils.info import infoFunc
 from utils.pages import wpPages
 from utils.plugins import pluginsFunc
 from utils.themes import wpThemesFunc
@@ -18,9 +17,8 @@ print(colored("4) Backups", "green"))
 print(colored("5) Plugins", "blue"))
 print(colored("6) Convert Fonts", "yellow"))
 print(colored("7) Themes", "green"))
-print(colored("8) Info", "blue"))
-print(colored("9) Pages", "blue"))
-print(colored("10) Exit", "red"))
+print(colored("8) Pages", "blue"))
+print(colored("9) Exit", "red"))
 
 choice = input("Enter your choice: ")
 if choice == '1':
@@ -38,8 +36,6 @@ elif choice == '6':
 elif choice == '7':
     wpThemesFunc()
 elif choice == '8':
-    infoFunc()
-elif choice == '9':
     wpPages()
 else:
     exit()
