@@ -42,6 +42,7 @@ def pluginsFunc():
             {"wc-fields-factory": False},
             {"advanced-bulk-edit": "advanced-bulk-edit-v1.3.zip"},
             {"webp-express": False},
+            {"dearpdf-lite": "dearpdf-lite.zip"},
             {"3d-flipbook-dflip-lite": False},
             {"flow-flow-social-streams": False},
             {"add-to-any": False},
