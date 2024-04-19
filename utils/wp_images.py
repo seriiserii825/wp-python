@@ -21,31 +21,27 @@ def uploadAll():
     for image in images:
         os.system("wp media import ~/Downloads/" + image + " --title=" + image)
 
-def uploadOne():
-    image = selectOne(getImages())
-    if image:
-        os.system("wp post list")
-        post_id = input("Enter post id:")
-        os.system("wp media import ~/Downloads/" + image + " --title=" + image + " --post_id=" + post_id + " --featured_image")
-    else:
-        exit(colored("No image selected", "red"))
+def selectImages():
+    images = selectMultiple(getImages())
+    print(type(images))
+    print(f'images: {images}')
+    for image in images:
+        os.system("wp media import ~/Downloads/" + image + " --title=" + image)
 
-def menu():
+def wpImages():
     print(colored("1) Upload all", "green"))
-    print(colored("2) Upload One", "blue"))
+    print(colored("2) Select", "blue"))
     print(colored("3) Exit", "red"))
 
     choice = input("Make your choice:")
     if choice == "1":
         uploadAll()
-        menu()
+        wpImages()
     elif choice == "2":
-        uploadOne()
-        menu()
+        selectImages()
+        wpImages()
     elif choice == "6":
         exit(colored("Goodbye!", "red"))
     else:
         exit(colored("Goodbye!", "red"))
-
-menu()
 

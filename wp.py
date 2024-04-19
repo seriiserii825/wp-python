@@ -9,6 +9,7 @@ from utils.create_project import createProject
 from utils.pages import wpPages
 from utils.plugins import pluginsFunc
 from utils.themes import wpThemesFunc
+from utils.wp_images import wpImages
 from wp_files.files import mainMenu
 
 print(colored("1) Init", "green"))
@@ -20,7 +21,8 @@ print(colored("6) Create Project", "blue"))
 print(colored("7) Convert Fonts", "yellow"))
 print(colored("8) Themes", "green"))
 print(colored("9) Pages", "blue"))
-print(colored("10) Exit", "red"))
+print(colored("10) Images", "blue"))
+print(colored("11) Exit", "red"))
 
 choice = input("Enter your choice: ")
 if choice == '1':
@@ -41,5 +43,7 @@ elif choice == '8':
     wpThemesFunc()
 elif choice == '9':
     wpPages()
+elif choice == '10':
+    wpImages()
 else:
     exit()
