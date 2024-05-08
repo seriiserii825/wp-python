@@ -7,7 +7,7 @@ from libs.listFiles import listFiles
 
 def createPhpIcon():
     clipboard = getFromClipBoard()
-    path_to_dir = "template-part/icons"
+    path_to_dir = "template-parts/icons"
     if not os.path.exists(path_to_dir):
         os.makedirs(path_to_dir)
         print(colored("Directory created", "green"))
