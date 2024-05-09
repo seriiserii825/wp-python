@@ -1,9 +1,16 @@
 #!/usr/bin/python3
 import os
-import glob
 from termcolor import colored
 from urllib.parse import urlparse
 from pick import pick
+from pyfzf.pyfzf import FzfPrompt
+import glob
+
+from libs.listDir import listDir
+from libs.listFiles import listFiles
+from libs.select import selectOne
+from wp_files.wp_files.createOrChooseDirectory import createOrChooseDirectory
+fzf = FzfPrompt()
 
 is_installed_plugins = os.path.exists("../../plugins/all-in-one-wp-migration");
 if not is_installed_plugins:
@@ -17,7 +24,22 @@ def aiwmFunc():
     def listBackup():
         os.system("wp ai1wm list-backups")
 
-    def makeBackup():
+    def createAndCopyToMnt():
+        directory_exists = os.path.isdir('/mnt/Projects')
+        if directory_exists:
+            path_to_dir = '/mnt/Projects'
+            listDir(path_to_dir)
+            selected_dir = createOrChooseDirectory(path_to_dir)
+            path_to_selected_dir = path_to_dir + "/" + selected_dir
+            listDir(path_to_selected_dir)
+            selected_project = createOrChooseDirectory(path_to_selected_dir)
+            path_to_selected_dir = path_to_selected_dir + "/" + selected_project
+            makeBackup(path_to_selected_dir)
+            listFiles(path_to_selected_dir)
+        else:
+            exit(colored("Directory /mnt/Projects not exists!", "red"))
+
+    def makeBackup(path_to_project=''):
         listBackup()
         os.system("wp ai1wm backup")
         list_of_files = glob.glob('../../ai1wm-backups/*.wpress')
@@ -26,13 +48,15 @@ def aiwmFunc():
             for file in backup_files:
                 if file.endswith('.wpress'):
                     os.system(f"cp {file} ~/Downloads")
-                    print(f"File {file} copied to Downloads")
+                    if path_to_project != "":
+                        os.system(f"cp {file} {path_to_project}")
+            listBackup()
         else:
-            # print(f"List of files: {list_of_files}")
             latest_file = max(list_of_files, key=os.path.getctime)
-            # print(f"Latest file: {latest_file}")
             os.system(f"cp {latest_file} ~/Downloads")
-        listBackup()
+            if path_to_project != "":
+                os.system(f"cp {latest_file} {path_to_project}")
+            listBackup()
 
     def restoreBackup():
         listBackup()
@@ -103,6 +127,7 @@ def aiwmFunc():
     def menu():
         print(colored("1) List", "green"))
         print(colored("2) Create", "yellow"))
+        print(colored("2.1) Create and copy to mnt", "yellow"))
         print(colored("3) Restore", "blue"))
         print(colored("4) Restore from Downloads", "blue"))
         print(colored("5) Download Backup", "yellow"))
@@ -115,6 +140,9 @@ def aiwmFunc():
             menu()
         elif choice == "2":
             makeBackup()
+            menu()
+        elif choice == "2.1":
+            createAndCopyToMnt()
             menu()
         elif choice == "3":
             restoreBackup()
