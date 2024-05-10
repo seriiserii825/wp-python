@@ -43,6 +43,7 @@ def aiwmFunc():
         listBackup()
         os.system("wp ai1wm backup")
         list_of_files = glob.glob('../../ai1wm-backups/*.wpress')
+        latest_file = max(list_of_files, key=os.path.getctime)
         if not list_of_files:
             backup_files = os.listdir(".")
             for file in backup_files:
@@ -57,7 +58,7 @@ def aiwmFunc():
             if path_to_project != "":
                 os.system(f"cp {latest_file} {path_to_project}")
             listBackup()
-
+        print(colored(f"Backup file: {latest_file}", "blue"))
     def restoreBackup():
         listBackup()
         os.chdir("../../ai1wm-backups")
@@ -111,6 +112,8 @@ def aiwmFunc():
     def deleteBackup():
         os.chdir("../../ai1wm-backups")
         backup_files = os.listdir()
+        #sort by ctime in reverse order
+        backup_files.sort(key=lambda x: os.path.getctime(x), reverse=True)
 
         title = 'Select files'
         backups_array = []
