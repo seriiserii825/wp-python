@@ -8,6 +8,7 @@ import glob
 
 from libs.listDir import listDir
 from libs.listFiles import listFiles
+from libs.orderFiles import orderFiles
 from libs.select import selectOne
 from wp_files.wp_files.createOrChooseDirectory import createOrChooseDirectory
 fzf = FzfPrompt()
@@ -79,7 +80,7 @@ def aiwmFunc():
 
     def restoreFromDownloads():
         downloads_dir = os.path.expanduser("~/Downloads")
-        backup_files = os.listdir(downloads_dir)
+        backup_files = orderFiles(downloads_dir)
         title = 'Select files'
         backups_array = []
         selected_plugins = []
