@@ -35,8 +35,10 @@ def aiwmFunc():
             listDir(path_to_selected_dir)
             selected_project = createOrChooseDirectory(path_to_selected_dir)
             path_to_selected_dir = path_to_selected_dir + "/" + selected_project
+            sorted_files = orderFiles(path_to_selected_dir)
+            for file in sorted_files:
+                print(file)
             makeBackup(path_to_selected_dir)
-            listFiles(path_to_selected_dir)
         else:
             exit(colored("Directory /mnt/Projects not exists!", "red"))
 
