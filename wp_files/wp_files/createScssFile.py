@@ -6,6 +6,13 @@ from libs.listFiles import listFiles
 from wp_files.wp_files.checkCssLayout import checkCssLayout
 from wp_files.wp_files.createOrChooseDirectory import createOrChooseDirectory
 def createScssFile(dir_name_param = '', file_name_param = ''):
+    if not os.path.exists("src/scss"):
+        os.makedirs("src/scss")
+    if not os.path.exists("src/scss/layouts"):
+        os.makedirs("src/scss/layouts")
+    if not os.path.exists("src/scss/default.scss"):
+        with open("src/scss/default.scss", "w") as f:
+            f.write(".home { &__title{} }")
     scss_layout_path='src/scss/layouts/default.scss'
     checkCssLayout(scss_layout_path)
     path_to_my_scss = "src/scss/my.scss"
