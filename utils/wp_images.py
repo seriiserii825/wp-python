@@ -12,7 +12,7 @@ def getImages():
     downloads_dir = os.path.expanduser("~") + "/Downloads"
     files = os.listdir(downloads_dir)
     for item in files:
-        if item.endswith(".jpg"):
+        if item.endswith(".jpg") or item.endswith(".png"):
             images.append(item)
     return images
 
