@@ -4,7 +4,7 @@ from libs.listFiles import listFiles
 
 from wp_files.wp_files.checkInterfaceLayout import checkInterfaceLayout
 def createInterfaceFile():
-    js_layout_path='template-parts/layouts/default.vue'
+    js_layout_path='template-parts/layouts/interface.ts'
     checkInterfaceLayout(js_layout_path)
     path_to_dir = "src/vue/interfaces"
     path_to_selected_dir = path_to_dir
