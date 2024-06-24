@@ -14,7 +14,9 @@ def getImages():
     for item in files:
         if item.endswith(".jpg") or item.endswith(".png") or item.endswith(".svg"):
             images.append(item)
-    return images
+    sorted_images = sorted(images)
+    print(colored("Images in Downloads folder:", "green"))
+    return sorted_images
 
 def uploadAll():
     images = getImages()
