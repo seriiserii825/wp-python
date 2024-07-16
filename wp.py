@@ -2,7 +2,7 @@
 
 from termcolor import colored
 from acf.acf import acfFunc
-from init import init
+from init import init, resetSettings
 from utils.aiwm import aiwmFunc
 from utils.pages import wpPages
 from utils.plugins import pluginsFunc
@@ -11,6 +11,7 @@ from utils.wp_images import wpImages
 from wp_files.files import mainMenu
 
 print(colored("1) Init", "green"))
+print(colored("1.1) Reset", "red"))
 print(colored("2) Files", "blue"))
 print(colored("3) Acf", "yellow"))
 print(colored("4) Backups", "green"))
@@ -23,6 +24,8 @@ print(colored("9) Exit", "red"))
 choice = input("Enter your choice: ")
 if choice == '1':
     init()
+if choice == '1.1':
+    resetSettings()
 elif choice == '2':
     mainMenu()
 elif choice == '3':
