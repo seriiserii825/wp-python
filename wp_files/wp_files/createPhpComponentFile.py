@@ -30,4 +30,4 @@ def createPhpComponentFile():
         with open(path_to_functions_php, "a") as f:
             f.write(f"\nrequire get_template_directory() . '/{file_path}';")
         os.system(f"bat {path_to_functions_php}")
-        createScssFile('components', file_name)
+        # createScssFile('components', file_name)
