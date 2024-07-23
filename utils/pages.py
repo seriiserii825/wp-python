@@ -32,6 +32,7 @@ def listPages():
 
 
 def wpPages():
+    listPages()
     def menu():
         print(colored("1) List pages", "green"))
         print(colored("1.1) Ignore content", "blue"))
