@@ -1,10 +1,6 @@
 import json
 from prettytable import PrettyTable
 from termcolor import colored
-from rich import print
-from rich.panel import Panel
-from rich.console import Console
-from rich.table import Table
 
 
 def showAll(file_path, group_index=None):
