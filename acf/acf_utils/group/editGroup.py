@@ -20,7 +20,6 @@ def editGroup(file_path):
     if group_index.isdigit():
         group_index = int(group_index)
         group = fields[0][int(group_index)]
-        # print(tabs)
         key = 'label'
         val = group['label']
         tab = next((d for d in tabs if d.get(key) == val), None)
@@ -31,6 +30,7 @@ def editGroup(file_path):
             new_group_name = old_group_name
         new_group_slug = new_group_name.replace(" ", "_").lower()
         new_group_layout = addGroupLayout()
+        print(f"new_group_layout: {new_group_layout}")
         with open(file_path, 'r') as file:
             # read
             data = json.load(file)
