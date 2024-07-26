@@ -10,6 +10,7 @@ from urllib.parse import urlparse
 from pick import pick
 from termcolor import colored
 from libs.listDir import listDir
+from utils.getProjects import getProjects
 from wp_files.wp_files.createOrChooseDirectory import createOrChooseDirectory
 from libs.orderFiles import orderFiles
 
@@ -17,47 +18,35 @@ def listBackup():
     os.system("wp ai1wm list-backups")
 
 def restoreBackupInChrome():
+    current_dir_path = os.getcwd()
+    theme_name = os.path.basename(current_dir_path)
+    project = getProjects(theme_name)
+    project_title = project[0]['title']
+    project_login = project[0]['login']
+    project_password = project[0]['password']
+    project_url = project[0]['url']
     options = webdriver.ChromeOptions() 
     options.add_argument("user-data-dir=/home/serii/.config/google-chrome/My-profile") #Path to your chrome profile
     service = Service(executable_path='/usr/bin/chromedriver')
     driver = webdriver.Chrome(service=service, options=options)
-    driver.get("https://scattisparsi.altuofianco.com/gestione")
-
+    sitem_login = f"{project_url}/gestione"
+    driver.get(sitem_login)
     login_element = driver.find_element(By.ID, "user_login")
-    login_element.send_keys("scattisparsi")
-    
+    login_element.send_keys(project_login)
+
     password_element = driver.find_element(By.ID, "user_pass")
-    password_element.send_keys("R3Rd*r/jm4fp7")
+    password_element.send_keys(project_password)
 
     login_button = driver.find_element(By.ID, "wp-submit")
     login_button.click()
-    driver.get("https://scattisparsi.altuofianco.com/wp-admin/admin.php?page=ai1wm_backups")
+    backups_url = f"{project_url}/wp-admin/admin.php?page=ai1wm_backups"
+    driver.get(backups_url)
     ai1wm_backup_dots = driver.find_element(By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-dots")
     ai1wm_backup_dots.click()
     ai1wm_backup_restore = driver.find_element(By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-restore")
+    time.sleep(2)
     ai1wm_backup_restore.click()
     time.sleep(10000)
-    # print(f"Number of backups: {len(tr_all)}")
-    # print(f"First backup: {tr_all[1].text}")
-    # ai1wm_backup_dots = tr_all[1].find_element(By.CLASS_NAME, "ai1wm-backup-dots")
-    # ai1wm_backup_dots.click()
-    # ai1wm_backup_restore = tr_all[0].find_element(By.CLASS_NAME, "ai1wm-backup-restore")
-    # ai1wm_backup_restore.click()
-
-
-
-    # driver = webdriver.Chrome(service=service)
-    # driver.get("https://www.google.com")
-#     timeout = 1
-#     input_element = driver.find_element(By.CLASS_NAME, "gLFyf")
-# # time.sleep(timeout)
-#     input_element.clear()
-#     input_element.send_keys(search_text)
-# # time.sleep(timeout)
-#     input_element.send_keys(Keys.RETURN)
-#     link = driver.find_element(By.PARTIAL_LINK_TEXT, search_text)
-# # time.sleep(timeout)
-#     link.click()
 
 def createAndCopyToMnt():
     directory_exists = os.path.isdir('/mnt/Projects')
