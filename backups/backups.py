@@ -5,8 +5,6 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
 
 from urllib.parse import urlparse
 from pick import pick
@@ -19,26 +17,34 @@ def listBackup():
     os.system("wp ai1wm list-backups")
 
 def restoreBackupInChrome():
-    # options = webdriver.ChromeOptions() 
-    # options.add_argument("user-data-dir=/home/serii/.config/google-chrome/Default") #Path to your chrome profile
-    # options.add_argument('--profile-directory=/home/serii/.config/google-chrome/Default')
-    # service = Service(executable_path='/usr/bin/chromedriver')
-    # driver = webdriver.Chrome(service=service, options=options)
-    # driver.get("https://www.google.com")
-
-# Specify the debugging address for the already opened Chrome browser
-
-# Set up ChromeOptions and connect to the existing browser
-    options = Options()
-    options.add_experimental_option("debuggerAddress", "127.0.0.1:8989")
+    options = webdriver.ChromeOptions() 
+    options.add_argument("user-data-dir=/home/serii/.config/google-chrome/My-profile") #Path to your chrome profile
     service = Service(executable_path='/usr/bin/chromedriver')
     driver = webdriver.Chrome(service=service, options=options)
-    driver.get('https://www.google.com')
-    # element = driver.find_element_by_id('element-id')
-    # element.click()
+    driver.get("https://scattisparsi.altuofianco.com/gestione")
 
-    time.sleep(300)
-    driver.quit()
+    login_element = driver.find_element(By.ID, "user_login")
+    login_element.send_keys("scattisparsi")
+    
+    password_element = driver.find_element(By.ID, "user_pass")
+    password_element.send_keys("R3Rd*r/jm4fp7")
+
+    login_button = driver.find_element(By.ID, "wp-submit")
+    login_button.click()
+    driver.get("https://scattisparsi.altuofianco.com/wp-admin/admin.php?page=ai1wm_backups")
+    ai1wm_backup_dots = driver.find_element(By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-dots")
+    ai1wm_backup_dots.click()
+    ai1wm_backup_restore = driver.find_element(By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-restore")
+    ai1wm_backup_restore.click()
+    time.sleep(10000)
+    # print(f"Number of backups: {len(tr_all)}")
+    # print(f"First backup: {tr_all[1].text}")
+    # ai1wm_backup_dots = tr_all[1].find_element(By.CLASS_NAME, "ai1wm-backup-dots")
+    # ai1wm_backup_dots.click()
+    # ai1wm_backup_restore = tr_all[0].find_element(By.CLASS_NAME, "ai1wm-backup-restore")
+    # ai1wm_backup_restore.click()
+
+
 
     # driver = webdriver.Chrome(service=service)
     # driver.get("https://www.google.com")
