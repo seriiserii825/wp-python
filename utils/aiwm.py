@@ -2,7 +2,7 @@
 import os
 from termcolor import colored
 
-from backups.backups import createAndCopyToMnt, deleteBackup, downloadBackup, listBackup, makeBackup, restoreBackup, restoreBackupInChrome, restoreFromDownloads
+from backups.backups import createAndCopyToMnt, deleteBackup, downloadBackup, listBackup, makeBackup, makeBackupInChrome, restoreBackup, restoreBackupInChrome, restoreFromDownloads
 
 is_installed_plugins = os.path.exists("../../plugins/all-in-one-wp-migration");
 if not is_installed_plugins:
@@ -18,6 +18,7 @@ def aiwmFunc():
         print(colored("1) List", "green"))
         print(colored("2) Create", "yellow"))
         print(colored("2.1) Create and copy to mnt", "yellow"))
+        print(colored("2.2) Create backup on server", "yellow"))
         print(colored("3) Restore", "blue"))
         print(colored("4) Restore from Downloads", "blue"))
         print(colored("5) Restore in Browser", "blue"))
@@ -34,6 +35,9 @@ def aiwmFunc():
             menu()
         elif choice == "2.1":
             createAndCopyToMnt()
+            menu()
+        elif choice == "2.2":
+            makeBackupInChrome()
             menu()
         elif choice == "3":
             restoreBackup()

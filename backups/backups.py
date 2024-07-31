@@ -48,6 +48,37 @@ def restoreBackupInChrome():
     ai1wm_backup_restore.click()
     time.sleep(10000)
 
+def makeBackupInChrome():
+    current_dir_path = os.getcwd()
+    theme_name = os.path.basename(current_dir_path)
+    project = getProjects(theme_name)
+    project_login = project[0]['login']
+    project_password = project[0]['password']
+    project_url = project[0]['url']
+    options = webdriver.ChromeOptions() 
+    options.add_argument("user-data-dir=/home/serii/.config/google-chrome/My-profile") #Path to your chrome profile
+    service = Service(executable_path='/usr/bin/chromedriver')
+    driver = webdriver.Chrome(service=service, options=options)
+    sitem_login = f"{project_url}/gestione"
+    driver.get(sitem_login)
+    login_element = driver.find_element(By.ID, "user_login")
+    login_element.send_keys(project_login)
+
+    password_element = driver.find_element(By.ID, "user_pass")
+    password_element.send_keys(project_password)
+
+    login_button = driver.find_element(By.ID, "wp-submit")
+    login_button.click()
+    backups_url = f"{project_url}/wp-admin/admin.php?page=ai1wm_export"
+    driver.get(backups_url)
+    ai1wm_backup_dots = driver.find_element(By.CSS_SELECTOR, ".ai1wm-button-export")
+    ai1wm_backup_dots.click()
+    time.sleep(2)
+    ai1wm_backup_restore = driver.find_element(By.CSS_SELECTOR, ".ai1wm-dropdown-menu li a")
+    ai1wm_backup_restore.click()
+    time.sleep(10000)
+
+
 def createAndCopyToMnt():
     directory_exists = os.path.isdir('/mnt/Projects')
     if directory_exists:
