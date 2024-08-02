@@ -26,4 +26,4 @@ def getProjects(theme_name):
         print(colored("Theme is not in projects", "red"))
         exit(1)
     else:
-        return projects
+        return theme_is_in_projects[0]

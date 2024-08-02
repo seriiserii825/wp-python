@@ -20,11 +20,13 @@ def listBackup():
 def restoreBackupInChrome():
     current_dir_path = os.getcwd()
     theme_name = os.path.basename(current_dir_path)
+    print(f"Theme name: {theme_name}")
     project = getProjects(theme_name)
-    project_title = project[0]['title']
-    project_login = project[0]['login']
-    project_password = project[0]['password']
-    project_url = project[0]['url']
+    project_title = project['title']
+    project_login = project['login']
+    project_password = project['password']
+    project_url = project['url']
+    print(f"Project url: {project_url}")
     options = webdriver.ChromeOptions() 
     options.add_argument("user-data-dir=/home/serii/.config/google-chrome/My-profile") #Path to your chrome profile
     service = Service(executable_path='/usr/bin/chromedriver')
@@ -51,10 +53,12 @@ def restoreBackupInChrome():
 def makeBackupInChrome():
     current_dir_path = os.getcwd()
     theme_name = os.path.basename(current_dir_path)
+    print(f"Theme name: {theme_name}")
+    # exit()
     project = getProjects(theme_name)
-    project_login = project[0]['login']
-    project_password = project[0]['password']
-    project_url = project[0]['url']
+    project_login = project['login']
+    project_password = project['password']
+    project_url = project['url']
     options = webdriver.ChromeOptions() 
     options.add_argument("user-data-dir=/home/serii/.config/google-chrome/My-profile") #Path to your chrome profile
     service = Service(executable_path='/usr/bin/chromedriver')
