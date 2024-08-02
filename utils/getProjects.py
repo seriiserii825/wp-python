@@ -10,7 +10,7 @@ def getProjects(theme_name):
         )
     )
     # print(ROOT_DIR)
-    csv_file_path = os.path.join(ROOT_DIR, 'data/list.csv')
+    csv_file_path = os.path.join(ROOT_DIR, 'list.csv')
     with open(csv_file_path) as my_file:
         reader = csv.reader(my_file, delimiter =',')
         for row in reader:
