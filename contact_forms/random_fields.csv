@@ -1,0 +1,42 @@
+nome,John Doe,Mario Rossi,Paolo Bianchi,Marco Verdi,Andrea Neri,Francesco Gialli,Matteo Rossi,Paolo Verdi,Andrea Bianchi
+your-name,John Doe,Mario Rossi,Paolo Bianchi,Marco Verdi,Andrea Neri,Francesco Gialli,Matteo Rossi,Paolo Verdi,Andrea Bianchi
+codice-fiscale,12345678901,12345678902,12345678903,12345678904,12345678905,12345678906,12345678907,12345678908,12345678909
+nato-a,Roma,Milano,Torino,Napoli,Palermo,Bologna,Firenze,Genova,Venezia
+data-di-nascita,01/01/1990,02/02/1990,03/03/1990,04/04/1990,05/05/1990,06/06/1990,07/07/1990,08/08/1990,09/09/1990
+citta,Roma,Milano,Torino,Napoli,Palermo,Bologna,Firenze,Genova,Venezia
+indirizzo,Via Roma 1,Via Milano 2,Via Torino 3,Via Napoli 4,Via Palermo 5,Via Bologna 6,Via Firenze 7,Via Genova 8,Via Venezia 9
+cap,00100,20100,10100,80100,90100,40100,50100,16100,30100
+provincia,RM,MI,TO,NA,PA,BO,FI,GE,VE
+your-cell,3331234567,3331234568,3331234569,3331234560,3331234561,3331234562,3331234563,3331234564,3331234565
+your-phone,0661234567,0221234568,0111234569,0811234560,0911234561,0511234562,0551234563,0101234564,0411234565
+your-email,serii@mail.com,jack@mail.com,nick@gmail.com,tinny@mail.com
+email,serii@mail.com,jack@mail.com,nick@gmail.com,tinny@mail.com
+your-message,Hello,Hi,Good morning,Good evening,Good night
+your-subject,Subject 1,Subject 2,Subject 3,Subject 4,Subject 5
+nome-bambino,John Doe Jr,Mario Rossi Jr,Paolo Bianchi Jr,Marco Verdi Jr,Andrea Neri Jr,Francesco Gialli Jr,Matteo Rossi Jr,Paolo Verdi Jr,Andrea Bianchi Jr
+codice-fiscale-bambino,12345678901,12345678902,12345678903,12345678904,12345678905,12345678906,12345678907,12345678908,12345678909
+bambino-nato-a,Roma,Milano,Torino,Napoli,Palermo,Bologna,Firenze,Genova,Venezia
+data-nascita-bambino,01/01/1990,02/02/1990,03/03/1990,04/04/1990,05/05/1990,06/06/1990,07/07/1990,08/08/1990,09/09/1990
+tel-padre,3331234567,3331234568,3331234569,3331234560,3331234561,3331234562,3331234563,3331234564,3331234565
+tel-madre,3331234567,3331234568,3331234569,3331234560,3331234561,3331234562,3331234563,3331234564,3331234565
+cellulare,3331234567,3331234568,3331234569,3331234560,3331234561,3331234562,3331234563,3331234564,3331234565
+email-padre,some@mail.com,text@mail.com,mam@gmail.com
+menu-273,1,1,1,1,1,1,1,1,1
+sesso,M,F,M,F,M,F,M,F,M
+email-madre,madre@mail.com,padre@mail.com
+tel-nonni,3331234567,3331234568,3331234569,3331234560,3331234561,3331234562,3331234563,3331234564,3331234565
+responsabile,John Doe,Mario Rossi,Paolo Bianchi,Marco Verdi,Andrea Neri,Francesco Gialli,Matteo Rossi,Paolo Verdi,Andrea Bianchi
+provincia-pickleball-footer,RM,MI,TO,NA,PA,BO,FI,GE,VE
+nato-a-pickleball-footer,Roma,Milano,Torino,Napoli,Palermo,Bologna,Firenze,Genova,Venezia
+email-pickleball-footer,some@mail.com,test@mail.com
+codice-fiscale-pickleball-footer,12345678901,12345678902,12345678903,12345678904,12345678905,12345678906,12345678907,12345678908,12345678909
+data-di-nascita-pickleball-footer,01/01/1990,02/02/1990,03/03/1990,04/04/1990,05/05/1990,06/06/1990,07/07/1990,08/08/1990,09/09/1990
+cap-pickleball-footer,00100,20100,10100,80100,90100,40100,50100,16100,30100
+indirizzo-pickleball-footer,Via Roma 1,Via Milano 2,Via Torino 3,Via Napoli 4,Via Palermo 5,Via Bologna 6,Via Firenze 7,Via Genova 8,Via Venezia 9
+citta-pickleball-footer,Roma,Milano,Torino,Napoli,Palermo,Bologna,Firenze,Genova,Venezia
+cellulare-pickleball-footer,3331234567,3331234568,3331234569,3331234560,3331234561,3331234562,3331234563,3331234564,3331234565
+nome-pickleball-footer,John Doe,Mario Rossi,Paolo Bianchi,Marco Verdi,Andrea Neri,Francesco Gialli,Matteo Rossi,Paolo Verdi,Andrea Bianchi
+sesso-pickleball-footer,M,F,M,F,M,F,M,F,M
+allievi,3 aLLIEVI 1h30,2 allievi 3
+pacchetto, 1 pacchetto 1h30, 2 pacchetto 3
+orario, 1 orario 1h30, 2 orario 3

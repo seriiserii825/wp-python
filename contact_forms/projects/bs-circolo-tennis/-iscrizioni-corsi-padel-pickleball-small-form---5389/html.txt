@@ -1,0 +1,70 @@
+<div class="form-row">
+  <div class="form-group form-group--3">
+    [select* orario first_as_label "Scegli l’orario" "PRIMA DELLE 16:30" "DOPO le 16:30"]
+  </div>
+  <div class="form-group form-group--3">
+    [select* pacchetto first_as_label "Scegli il pacchetto" "PACCHETTO 4 LEZIONI" "PACCHETTO 8 LEZIONI" "PACCHETTO 12 LEZION" "LEZIONI SPOT"]
+  </div>
+  <div class="form-group form-group--3">
+    [select* allievi first_as_label "Scegli il numero di allievi" "3 aLLIEVI 1h30'" "2 aLLIEVI 1h" "1 aLLIEVO 1h"]
+  </div>
+</div>
+<div class="form-group">
+  <span class="form-span">Cognome e Nome</span>
+  [text* nome placeholder " "]
+</div>
+<div class="form-group">
+  <span class="form-span">Codice Fiscale</span>
+  [text* codice-fiscale placeholder " "]
+</div>
+<div class="form-group">
+  <span class="form-span">Nato a</span>
+  [text* nato-a placeholder " "]
+</div>
+<div class="form-group">
+  <span class="form-span">Data di nascita</span>
+  [text* data-di-nascita id:input-nascita-sign-up class:input-date placeholder "DD/MM/YYYY"]
+</div>
+[honeypot honeypot-850 timecheck_value:4 validautocomplete:true timecheck_enabled:true]
+<div class="form-row-label">Residente in:</div>
+<div class="form-row">
+  <div class="form-group">
+    <span class="form-span">Città</span>
+    [text* citta placeholder "Città"]
+  </div>
+
+  <div class="form-group">
+    <span class="form-span">Indirizzo</span>
+    [text* indirizzo placeholder "Indirizzo"]
+  </div>
+
+  <div class="form-group">
+    <span class="form-span">CAP</span>
+    [text* cap placeholder "CAP"]
+  </div>
+
+  <div class="form-group">
+    <span class="form-span">Provincia</span>
+    [text* provincia placeholder "Provincia"]
+  </div>
+</div>
+<div class="form-group">
+  <div class="form-row-label">Sesso</div>
+  [radio sesso "Maschio" "Femmina"]
+</div>
+<div class="form-row">
+<div class="form-group form-group--2">
+  <span class="form-span">Cellulare</span>
+  [text* cellulare placeholder " "]
+</div>
+<div class="form-group form-group--2">
+  <span class="form-span">Email</span>
+  [email* email placeholder " "]
+</div>
+</div>
+<div class="form-footer">
+<div class="form-footer__padel">L’iscrizione è subordinata all’approvazione da parte dello staff tecnico in funzione del livello di gioco.</div>
+<div class="privacy">
+            [acceptance acceptance-223] Ho letto e preso visione del <a download href="/wp-content/uploads/2024/04/MODULO-CODICE-COMPORTAMENTALE-_2024.04.07.pdf" target="_blank">Codice Comportamentale del Circolo.</a> Cliccando su invia dichiari di aver preso visione [/acceptance]
+        </div>
+[submit class:btn class:btn--dark "Iniva"]</div>
