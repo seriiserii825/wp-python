@@ -34,7 +34,7 @@ cd ../../../../../
 if [[ ! -f wp-cli.local.yml ]]
 then
   rm wp-cli*
-  echo "${tblue}need to enter mysql code from clipboard${treset}"
+  echo "${tgreen}need to enter mysql code from clipboard${treset}"
   curl -O https://raw.githubusercontent.com/salcode/wpcli-localwp-setup/main/wpcli-localwp-setup  && bash wpcli-localwp-setup && rm -rf ./wpcli-localwp-setup
 fi
 
