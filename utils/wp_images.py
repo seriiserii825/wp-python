@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 from termcolor import colored
+from rich.console import Console
 
 from libs.select import selectMultiple, selectOne
 
@@ -18,17 +19,25 @@ def getImages():
     print(colored("Images in Downloads folder:", "blue"))
     return sorted_images
 
+def importImages(images):
+    optimize = Console().input("Optimize images? (y/n): ")
+    for image in images:
+        if optimize == "y":
+            for image in images:
+                # if type is jpg
+                if image.endswith(".jpg"):
+                    os.system(f"jpegoptim --strip-all --all-progressive -ptm 80 ~/Downloads/{image}")
+                    os.system("wp media import ~/Downloads/" + image + " --title=" + image)
+                else:
+                    os.system("wp media import ~/Downloads/" + image + " --title=" + image)
+
 def uploadAll():
     images = getImages()
-    for image in images:
-        os.system("wp media import ~/Downloads/" + image + " --title=" + image)
+    importImages(images)
 
 def selectImages():
     images = selectMultiple(getImages())
-    print(type(images))
-    print(f'images: {images}')
-    for image in images:
-        os.system("wp media import ~/Downloads/" + image + " --title=" + image)
+    importImages(images)
 
 def wpImages():
     print(colored("1) Upload all", "green"))
