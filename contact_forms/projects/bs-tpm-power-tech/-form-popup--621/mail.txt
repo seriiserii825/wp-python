@@ -1,10 +1,9 @@
 array (
   'active' => true,
-  'subject' => '[_site_title] "[your-subject]"',
+  'subject' => '[_site_title] "TPM Power Tech"',
   'sender' => '[_site_title] <wordpress@lc-tpm-power-tech.local>',
   'recipient' => '[_site_admin_email]',
   'body' => 'Da: [your-name] [your-email]
-Oggetto: [your-subject]
 Azienda: [your-azienda]
 Telefono: [your-phone]
 Corpo del messaggio:

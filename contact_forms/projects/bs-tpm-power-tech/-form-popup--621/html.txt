@@ -10,6 +10,7 @@
 <div class="form__group form__group--textarea">
   [textarea* your-message placeholder "Messaggio"]
 </div>
+[honeypot honeypot-287 timecheck_enabled:true]
 <div class="form__footer">
   <div class="form__privacy">
     [acceptance acceptance-223] Cliccando su invia dichiari di aver preso visione e di accettare la nostra

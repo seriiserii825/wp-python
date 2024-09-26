@@ -1,6 +1,7 @@
 from rich import print
 from rich.console import Console
 
+from contact_forms.checkHoneypot import checkHoneypot
 from contact_forms.checkRandomFields import checkRandomFields
 from contact_forms.getRandomFields import getRandomFields
 from contact_forms.showRandomFields import showRandomFields
@@ -42,6 +43,7 @@ def menu():
     project_folder = createProjectsFolder()
     form = getContactForm(project_folder)
     form_files_paths = formToFiles(form)
+    checkHoneypot(form_files_paths)
     all_fields = getRequiredFileds(form_files_paths)['all_fields']
     required_fields = getRequiredFileds(form_files_paths)['required_fields']
     submited_fields = getSubmitedFields(form_files_paths)
