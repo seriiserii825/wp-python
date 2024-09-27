@@ -15,16 +15,13 @@ def deleteBackup():
             backups_array.append(file)
     if (len(backups_array) == 0):
         exit(colored("No backups found!", "red"))
-    elif(len(backups_array) >3):
-        backup_to_delete = backups_array[3:]
+    elif(len(backups_array) >2):
+        backup_to_delete = backups_array[2:]
         print(colored(f"Backups to delete: ", "red"))
         for file in backup_to_delete:
             print(file)
-        agree = input("Do you want to delete backups? (yes/no): ")
-        if agree == "yes":
-            for file in backup_to_delete:
-                os.system(f"rm {file}")
-        listBackup()
+        for file in backup_to_delete:
+            os.system(f"rm {file}")
     else:
         print(colored("Backups less than 3", "green"))
 
