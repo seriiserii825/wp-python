@@ -21,12 +21,11 @@ def getImages():
 
 def importImages(images):
     for image in images:
-        for image in images:
-            if image.endswith(".jpg"):
-                os.system(f"jpegoptim --strip-all --all-progressive -ptm 80 ~/Downloads/{image}")
-                os.system("wp media import ~/Downloads/" + image + " --title=" + image)
-            else:
-                os.system("wp media import ~/Downloads/" + image + " --title=" + image)
+        if image.endswith(".jpg"):
+            os.system(f"jpegoptim --strip-all --all-progressive -ptm 80 ~/Downloads/{image}")
+            os.system("wp media import ~/Downloads/" + image + " --title=" + image)
+        else:
+            os.system("wp media import ~/Downloads/" + image + " --title=" + image)
 
 def uploadAll():
     images = getImages()
