@@ -57,11 +57,11 @@ def restoreBackupInChrome():
     time.sleep(1)
     driver.close()
     driver = webdriver.Chrome(service=service, options=options)
-    sitem_login = f"{project_url}"
+    sitem_login = f"{project_url}/login"
     while True:
         req = requests.get(sitem_login)
         if req.status_code != requests.codes['ok']:
-            sitem_login = f"{project_url}/login"
+            sitem_login = f"{project_url}/wp-admin"
             break
         else:
             break
