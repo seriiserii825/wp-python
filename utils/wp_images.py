@@ -20,16 +20,13 @@ def getImages():
     return sorted_images
 
 def importImages(images):
-    optimize = Console().input("Optimize images? (y/n): ")
     for image in images:
-        if optimize == "y":
-            for image in images:
-                # if type is jpg
-                if image.endswith(".jpg"):
-                    os.system(f"jpegoptim --strip-all --all-progressive -ptm 80 ~/Downloads/{image}")
-                    os.system("wp media import ~/Downloads/" + image + " --title=" + image)
-                else:
-                    os.system("wp media import ~/Downloads/" + image + " --title=" + image)
+        for image in images:
+            if image.endswith(".jpg"):
+                os.system(f"jpegoptim --strip-all --all-progressive -ptm 80 ~/Downloads/{image}")
+                os.system("wp media import ~/Downloads/" + image + " --title=" + image)
+            else:
+                os.system("wp media import ~/Downloads/" + image + " --title=" + image)
 
 def uploadAll():
     images = getImages()
