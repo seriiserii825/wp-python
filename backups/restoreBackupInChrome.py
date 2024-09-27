@@ -61,7 +61,7 @@ def restoreBackupInChrome():
     while True:
         req = requests.get(sitem_login)
         if req.status_code != requests.codes['ok']:
-            sitem_login = f"{project_url}/wp-admin"
+            sitem_login = f"{project_url}/login"
             break
         else:
             break
