@@ -14,7 +14,7 @@ def deleteBackup():
         if file.endswith('.wpress'):
             backups_array.append(file)
     if (len(backups_array) == 0):
-        exit(colored("No backups found!", "red"))
+        print(colored("No backups found!", "red"))
     elif(len(backups_array) >2):
         backup_to_delete = backups_array[2:]
         print(colored(f"Backups to delete: ", "red"))
