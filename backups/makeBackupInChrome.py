@@ -66,5 +66,5 @@ def makeBackupInChrome():
     button_green.click()
     WebDriverWait(driver, 120, 1).until(every_downloads_chrome)
     driver.close()
-    time.sleep(10000)
+    time.sleep(10000000)
 
