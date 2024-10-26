@@ -2,6 +2,7 @@ import os
 from rich import print
 from libs.select import selectOne
 from libs.selectWithFzf import selectWithFzf
+from pyfzf.pyfzf import FzfPrompt
 
 class FilesHandle:
     def __init__(self, basepath: str):
@@ -64,3 +65,18 @@ class FilesHandle:
                     if entry.startswith(item):
                         print(entry)
         print(f"Listing directories in ================ {self.basepath}")
+
+    def selectWithFzf(self, items):
+        fzf = FzfPrompt()
+        selected_item = fzf.prompt(items)
+        return selected_item[0]
+
+    def chooseFile(self):
+        choosed_files = []
+        for entry in os.listdir(self.basepath):
+            if os.path.isfile(os.path.join(self.basepath, entry)):
+                choosed_files.append(entry)
+        if len(choosed_files) == 0:
+            exit("[red]No files found")
+        else:
+            return selectOne(choosed_files)

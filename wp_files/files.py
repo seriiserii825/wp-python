@@ -42,6 +42,9 @@ def mainMenu():
         php_file = CreateFile("php")
         php_file.createFile()
         mainMenu()
+    if choice == "scss":
+        createScssFile()
+        mainMenu()
     if choice == "phps":
         createPhpAndScss()
         mainMenu()
@@ -55,9 +58,6 @@ def mainMenu():
         mainMenu()
     if choice == "phpi":
         createPhpIcon()
-        mainMenu()
-    if choice == "scss":
-        createScssFile()
         mainMenu()
     if choice == "js":
         js_file = CreateFile("js")

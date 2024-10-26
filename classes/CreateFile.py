@@ -157,12 +157,17 @@ class CreateFile:
             os.system(f"sed -i -e 's/{self.layout_text}/{self.file_name}/g' '{file_path}' ")
         elif getLayoutType(self.type)['type'] != 'phpp':
             os.system(f"sed -i -e 's/{self.layout_text}/{self.file_name}/g' '{file_path}' ")
+        
+        if self.type == 'php':
+            self.includeInPage()
 
         os.system(f"bat {file_path}")
 
     def includeInPage(self):
         if self.type == 'php':
-            self.insertBeforeLastLine('index.php', f"<?php get_template_part('{self.dir_name}/{self.file_name}');?>\n")
+            selected_file = FilesHandle('.').chooseFile()
+            print(f"selected_file: {selected_file}")
+            self.insertBeforeLastLine(selected_file, f"<?php get_template_part('{self.dir_name}/{self.file_name}');?>\n")
 
 
     def insertBeforeLastLine(self, file_path, content):
