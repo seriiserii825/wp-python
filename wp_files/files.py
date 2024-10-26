@@ -45,7 +45,9 @@ def mainMenu():
         createPhpAndScss()
         mainMenu()
     if choice == "phpc":
-        createPhpComponentFile()
+        # createPhpComponentFile()
+        phpc_file = CreateFile("phpc")
+        phpc_file.createFile()
         mainMenu()
     if choice == "phpp":
         createPhpPage()
@@ -54,10 +56,8 @@ def mainMenu():
         createPhpIcon()
         mainMenu()
     if choice == "js":
-        # createJsFile()
-        js_file = CreateFile("src/js/modules", "js")
-        js_file.listFiles()
-        js_file.createFile("homeIntro", "jsLayout")
+        js_file = CreateFile("js")
+        js_file.createFile()
         mainMenu()
     if choice == "ts":
         createInterfaceFile()
