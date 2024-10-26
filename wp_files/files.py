@@ -15,7 +15,6 @@ from wp_files.wp_files.createPhpComponentFile import createPhpComponentFile
 from wp_files.wp_files.createPhpIcon import createPhpIcon
 from wp_files.wp_files.createPhpPage import createPhpPage
 from wp_files.wp_files.createPiniaFile import createPiniaFile
-from wp_files.wp_files.createRestApiFile import createRestApiFile
 from wp_files.wp_files.createScssFile import createScssFile
 from wp_files.wp_files.createVueFile import createVueFile
 os.chdir(current_dir)
@@ -23,24 +22,25 @@ os.chdir(current_dir)
 
 def mainMenu():
     print(colored("============= Menu ================", "green"))
-    print(colored("scss", "blue"))
+    print(colored("php(php and scss)", "yellow"))
     print(colored("phps(php and scss)", "yellow"))
     print(colored("phpc(php component)", "yellow"))
     print(colored("phpp(php page)", "yellow"))
     print(colored("phpi(php icon)", "yellow"))
+    print(colored("scss", "blue"))
     print(colored("js", "red"))
     print(colored("ts(interface)", "red"))
     print(colored("vue_view", "green"))
     print(colored("vue(component)", "green"))
     print(colored("hook", "blue"))
     print(colored("pinia", "blue"))
-    print(colored("rest(rest api)", "blue"))
     print(colored("exit", "red"))
     print(colored("============= Menu ================", "green"))
 
     choice = input("Make your choice:")
-    if choice == "scss":
-        createScssFile()
+    if choice == "php":
+        php_file = CreateFile("php")
+        php_file.createFile()
         mainMenu()
     if choice == "phps":
         createPhpAndScss()
@@ -55,6 +55,9 @@ def mainMenu():
         mainMenu()
     if choice == "phpi":
         createPhpIcon()
+        mainMenu()
+    if choice == "scss":
+        createScssFile()
         mainMenu()
     if choice == "js":
         js_file = CreateFile("js")
@@ -80,9 +83,6 @@ def mainMenu():
         # createPiniaFile()
         pinia_file = CreateFile("pinia")
         pinia_file.createFile()
-        mainMenu()
-    if choice == "rest":
-        createRestApiFile()
         mainMenu()
     if choice == "":
         exit(colored("Goodbye!", "red"))

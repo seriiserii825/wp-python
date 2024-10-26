@@ -7,6 +7,15 @@ script_path = os.path.expanduser('~/Documents/python/wp-python/')
 
 layout_types = (
         {
+            'type': 'php',
+            'dir_name': 'template-parts',
+            'layout_text': 'home',
+            'create_file_input_placeholder': 'home',
+            'extension': 'php',
+            'layout_path': f'{script_path}layouts/php-layout.php',
+            'create_dir': True
+            },
+        {
             'type': 'phpc',
             'dir_name': 'components',
             'layout_text': 'defaultComponent',
@@ -93,6 +102,7 @@ class CreateFile:
         self.layout_text = getLayoutType(type)['layout_text']
         self.create_file_input_placeholder = getLayoutType(type)['create_file_input_placeholder']
         self.extension = getLayoutType(type)['extension']
+        self.file_name = ''
 
     def checkDirPath(self):
         if not os.path.exists(self.dir_name):
@@ -114,18 +124,18 @@ class CreateFile:
         if getLayoutType(self.type) == 'phpp':
             files_handle = FilesHandle(self.dir_name)
             files_handle.listFilesWithPrefix(["page-", "single-"])
-        file_name = input(f"Enter file name like {self.create_file_input_placeholder}: ")
-        if file_name == '':
+        self.file_name = input(f"Enter file name like {self.create_file_input_placeholder}: ")
+        if self.file_name == '':
             print("File name is required")
             exit()
         if self.type == 'pinia':
-            file_name = f"{file_name}-store"
+            self.file_name = f"{self.file_name}-store"
         if self.selected_dir:
-            file_path = f"{self.dir_name}/{self.selected_dir}/{file_name}.{self.extension}"
+            file_path = f"{self.dir_name}/{self.selected_dir}/{self.file_name}.{self.extension}"
         elif self.type == 'phpp':
-            file_path = f"{file_name}.{self.extension}"
+            file_path = f"{self.file_name}.{self.extension}"
         else:
-            file_path = f"{self.dir_name}/{file_name}.{self.extension}"
+            file_path = f"{self.dir_name}/{self.file_name}.{self.extension}"
         with open(self.layout_path, "r") as f:
             layout = f.read()
             if os.path.exists(file_path):
@@ -137,18 +147,32 @@ class CreateFile:
                     print("File created: "+file_path)
 
         if self.type == 'vue_view' or self.type == 'vue':
-            file_name = Utils().camelToKebabCase(file_name)
+            self.file_name = Utils().camelToKebabCase(self.file_name)
 
         if getLayoutType(self.type)['type'] == 'pinia':
-            file_name = file_name.split('-')[0].lower()
-            os.system(f"sed -i -e 's/default/{file_name}/g' '{file_path}' ")
-            file_name = file_name.split('-')[0]
-            file_name = f"use{file_name.capitalize()}"
-            os.system(f"sed -i -e 's/{self.layout_text}/{file_name}/g' '{file_path}' ")
+            self.file_name = self.file_name.split('-')[0].lower()
+            os.system(f"sed -i -e 's/default/{self.file_name}/g' '{file_path}' ")
+            self.file_name = self.file_name.split('-')[0]
+            self.file_name = f"use{self.file_name.capitalize()}"
+            os.system(f"sed -i -e 's/{self.layout_text}/{self.file_name}/g' '{file_path}' ")
         elif getLayoutType(self.type)['type'] != 'phpp':
-            os.system(f"sed -i -e 's/{self.layout_text}/{file_name}/g' '{file_path}' ")
+            os.system(f"sed -i -e 's/{self.layout_text}/{self.file_name}/g' '{file_path}' ")
 
         os.system(f"bat {file_path}")
 
+    def includeInPage(self):
+        if self.type == 'php':
+            self.insertBeforeLastLine('index.php', f"<?php get_template_part('{self.dir_name}/{self.file_name}');?>\n")
 
 
+    def insertBeforeLastLine(self, file_path, content):
+        # Open the file in read mode
+        with open(file_path, 'r') as file:
+           lines = file.readlines()
+            # Insert a new line before the last line
+           lines.insert(-1, content)
+           # Open the file again in write mode
+        with open(file_path, 'w') as file:
+            # Write all the lines back to the file
+            file.writelines(lines)
+        os.system(f"bat {file_path}")
