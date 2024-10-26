@@ -31,8 +31,9 @@ def mainMenu():
     print(colored("js", "red"))
     print(colored("ts(interface)", "red"))
     print(colored("vue_view", "green"))
-    print(colored("hook", "green"))
-    print(colored("pinia", "green"))
+    print(colored("vue(component)", "green"))
+    print(colored("hook", "blue"))
+    print(colored("pinia", "blue"))
     print(colored("rest(rest api)", "blue"))
     print(colored("exit", "red"))
     print(colored("============= Menu ================", "green"))
@@ -67,8 +68,14 @@ def mainMenu():
         vue_file = CreateFile("vue_view")
         vue_file.createFile()
         mainMenu()
+    if choice == "vue":
+        vue_file = CreateFile("vue")
+        vue_file.createFile()
+        mainMenu()
     if choice == "hook":
-        createHookFile()
+        hook_file = CreateFile("hook")
+        hook_file.createFile()
+        # createHookFile()
         mainMenu()
     if choice == "pinia":
         createPiniaFile()

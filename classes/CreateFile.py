@@ -8,6 +8,24 @@ script_path = os.path.expanduser('~/Documents/python/wp-python/')
 
 layout_types = (
         {
+            'type': 'phpc',
+            'dir_name': 'components',
+            'layout_text': 'defaultComponent',
+            'create_file_input_placeholder': 'myComponent',
+            'extension': 'php',
+            'layout_path': f'{script_path}layouts/php-component.php',
+            'create_dir': False
+            },
+        {
+            'type': 'phpp',
+            'dir_name': '',
+            'layout_text': 'phpPageLayout',
+            'create_file_input_placeholder': 'page-servizi',
+            'extension': 'php',
+            'layout_path': f'{script_path}layouts/php-page.php',
+            'create_dir': False
+            },
+        {
             'type': 'js',
             'dir_name': 'src/js/modules',
             'layout_text': 'jsLayout',
@@ -35,23 +53,23 @@ layout_types = (
             'create_dir': False
             },
         {
-            'type': 'phpc',
-            'dir_name': 'components',
-            'layout_text': 'defaultComponent',
+            'type': 'vue',
+            'dir_name': 'src/vue/components',
+            'layout_text': 'vue',
             'create_file_input_placeholder': 'myComponent',
-            'extension': 'php',
-            'layout_path': f'{script_path}layouts/php-component.php',
-            'create_dir': False
+            'extension': 'vue',
+            'layout_path': f'{script_path}layouts/vue-component.vue',
+            'create_dir': True
             },
         {
-            'type': 'phpp',
-            'dir_name': '',
-            'layout_text': 'phpPageLayout',
-            'create_file_input_placeholder': 'page-servizi',
-            'extension': 'php',
-            'layout_path': f'{script_path}layouts/php-page.php',
-            'create_dir': False
-            }
+                'type': 'hook',
+                'dir_name': 'src/vue/hooks',
+                'layout_text': 'useDefault',
+                'create_file_input_placeholder': 'useDefault',
+                'extension': 'ts',
+                'layout_path': f'{script_path}layouts/default-hook.ts',
+                'create_dir': False
+                }
         )
 
 getLayoutType = lambda type: next((layout for layout in layout_types if layout['type'] == type))
@@ -108,9 +126,8 @@ class CreateFile:
                     f.write(layout)
                     print("File created: "+file_path)
 
-        if self.type == 'vue_view':
-            utils = Utils()
-            file_name = utils.camelToKebabCase(file_name)
+        if self.type == 'vue_view' or self.type == 'vue':
+            file_name = Utils().camelToKebabCase(file_name)
         if getLayoutType(self.type)['type'] != 'phpp':
             os.system(f"sed -i -e 's/{self.layout_text}/{file_name}/g' '{file_path}' ")
         os.system(f"bat {file_path}")
