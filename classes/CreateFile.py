@@ -1,4 +1,6 @@
 import os
+import pyperclip
+from rich import print
 
 from classes.FilesHandle import FilesHandle
 from classes.Utils import Utils
@@ -37,12 +39,13 @@ class CreateFile:
             return None
 
     def createFile(self, file_name = ''):
-        if getLayoutType(self.type) == 'phpp':
+        if self.type == 'phpp':
             files_handle = FilesHandle(self.dir_name)
             files_handle.listFilesWithPrefix(["page-", "single-"])
         if file_name != '':
             self.file_name = file_name
         else:
+            self.listFiles()
             self.file_name = input(f"Enter file name like {self.create_file_input_placeholder}: ")
             if self.file_name == '':
                 print("File name is required")
@@ -53,28 +56,50 @@ class CreateFile:
             file_path = f"{self.dir_name}/{self.selected_dir}/{self.file_name}.{self.extension}"
         elif self.type == 'phpp':
             file_path = f"{self.file_name}.{self.extension}"
+        elif self.type == 'phpi':
+            clipboard_content = pyperclip.paste()
+            print(f"clipboard_content: {clipboard_content}")
+            if not 'svg' in clipboard_content:
+                print("[red]No svg content in clipboard")
+                exit()
+            file_path = f"{self.dir_name}/icon-{self.file_name}.{self.extension}"
         else:
             file_path = f"{self.dir_name}/{self.file_name}.{self.extension}"
-        with open(self.layout_path, "r") as f:
-            layout = f.read()
-            if os.path.exists(file_path):
-                print("File exists")
-                exit()
-            else:
-                with open(file_path, "w") as f:
+
+
+        if os.path.exists(file_path):
+            print("[red]File exists")
+            exit()
+
+        if self.layout_path != '':
+            with open(self.layout_path, "r") as f:
+                layout = f.read()
+            with open(file_path, "w") as f:
+                if layout:
                     f.write(layout)
-                    print("File created: "+file_path)
+                print("File created: "+file_path)
+        else:
+            with open(file_path, "w") as f:
+                pass
+
+        if self.type == 'phpi':
+            clipboard_content = pyperclip.paste()
+            with open(file_path, "w") as f:
+                f.write(clipboard_content)
+            include_path = f"<?php get_template_part('{self.dir_name}/icon-{self.file_name}');?>\n"
+            pyperclip.copy(include_path)
+            print(f"[blue]{include_path}")
 
         if self.type == 'vue_view' or self.type == 'vue':
             self.file_name = Utils().camelToKebabCase(self.file_name)
 
-        if getLayoutType(self.type)['type'] == 'pinia':
+        if self.type == 'pinia':
             self.file_name = self.file_name.split('-')[0].lower()
             os.system(f"sed -i -e 's/default/{self.file_name}/g' '{file_path}' ")
             self.file_name = self.file_name.split('-')[0]
             self.file_name = f"use{self.file_name.capitalize()}"
             os.system(f"sed -i -e 's/{self.layout_text}/{self.file_name}/g' '{file_path}' ")
-        elif getLayoutType(self.type)['type'] != 'phpp':
+        elif self.type != 'phpp':
             os.system(f"sed -i -e 's/{self.layout_text}/{self.file_name}/g' '{file_path}' ")
         
         if self.type == 'php':

@@ -39,6 +39,15 @@ layout_types = (
             'create_dir': False
             },
         {
+            'type': 'phpi',
+            'dir_name': 'template-parts/icons',
+            'layout_text': 'phpIcon',
+            'create_file_input_placeholder': 'facebook',
+            'extension': 'php',
+            'layout_path': '',
+            'create_dir': False
+            },
+        {
             'type': 'js',
             'dir_name': 'src/js/modules',
             'layout_text': 'jsLayout',

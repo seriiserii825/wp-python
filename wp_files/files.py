@@ -63,7 +63,9 @@ def mainMenu():
         create_page.createFile()
         mainMenu()
     if choice == "phpi":
-        createPhpIcon()
+        # createPhpIcon()
+        php_icon = CreateFile("phpi")
+        php_icon.createFile()
         mainMenu()
     if choice == "js":
         js_file = CreateFile("js")
