@@ -80,3 +80,8 @@ class FilesHandle:
             exit("[red]No files found")
         else:
             return selectOne(choosed_files)
+
+    def appendToFile(self, file_path, text):
+        with open(file_path, "a") as f:
+            f.write(text)
+        os.system(f"bat {file_path}")

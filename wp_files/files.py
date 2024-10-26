@@ -24,10 +24,10 @@ def mainMenu():
     print(colored("============= Menu ================", "green"))
     print(colored("php(php and scss)", "yellow"))
     print(colored("phps(php and scss)", "yellow"))
+    print(colored("scss", "blue"))
     print(colored("phpc(php component)", "yellow"))
     print(colored("phpp(php page)", "yellow"))
     print(colored("phpi(php icon)", "yellow"))
-    print(colored("scss", "blue"))
     print(colored("js", "red"))
     print(colored("ts(interface)", "red"))
     print(colored("vue_view", "green"))
@@ -43,7 +43,9 @@ def mainMenu():
         php_file.createFile()
         mainMenu()
     if choice == "scss":
-        createScssFile()
+        # createScssFile()
+        scss_file = CreateFile("scss")
+        scss_file.createFile()
         mainMenu()
     if choice == "phps":
         createPhpAndScss()
@@ -80,7 +82,6 @@ def mainMenu():
         hook_file.createFile()
         mainMenu()
     if choice == "pinia":
-        # createPiniaFile()
         pinia_file = CreateFile("pinia")
         pinia_file.createFile()
         mainMenu()
