@@ -49,7 +49,6 @@ def mainMenu():
         phpc_file.createFile()
         mainMenu()
     if choice == "phpp":
-        # createPhpPage()
         create_page = CreateFile("phpp")
         create_page.createFile()
         mainMenu()
