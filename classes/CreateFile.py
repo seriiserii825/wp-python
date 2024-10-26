@@ -36,14 +36,17 @@ class CreateFile:
         else:
             return None
 
-    def createFile(self):
+    def createFile(self, file_name = ''):
         if getLayoutType(self.type) == 'phpp':
             files_handle = FilesHandle(self.dir_name)
             files_handle.listFilesWithPrefix(["page-", "single-"])
-        self.file_name = input(f"Enter file name like {self.create_file_input_placeholder}: ")
-        if self.file_name == '':
-            print("File name is required")
-            exit()
+        if file_name != '':
+            self.file_name = file_name
+        else:
+            self.file_name = input(f"Enter file name like {self.create_file_input_placeholder}: ")
+            if self.file_name == '':
+                print("File name is required")
+                exit()
         if self.type == 'pinia':
             self.file_name = f"{self.file_name}-store"
         if self.selected_dir:
@@ -87,7 +90,7 @@ class CreateFile:
         if self.type == 'php':
             selected_file = FilesHandle('.').chooseFile()
             print(f"selected_file: {selected_file}")
-            self.insertBeforeLastLine(selected_file, f"<?php get_template_part('{self.dir_name}/{self.file_name}');?>\n")
+            self.insertBeforeLastLine(selected_file, f"<?php get_template_part('{self.dir_name}/{self.selected_dir}/{self.file_name}');?>\n")
 
 
     def insertBeforeLastLine(self, file_path, content):
