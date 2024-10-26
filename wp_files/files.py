@@ -45,12 +45,13 @@ def mainMenu():
         createPhpAndScss()
         mainMenu()
     if choice == "phpc":
-        # createPhpComponentFile()
         phpc_file = CreateFile("phpc")
         phpc_file.createFile()
         mainMenu()
     if choice == "phpp":
-        createPhpPage()
+        # createPhpPage()
+        create_page = CreateFile("phpp")
+        create_page.createFile()
         mainMenu()
     if choice == "phpi":
         createPhpIcon()

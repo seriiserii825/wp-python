@@ -55,3 +55,12 @@ class FilesHandle:
         choosed_dir.sort()
         selected_dir = selectWithFzf(choosed_dir)
         return selected_dir
+
+    def listFilesWithPrefix(self, prefix):
+        print(f"Listing directories in ================ {self.basepath}")
+        for entry in os.listdir(self.basepath):
+            if os.path.isfile(os.path.join(self.basepath, entry)):
+                for item in prefix:
+                    if entry.startswith(item):
+                        print(entry)
+        print(f"Listing directories in ================ {self.basepath}")
