@@ -75,10 +75,11 @@ def mainMenu():
     if choice == "hook":
         hook_file = CreateFile("hook")
         hook_file.createFile()
-        # createHookFile()
         mainMenu()
     if choice == "pinia":
-        createPiniaFile()
+        # createPiniaFile()
+        pinia_file = CreateFile("pinia")
+        pinia_file.createFile()
         mainMenu()
     if choice == "rest":
         createRestApiFile()

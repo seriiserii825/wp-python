@@ -69,7 +69,16 @@ layout_types = (
                 'extension': 'ts',
                 'layout_path': f'{script_path}layouts/default-hook.ts',
                 'create_dir': False
-                }
+                },
+        {
+                'type': 'pinia',
+                'dir_name': 'src/vue/pinia',
+                'layout_text': 'useDefault',
+                'create_file_input_placeholder': 'default',
+                'extension': 'ts',
+                'layout_path': f'{script_path}layouts/default-pinia.ts',
+                'create_dir': False
+                },
         )
 
 getLayoutType = lambda type: next((layout for layout in layout_types if layout['type'] == type))
@@ -110,6 +119,8 @@ class CreateFile:
         if file_name == '':
             print("File name is required")
             exit()
+        if self.type == 'pinia':
+            file_name = f"{file_name}-store"
         if self.selected_dir:
             file_path = f"{self.dir_name}/{self.selected_dir}/{file_name}.{self.extension}"
         elif self.type == 'phpp':
@@ -128,7 +139,17 @@ class CreateFile:
 
         if self.type == 'vue_view' or self.type == 'vue':
             file_name = Utils().camelToKebabCase(file_name)
-        if getLayoutType(self.type)['type'] != 'phpp':
+
+        if getLayoutType(self.type)['type'] == 'pinia':
+            file_name = file_name.split('-')[0].lower()
+            os.system(f"sed -i -e 's/default/{file_name}/g' '{file_path}' ")
+            file_name = file_name.split('-')[0]
+            file_name = f"use{file_name.capitalize()}"
             os.system(f"sed -i -e 's/{self.layout_text}/{file_name}/g' '{file_path}' ")
+        elif getLayoutType(self.type)['type'] != 'phpp':
+            os.system(f"sed -i -e 's/{self.layout_text}/{file_name}/g' '{file_path}' ")
+
         os.system(f"bat {file_path}")
+
+
 
