@@ -15,6 +15,15 @@ layout_types = (
             'create_dir': True
             },
         {
+            'type': 'ts',
+            'dir_name': 'src/vue/interfaces',
+            'layout_text': 'IDefault',
+            'create_file_input_placeholder': 'IProduct',
+            'extension': 'ts',
+            'layout_path': f'{script_path}layouts/interface.ts',
+            'create_dir': False
+            },
+        {
             'type': 'phpc',
             'dir_name': 'components',
             'layout_text': 'defaultComponent',

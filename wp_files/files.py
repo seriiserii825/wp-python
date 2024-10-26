@@ -60,7 +60,9 @@ def mainMenu():
         js_file.createFile()
         mainMenu()
     if choice == "ts":
-        createInterfaceFile()
+        # createInterfaceFile()
+        interface_file = CreateFile("ts")
+        interface_file.createFile()
         mainMenu()
     if choice == "vue":
         createVueFile()
