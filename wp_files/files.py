@@ -30,7 +30,7 @@ def mainMenu():
     print(colored("phpi(php icon)", "yellow"))
     print(colored("js", "red"))
     print(colored("ts(interface)", "red"))
-    print(colored("vue", "green"))
+    print(colored("vue_view", "green"))
     print(colored("hook", "green"))
     print(colored("pinia", "green"))
     print(colored("rest(rest api)", "blue"))
@@ -60,12 +60,12 @@ def mainMenu():
         js_file.createFile()
         mainMenu()
     if choice == "ts":
-        # createInterfaceFile()
         interface_file = CreateFile("ts")
         interface_file.createFile()
         mainMenu()
-    if choice == "vue":
-        createVueFile()
+    if choice == "vue_view":
+        vue_file = CreateFile("vue_view")
+        vue_file.createFile()
         mainMenu()
     if choice == "hook":
         createHookFile()

@@ -1,6 +1,8 @@
 import os
+import re
 
 from classes.FilesHandle import FilesHandle
+from classes.Utils import Utils
 
 script_path = os.path.expanduser('~/Documents/python/wp-python/')
 
@@ -21,6 +23,15 @@ layout_types = (
             'create_file_input_placeholder': 'IProduct',
             'extension': 'ts',
             'layout_path': f'{script_path}layouts/interface.ts',
+            'create_dir': False
+            },
+        {
+            'type': 'vue_view',
+            'dir_name': 'src/vue/views',
+            'layout_text': 'vue',
+            'create_file_input_placeholder': 'myComponent',
+            'extension': 'vue',
+            'layout_path': f'{script_path}layouts/vue-component.vue',
             'create_dir': False
             },
         {
@@ -96,6 +107,11 @@ class CreateFile:
                 with open(file_path, "w") as f:
                     f.write(layout)
                     print("File created: "+file_path)
+
+        if self.type == 'vue_view':
+            utils = Utils()
+            file_name = utils.camelToKebabCase(file_name)
         if getLayoutType(self.type)['type'] != 'phpp':
             os.system(f"sed -i -e 's/{self.layout_text}/{file_name}/g' '{file_path}' ")
         os.system(f"bat {file_path}")
+
