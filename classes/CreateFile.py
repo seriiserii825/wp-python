@@ -1,5 +1,4 @@
 import os
-import re
 
 from classes.FilesHandle import FilesHandle
 from classes.Utils import Utils
