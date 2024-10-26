@@ -6,6 +6,7 @@ current_dir = os.getcwd()
 script_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(script_dir)
 print("Current dir: ", os.getcwd())
+from classes.CreateFile import CreateFile
 from wp_files.wp_files.createHookFile import createHookFile
 from wp_files.wp_files.createInterfaceFile import createInterfaceFile
 from wp_files.wp_files.createJavascriptFile import createJsFile
@@ -53,7 +54,10 @@ def mainMenu():
         createPhpIcon()
         mainMenu()
     if choice == "js":
-        createJsFile()
+        # createJsFile()
+        js_file = CreateFile("src/js/modules", "js")
+        js_file.listFiles()
+        js_file.createFile("homeIntro", "jsLayout")
         mainMenu()
     if choice == "ts":
         createInterfaceFile()
