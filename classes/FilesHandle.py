@@ -6,7 +6,7 @@ from pyfzf.pyfzf import FzfPrompt
 
 class FilesHandle:
     def __init__(self, basepath: str):
-        self.basepath = basepath
+        self.basepath = basepath if basepath != '' else '.'
 
     def listFiles(self):
         print("Existing files:")
