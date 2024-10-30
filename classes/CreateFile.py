@@ -109,6 +109,12 @@ class CreateFile:
             self.dir_name = self.dir_name.split('/')[2:][0]
             FilesHandle(self.dir_name).appendToFile("src/scss/my.scss", f'@import "{self.dir_name}/{self.selected_dir}/{self.file_name}";\n')
 
+        if self.type == 'phpc':
+            with open('functions.php', "a") as f:
+                f.write(f"\nrequire get_template_directory() . '/{file_path}';")
+            os.system(f"bat functions.php")
+
+
         os.system(f"bat {file_path}")
 
     def includeInPage(self):
