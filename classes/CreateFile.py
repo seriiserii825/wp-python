@@ -78,6 +78,8 @@ class CreateFile:
                 if layout:
                     f.write(layout)
                 print("File created: "+file_path)
+            #remove empty lines
+            os.system(f"sed -i '/^$/d' {file_path}")
         else:
             with open(file_path, "w") as f:
                 pass
