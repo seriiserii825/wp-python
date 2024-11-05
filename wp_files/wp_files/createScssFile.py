@@ -48,6 +48,8 @@ def createScssFile(dir_name_param = '', file_name_param = ''):
                 f.write(layout)
                 print(colored("File created: "+file_path, "green"))
     os.system(f"sed -i -e 's/home/{file_name}/g' '{file_path}' ")
+    #remove empty lines
+    os.system(f"sed -i '/^$/d' {file_path}")
     os.system(f"bat {file_path}")
     with open(path_to_my_scss, "a") as f:
         f.write(f'@import "{path_for_my_scss}/{file_name}";\n')
