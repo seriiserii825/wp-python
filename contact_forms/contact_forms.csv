@@ -1,3 +1,7 @@
 
 ID,post_title,post_name,post_date,post_status
+<<<<<<< HEAD
 443,Footer,senza-titolo,"2024-10-25 06:40:18",publish
+=======
+645,Footer,footer,"2024-11-06 14:45:06",publish
+>>>>>>> c8ef20b03eb206ef2b5307c92e16b7795bdc7481
