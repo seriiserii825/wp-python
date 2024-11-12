@@ -138,3 +138,5 @@ class CreateFile:
             file.writelines(lines)
         os.system(f"bat {file_path}")
 
+    def returnFilename(self):
+        return self.file_name

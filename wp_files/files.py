@@ -47,10 +47,9 @@ def mainMenu():
         scss_file.createFile()
         mainMenu()
     if choice == "phps":
-        # createPhpAndScss()
-        file_name = input(f"Enter file name like home-intro: ")
         php_file = CreateFile("php")
-        php_file.createFile(file_name)
+        php_file.createFile()
+        file_name = php_file.returnFilename()
         scss_file = CreateFile("scss")
         scss_file.createFile(file_name)
         mainMenu()
