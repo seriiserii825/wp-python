@@ -10,17 +10,21 @@ from utils.layout_types import layout_types
 getLayoutType = lambda type: next((layout for layout in layout_types if layout['type'] == type))
 
 class CreateFile:
-    def __init__(self, type: str):
+    def __init__(self, type: str, selected_dir = None):
         self.dir_name = getLayoutType(type)['dir_name']
         self.type = getLayoutType(type)['type']
         if (self.type != 'phpp'):
             self.checkDirPath()
         self.layout_path = getLayoutType(type)['layout_path']
-        self.selected_dir = self.createOrChooseDirectory()
+        if selected_dir:
+            self.selected_dir = selected_dir
+        else:
+            self.selected_dir = self.createOrChooseDirectory()
         self.layout_text = getLayoutType(type)['layout_text']
         self.create_file_input_placeholder = getLayoutType(type)['create_file_input_placeholder']
         self.extension = getLayoutType(type)['extension']
         self.file_name = ''
+        self.directory_name = ''
 
     def checkDirPath(self):
         if not os.path.exists(self.dir_name):
@@ -140,3 +144,6 @@ class CreateFile:
 
     def returnFilename(self):
         return self.file_name
+
+    def returnDirname(self):
+        return self.selected_dir

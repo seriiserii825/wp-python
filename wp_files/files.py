@@ -50,7 +50,8 @@ def mainMenu():
         php_file = CreateFile("php")
         php_file.createFile()
         file_name = php_file.returnFilename()
-        scss_file = CreateFile("scss")
+        dir_name = php_file.returnDirname()
+        scss_file = CreateFile("scss", selected_dir=dir_name)
         scss_file.createFile(file_name)
         mainMenu()
     if choice == "phpc":
