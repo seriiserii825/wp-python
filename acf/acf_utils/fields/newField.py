@@ -27,6 +27,7 @@ def newField(field_name, field_slug, field_type, field_width, field_options = []
         field['media_upload'] = 0
     if field_type == "image" or field_type == "gallery" or field_type == "file":
         field['return_format'] = "url"
+        field['preview_size'] = "thumbnail"
     if field_type == "repeater":
         field['layout'] = "block"
         field['button_label'] = "Add Row"
