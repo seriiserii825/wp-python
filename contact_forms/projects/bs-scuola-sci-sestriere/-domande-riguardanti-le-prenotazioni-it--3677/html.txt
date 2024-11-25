@@ -1,0 +1,69 @@
+<div class="footer-popup__label">Periodo*</div>
+<div class="form__row">
+  <div class="form__group form__group--date">
+    [text* date-from class:date-from]
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="21"
+      height="21"
+      viewBox="0 0 21 21"
+      fill="none"
+    >
+      <g clip-path="url(#clip0_658_3605)">
+        <path
+          d="M17.0625 7.875L10.5 14.4375L3.9375 7.875"
+          stroke="#DA2128"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_658_3605">
+          <rect width="21" height="21" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  </div>
+  <div class="form__group form__group--date">
+    [text* date-to class:date-to]
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="21"
+      height="21"
+      viewBox="0 0 21 21"
+      fill="none"
+    >
+      <g clip-path="url(#clip0_658_3605)">
+        <path
+          d="M17.0625 7.875L10.5 14.4375L3.9375 7.875"
+          stroke="#DA2128"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_658_3605">
+          <rect width="21" height="21" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  </div>
+</div>
+<div class="form__row">
+  <div class="form__group">[text* your-name placeholder "Nome*"]</div>
+  <div class="form__group">[text* your-surname placeholder "Cognome*"]</div>
+</div>
+<div class="form__row">
+  <div class="form__group">[text* your-phone placeholder "Telefono"]</div>
+  <div class="form__group">[email* your-email placeholder "Email"]</div>
+</div>
+<div class="form__group form__group--textarea">
+  [textarea* your-message placeholder "Messaggio"]
+</div>
+[honeypot honeypot-134 timecheck_enabled:true]
+<div class="form__footer">
+  <div class="form__privacy">
+    [acceptance acceptance-223] Cliccando su invia dichiari di aver preso visione e di accettare la nostra <a href="/privacy-policy/" target="_blank">privacy policy</a> [/acceptance]
+  </div>
+  [submit class:form__submit "Invia"]
+</div>
