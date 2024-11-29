@@ -1,0 +1,42 @@
+array (
+  'active' => true,
+  'subject' => '[_site_title] "Iscrizionie bambini - Landing"',
+  'sender' => '[_site_title] <no-reply@lc-circolo-tennis.local>',
+  'recipient' => 'corsi2425ctmassa@gmail.com',
+  'body' => 'Da: Andrea Bianchi
+Oggetto: Iscrizionie bambini - Landing
+
+Corpo del messaggio:
+
+Cognome e Nome Matteo Rossi
+Codice Fiscale: 12345678907
+Nato a: Napoli
+Data di nascita: 09/09/1990
+Residente in: Bologna Via Genova 8 40100 PA
+In qualita di: Francesco Gialli
+
+Bambino: 
+Cognome e Nome Paolo Bianchi Jr
+Codice Fiscale: 12345678903
+Nato a: Genova
+Data di nascita: 04/04/1990
+Sesso: M
+
+Recapiti:
+Cell. Padre: 3331234563
+Cell. Madre: 3331234567
+Cell. Nonni: 3331234564
+Email Padre: text@mail.com
+Email Madre: madre@mail.com
+
+Scegli il corso: 1
+
+
+-- 
+Questa è una notifica che un modulo di contatto è stato inviato sul tuo sito web ([_site_title] [_site_url]).',
+  'additional_headers' => 'Reply-To: webmaster@altuofianco.it
+Bcc: [_site_admin_email]',
+  'attachments' => '',
+  'use_html' => false,
+  'exclude_blank' => true,
+)

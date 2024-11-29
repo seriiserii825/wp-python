@@ -1,0 +1,19 @@
+array (
+  'active' => true,
+  'subject' => '[_site_title] "Subject 2"',
+  'sender' => '[_site_title] <no-reply@lc-circolo-tennis.local>',
+  'recipient' => 'info@lc-circolo-tennis.local',
+  'body' => 'Da: Andrea Bianchi nick@gmail.com
+Oggetto: Subject 5
+
+Corpo del messaggio:
+Good morning
+
+-- 
+This is a notification that a contact form was submitted on your website ([_site_title] [_site_url]).',
+  'additional_headers' => 'Reply-To: nick@gmail.com
+Bcc: [_site_admin_email]',
+  'attachments' => '',
+  'use_html' => false,
+  'exclude_blank' => false,
+)

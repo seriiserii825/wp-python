@@ -1,0 +1,20 @@
+array (
+  'active' => true,
+  'subject' => '[_site_title] "Scuola Nazionale"',
+  'sender' => '[_site_title] <wordpress@lc-scuola-sci-sestriere.local>',
+  'recipient' => 'booking@scuolascisestriere.com',
+  'body' => 'From: [your-name] [your-email]
+Surname: [your-surname]
+Phone: [your-phone]
+Date from: [date-from]
+Date to: [date-to]
+Message Body:
+[your-message]
+
+-- 
+This is a notification that a contact form was submitted on your website ([_site_title] [_site_url]).',
+  'additional_headers' => 'Reply-To: [your-email]',
+  'attachments' => '',
+  'use_html' => false,
+  'exclude_blank' => false,
+)

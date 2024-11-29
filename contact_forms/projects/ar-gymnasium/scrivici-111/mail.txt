@@ -1,0 +1,18 @@
+array (
+  'active' => true,
+  'subject' => '[_site_title] Modulo di contatto Gymnasium',
+  'sender' => '[_site_title] <no-reply@lc-gymnasium.local>',
+  'recipient' => 'gymnasiumsport24@gmail.com',
+  'body' => 'Da: Paolo Bianchi 
+Email: tinny@mail.com
+Tel: 0811234560
+Messaggio:  Good night
+
+-- 
+This is a notification that a contact form was submitted on your website ([_site_title] [_site_url]).',
+  'additional_headers' => 'Reply-To: tinny@mail.com
+Bcc: [_site_admin_email]',
+  'attachments' => '',
+  'use_html' => false,
+  'exclude_blank' => false,
+)
