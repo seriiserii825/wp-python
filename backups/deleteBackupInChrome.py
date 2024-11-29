@@ -50,13 +50,13 @@ def deleteBackupInChrome():
         exit(colored("Number of backups is empty!", "red"))
     print(f"Number of backups: {number_of_backups}")
     for i in range(int(number_of_backups)):
-        WebDriverWait(driver, 3000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table.ai1wm-backups tr:last-of-type .ai1wm-backup-dots")))
+        WebDriverWait(driver, 300000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table.ai1wm-backups tr:last-of-type .ai1wm-backup-dots")))
         ai1wm_backup_dots = driver.find_element(By.CSS_SELECTOR, f"table.ai1wm-backups tr:nth-of-type({number_of_backups}) .ai1wm-backup-dots")
         ai1wm_backup_dots.click()
-        WebDriverWait(driver, 3000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-delete")))
+        WebDriverWait(driver, 300000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-delete")))
         ai1wm_backup_delete = driver.find_element(By.CSS_SELECTOR, f"table.ai1wm-backups tr:nth-of-type({number_of_backups}) .ai1wm-backup-delete")
         ai1wm_backup_delete.click()
-        WebDriverWait(driver, 1000).until(EC.alert_is_present())
+        WebDriverWait(driver, 1000000).until(EC.alert_is_present())
         driver.switch_to.alert.accept()
         time.sleep(3)
 
