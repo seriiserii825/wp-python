@@ -26,7 +26,6 @@ def acfFunc():
         file_path = file_path.replace("\n", "")
         os.chdir("..")
         return file_path
-
     wpExport()
 
     print(colored("Welcome to ACF CLI", "green"))

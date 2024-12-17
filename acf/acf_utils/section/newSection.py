@@ -6,6 +6,7 @@ from acf.acf_utils.select.selectSectionType import selectSectionType
 from acf.acf_utils.wp.getWpPages import getWpPages
 from acf.acf_utils.wp.getWpPosts import getWpPosts
 from acf.acf_utils.wp.getWpTaxonomies import getWpTaxonomies
+from acf.acf_utils.wp.wpImport import wpImport
 
 
 def newSection():
@@ -78,4 +79,5 @@ def newSection():
             # write
             file.write(newData)
         print(colored("Section created successfully", "green"))
+        wpImport()
 
