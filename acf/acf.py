@@ -27,6 +27,8 @@ def acfFunc():
         os.chdir("..")
         return file_path
 
+    wpExport()
+
     print(colored("Welcome to ACF CLI", "green"))
     print(colored("1) Create new section", "yellow"))
     print(colored("2) Select section", "yellow"))
