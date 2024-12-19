@@ -22,6 +22,7 @@ class CreateFile:
                 os.makedirs(f"{self.dir_name}/{self.selected_dir}")
         else:
             self.selected_dir = self.createOrChooseDirectory()
+            print(f"self.selected_dir: {self.selected_dir}")
         self.layout_text = getLayoutType(type)['layout_text']
         self.create_file_input_placeholder = getLayoutType(type)['create_file_input_placeholder']
         self.extension = getLayoutType(type)['extension']
@@ -33,7 +34,8 @@ class CreateFile:
             os.makedirs(self.dir_name)
 
     def listFiles(self):
-        files_handle = FilesHandle(self.dir_name)
+        dir_path = f"{self.dir_name}/{self.selected_dir}" if self.selected_dir else self.dir_name
+        files_handle = FilesHandle(dir_path)
         files_handle.listFiles()
 
     def createOrChooseDirectory(self):
