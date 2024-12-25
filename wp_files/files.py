@@ -2,8 +2,7 @@ import os
 
 from termcolor import colored
 
-from classes.InterfaceFile import InterfaceFile
-from classes.JsFile import JsFile
+from classes.DefaultFile import DefaultFile
 from classes.PhpFile import PhpFile
 from classes.PhpIcon import PhpIcon
 from classes.PhpPage import PhpPage
@@ -13,17 +12,6 @@ current_dir = os.getcwd()
 script_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(script_dir)
 print("Current dir: ", os.getcwd())
-from classes.CreateFile import CreateFile
-from wp_files.wp_files.createHookFile import createHookFile
-from wp_files.wp_files.createInterfaceFile import createInterfaceFile
-from wp_files.wp_files.createJavascriptFile import createJsFile
-from wp_files.wp_files.createPhpAndScss import createPhpAndScss
-from wp_files.wp_files.createPhpComponentFile import createPhpComponentFile
-from wp_files.wp_files.createPhpIcon import createPhpIcon
-from wp_files.wp_files.createPhpPage import createPhpPage
-from wp_files.wp_files.createPiniaFile import createPiniaFile
-from wp_files.wp_files.createScssFile import createScssFile
-from wp_files.wp_files.createVueFile import createVueFile
 os.chdir(current_dir)
 
 
@@ -71,21 +59,21 @@ def mainMenu():
         php_icon.createFile()
         mainMenu()
     if choice == "js":
-        js_file = JsFile("js")
+        js_file = DefaultFile("js")
         js_file.createFile()
         mainMenu()
     if choice == "ts":
-        interface_file = InterfaceFile("ts")
+        interface_file = DefaultFile("ts")
         interface_file.createFile()
         mainMenu()
-    # if choice == "vue_view":
-    #     vue_file = CreateFile("vue_view")
-    #     vue_file.createFile()
-    #     mainMenu()
-    # if choice == "vue":
-    #     vue_file = CreateFile("vue")
-    #     vue_file.createFile()
-    #     mainMenu()
+    if choice == "vue_view":
+        vue_file = DefaultFile("vue_view")
+        vue_file.createFile()
+        mainMenu()
+    if choice == "vue":
+        vue_file = DefaultFile("vue")
+        vue_file.createFile()
+        mainMenu()
     # if choice == "hook":
     #     hook_file = CreateFile("hook")
     #     hook_file.createFile()
