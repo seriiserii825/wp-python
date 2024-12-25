@@ -74,10 +74,10 @@ def mainMenu():
         vue_file = DefaultFile("vue")
         vue_file.createFile()
         mainMenu()
-    # if choice == "hook":
-    #     hook_file = CreateFile("hook")
-    #     hook_file.createFile()
-    #     mainMenu()
+    if choice == "hook":
+        hook_file = DefaultFile("hook")
+        hook_file.createFile()
+        mainMenu()
     # if choice == "pinia":
     #     pinia_file = CreateFile("pinia")
     #     pinia_file.createFile()
