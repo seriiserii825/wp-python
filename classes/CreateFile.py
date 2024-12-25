@@ -137,9 +137,9 @@ class CreateFile:
         #     os.system(f"bat functions.php")
         # os.system(f"bat {file_path}")
 
-    def appendToMyScss(self):
+    def appendToMyScss(self, file_path):
         self.dir_name = self.dir_name.split('/')[2:][0]
-        FilesHandle(self.dir_name).appendToFile("src/scss/my.scss", f'@import "{self.dir_name}/{self.selected_dir}/{self.file_name}";\n')
+        FilesHandle(self.dir_name).appendToFile("src/scss/my.scss", f'@import "{file_path}";\n')
 
     def changeClassName(self, file_path):
         os.system(f"sed -i -e 's/{self.layout_text}/{self.file_name}/g' '{file_path}' ")

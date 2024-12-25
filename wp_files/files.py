@@ -47,17 +47,17 @@ def mainMenu():
         mainMenu()
     if choice == "scss":
         scss_file = ScssFile("scss")
-        file_name = scss_file.getFileName()
-        scss_file.createFile(file_name)
+        scss_file.createFile()
         mainMenu()
-    # if choice == "phps":
-    #     php_file = CreateFile("php")
-    #     php_file.createFile()
-    #     file_name = php_file.returnFilename()
-    #     dir_name = php_file.returnDirname()
-    #     scss_file = CreateFile("scss", selected_dir=dir_name)
-    #     scss_file.createFile(file_name)
-    #     mainMenu()
+    if choice == "phps":
+        php_file = PhpFile("php")
+        php_file.createFile()
+        file_name = php_file.returnFilename()
+        dir_name = php_file.returnDirname()
+        dir_name = f"src/scss/blocks/{dir_name}"
+        scss_file = ScssFile("scss", selected_dir=dir_name)
+        scss_file.createFile(file_name, dir_name)
+        mainMenu()
     # if choice == "phpc":
     #     phpc_file = CreateFile("phpc")
     #     phpc_file.createFile()
