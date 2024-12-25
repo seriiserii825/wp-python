@@ -6,6 +6,7 @@ from classes.DefaultFile import DefaultFile
 from classes.PhpFile import PhpFile
 from classes.PhpIcon import PhpIcon
 from classes.PhpPage import PhpPage
+from classes.PiniaFile import PiniaFile
 from classes.ScssFile import ScssFile
 
 current_dir = os.getcwd()
@@ -78,10 +79,10 @@ def mainMenu():
         hook_file = DefaultFile("hook")
         hook_file.createFile()
         mainMenu()
-    # if choice == "pinia":
-    #     pinia_file = CreateFile("pinia")
-    #     pinia_file.createFile()
-    #     mainMenu()
+    if choice == "pinia":
+        pinia_file = PiniaFile("pinia")
+        pinia_file.createFile()
+        mainMenu()
     if choice == "":
         exit(colored("Goodbye!", "red"))
     elif choice == "exit":
