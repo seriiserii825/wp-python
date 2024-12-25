@@ -2,6 +2,7 @@ import os
 
 from termcolor import colored
 
+from classes.InterfaceFile import InterfaceFile
 from classes.JsFile import JsFile
 from classes.PhpFile import PhpFile
 from classes.PhpIcon import PhpIcon
@@ -73,10 +74,10 @@ def mainMenu():
         js_file = JsFile("js")
         js_file.createFile()
         mainMenu()
-    # if choice == "ts":
-    #     interface_file = CreateFile("ts")
-    #     interface_file.createFile()
-    #     mainMenu()
+    if choice == "ts":
+        interface_file = InterfaceFile("ts")
+        interface_file.createFile()
+        mainMenu()
     # if choice == "vue_view":
     #     vue_file = CreateFile("vue_view")
     #     vue_file.createFile()
