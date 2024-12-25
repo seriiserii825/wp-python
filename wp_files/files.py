@@ -3,6 +3,7 @@ import os
 from termcolor import colored
 
 from classes.PhpFile import PhpFile
+from classes.ScssFile import ScssFile
 
 current_dir = os.getcwd()
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -44,10 +45,11 @@ def mainMenu():
         php_file = PhpFile("php")
         php_file.createFile()
         mainMenu()
-    # if choice == "scss":
-    #     scss_file = CreateFile("scss")
-    #     scss_file.createFile()
-    #     mainMenu()
+    if choice == "scss":
+        scss_file = ScssFile("scss")
+        file_name = scss_file.getFileName()
+        scss_file.createFile(file_name)
+        mainMenu()
     # if choice == "phps":
     #     php_file = CreateFile("php")
     #     php_file.createFile()
