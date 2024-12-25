@@ -80,6 +80,10 @@ class CreateFile:
         else:
             print("[red]File already exists: "+file_path)
 
+    def chooseFileInRoot(self):
+        files_handle = FilesHandle(self.dir_name)
+        files_handle.listFilesWithPrefix(["page-", "single-"])
+
     # def createFile(self, file_path = ''):
     #     # if self.type == 'phpp':
     #     #     files_handle = FilesHandle(self.dir_name)

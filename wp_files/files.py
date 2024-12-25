@@ -3,6 +3,7 @@ import os
 from termcolor import colored
 
 from classes.PhpFile import PhpFile
+from classes.PhpPage import PhpPage
 from classes.ScssFile import ScssFile
 
 current_dir = os.getcwd()
@@ -58,14 +59,10 @@ def mainMenu():
         scss_file = ScssFile("scss", selected_dir=dir_name)
         scss_file.createFile(file_name, dir_name)
         mainMenu()
-    # if choice == "phpc":
-    #     phpc_file = CreateFile("phpc")
-    #     phpc_file.createFile()
-    #     mainMenu()
-    # if choice == "phpp":
-    #     create_page = CreateFile("phpp")
-    #     create_page.createFile()
-    #     mainMenu()
+    if choice == "phpp":
+        php_page = PhpPage("phpp")
+        php_page.createFile()
+        mainMenu()
     # if choice == "phpi":
     #     # createPhpIcon()
     #     php_icon = CreateFile("phpi")
