@@ -1,5 +1,6 @@
 import os
 from classes.CreateFile import CreateFile
+from classes.FilesHandle import FilesHandle
 
 class ScssFile(CreateFile):
     def __init__(self, type: str, selected_dir = None):
@@ -20,3 +21,7 @@ class ScssFile(CreateFile):
         file_path = self.file_path.replace("src/scss/", "")
         file_path = file_path.replace(".scss", "")
         self.appendToMyScss(file_path)
+
+    def appendToMyScss(self, file_path):
+        self.dir_name = self.dir_name.split('/')[2:][0]
+        FilesHandle(self.dir_name).appendToFile("src/scss/my.scss", f'@import "{file_path}";\n')

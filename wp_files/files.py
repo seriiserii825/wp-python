@@ -2,7 +2,9 @@ import os
 
 from termcolor import colored
 
+from classes.JsFile import JsFile
 from classes.PhpFile import PhpFile
+from classes.PhpIcon import PhpIcon
 from classes.PhpPage import PhpPage
 from classes.ScssFile import ScssFile
 
@@ -63,15 +65,14 @@ def mainMenu():
         php_page = PhpPage("phpp")
         php_page.createFile()
         mainMenu()
-    # if choice == "phpi":
-    #     # createPhpIcon()
-    #     php_icon = CreateFile("phpi")
-    #     php_icon.createFile()
-    #     mainMenu()
-    # if choice == "js":
-    #     js_file = CreateFile("js")
-    #     js_file.createFile()
-    #     mainMenu()
+    if choice == "phpi":
+        php_icon = PhpIcon("phpi")
+        php_icon.createFile()
+        mainMenu()
+    if choice == "js":
+        js_file = JsFile("js")
+        js_file.createFile()
+        mainMenu()
     # if choice == "ts":
     #     interface_file = CreateFile("ts")
     #     interface_file.createFile()
