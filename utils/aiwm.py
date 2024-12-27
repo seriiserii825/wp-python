@@ -13,6 +13,7 @@ from backups.makeBackupInChrome import makeBackupInChrome
 from backups.restoreBackup import restoreBackup
 from backups.restoreBackupInChrome import restoreBackupInChrome
 from backups.restoreFromDownloads import restoreFromDownloads
+from classes.Backup import Backup
 
 is_installed_plugins = os.path.exists("../../plugins/all-in-one-wp-migration");
 if not is_installed_plugins:
@@ -39,7 +40,8 @@ def aiwmFunc():
 
         choice = input("Make your choice:")
         if choice == "1":
-            listBackup()
+            backup = Backup()
+            backup.listBackup()
             menu()
         elif choice == "2":
             makeBackup()
