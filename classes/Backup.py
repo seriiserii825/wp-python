@@ -6,13 +6,13 @@ class Backup:
         pass
 
     def makeBackup(self):
-        os.system("wp ai1wm list-backups")
+        pass
 
     def makeBackupInChrome(self):
         pass
 
     def listBackup(self):
-        pass
+        os.system("wp ai1wm list-backups")
 
     def restoreBackup(self):
         pass
