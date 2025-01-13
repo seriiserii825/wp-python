@@ -24,9 +24,9 @@ class CreateFile:
     def checkDirPath(self):
         if not os.path.exists(self.dir_name):
             os.makedirs(self.dir_name)
-    def listFiles(self):
+    def listFiles(self, create_file = True):
         dir_path = f"{self.dir_name}/{self.selected_dir}" if self.selected_dir else self.dir_name
-        if not os.path.exists(dir_path):
+        if not os.path.exists(dir_path) and create_file:
             os.makedirs(dir_path)
         files_handle = FilesHandle(dir_path)
         files_handle.listFiles()
@@ -42,7 +42,7 @@ class CreateFile:
             self.file_name = file_name
             return self.file_name
         else:
-            self.listFiles()
+            self.listFiles(False)
             self.file_name = input(f"Enter file name like {self.create_file_input_placeholder}: ")
             print(f"self.file_name from getFileName: {self.file_name}")
             if self.file_name == '':
