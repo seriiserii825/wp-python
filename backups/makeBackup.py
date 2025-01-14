@@ -11,6 +11,7 @@ def makeBackup(path_to_project=''):
     current_dir = os.getcwd()
     deleteBackup()
     listBackup()
+    os.system("rm -rf node_modules")
     try:
         subprocess.run("wp ai1wm backup", shell=True, check=True)
         print("Command was successful")
