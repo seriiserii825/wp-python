@@ -21,6 +21,8 @@ class CreateFile:
         self.file_name = ''
         self.directory_name = ''
         self.file_path = ''
+    def getDirNameFromLayoutType(self):
+        return getLayoutType(self.type)['dir_name']
     def checkDirPath(self):
         if not os.path.exists(self.dir_name):
             os.makedirs(self.dir_name)
