@@ -10,7 +10,7 @@ def pluginsFunc():
             {"classic-editor": False},
             {"tinymce-advanced": False},
             {"stops-core-theme-and-plugin-updates": False},
-            {"safe-svg": False},
+            {"svg-support": False},
             {"wps-hide-login": False},
             {"wps-limit-login": False},
             ]
