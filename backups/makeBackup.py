@@ -11,7 +11,10 @@ def makeBackup(path_to_project=''):
     current_dir = os.getcwd()
     deleteBackup()
     listBackup()
+    # check if node_modules exists
+    os.system("yarn && yarn build")
     os.system("rm -rf node_modules")
+    print(colored("node_modules deleted", "blue"));
     try:
         subprocess.run("wp ai1wm backup", shell=True, check=True)
         print("Command was successful")
