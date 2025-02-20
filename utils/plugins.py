@@ -14,6 +14,7 @@ def pluginsFunc():
             {"wps-hide-login": False},
             {"wps-limit-login": False},
             ]
+
     plugins = [
             {"advanced-custom-fields-pro_6_0_6": "advanced-custom-fields-pro-6_0_6.zip"},
             {"advanced-custom-fields-pro-6_2_6_1": "advanced-custom-fields-pro-6_2_6_1.zip"},
@@ -30,6 +31,7 @@ def pluginsFunc():
             {"cookie-notice": False},
             {"wps-hide-login": False},
             {"wps-limit-login": False},
+            {"woocommerce-advanced-bulk-edit": "woocommerce-advanced-bulk-edit-5_2.zip"},
             {"seo-by-rank-math":"seo-by-rank-math.zip"},
             {"wp-pagenavi": False},
             {"error-log-monitor": False},
