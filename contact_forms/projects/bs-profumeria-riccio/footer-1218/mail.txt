@@ -1,0 +1,18 @@
+array (
+  'active' => true,
+  'subject' => '[_site_title] "[your-subject]"',
+  'sender' => '[_site_title] <wordpress@lc-profumeria-riccio.local>',
+  'recipient' => '[_site_admin_email]',
+  'body' => 'Da: [your-name] [your-email]
+Oggetto: [your-subject]
+
+Corpo del messaggio:
+[your-message]
+
+-- 
+Questa è una notifica che segnala l\'invio di un modulo di contatto dal vostro sito web ([_site_title] [_site_url]).',
+  'additional_headers' => 'Reply-To: [your-email]',
+  'attachments' => '',
+  'use_html' => false,
+  'exclude_blank' => false,
+)

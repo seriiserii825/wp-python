@@ -1,0 +1,24 @@
+<div class="form__group">
+    [email* your-email placeholder "Email"]
+</div>
+<div class="form__row">
+<div class="form__group">
+    [text* your-name placeholder "Nome*"]
+</div>
+<div class="form__group">
+    [text* your-surname placeholder "Cognome*"]
+</div>
+</div>
+<div class="form__group">
+    [text* your-phone placeholder "Telefono"]
+</div>
+<div class="form__group form__group--textarea">
+    [textarea* your-message placeholder "Messaggio"]
+</div>
+[honeypot honeypot-498 validautocomplete:true timecheck_enabled:true]
+<div class="form__footer">
+    <div class="form__privacy">
+        [acceptance acceptance-223] Cliccando su invia dichiari di aver preso visione e di accettare la nostra <a href="/privacy-policy/" target="_blank">privacy policy</a> [/acceptance]
+    </div>
+    [submit class:form__submit "Invia"]
+</div>
