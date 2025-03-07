@@ -66,6 +66,15 @@ layout_types = (
             'create_dir': False
             },
         {
+            'type': 'type',
+            'dir_name': 'src/vue/types',
+            'layout_text': 'TDefault',
+            'create_file_input_placeholder': 'TProduct',
+            'extension': 'ts',
+            'layout_path': f'{script_path}layouts/type.ts',
+            'create_dir': False
+            },
+        {
             'type': 'vue_view',
             'dir_name': 'src/vue/views',
             'layout_text': 'vue',

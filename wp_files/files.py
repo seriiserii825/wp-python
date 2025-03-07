@@ -26,6 +26,7 @@ def mainMenu():
     print(colored("phpi(php icon)", "yellow"))
     print(colored("js", "red"))
     print(colored("ts(interface)", "red"))
+    print(colored("type(type)", "red"))
     print(colored("vue_view", "green"))
     print(colored("vue(component)", "green"))
     print(colored("hook", "blue"))
@@ -66,6 +67,10 @@ def mainMenu():
     if choice == "ts":
         interface_file = DefaultFile("ts")
         interface_file.createFile()
+        mainMenu()
+    if choice == "type":
+        type_file = DefaultFile("type")
+        type_file.createFile()
         mainMenu()
     if choice == "vue_view":
         vue_file = DefaultFile("vue_view")

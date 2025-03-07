@@ -8,6 +8,8 @@ class CreateFile:
         self.dir_name = getLayoutType(type)['dir_name']
         self.type = getLayoutType(type)['type']
         self.layout_path = getLayoutType(type)['layout_path']
+        if not os.path.exists(self.dir_name):
+            os.makedirs(self.dir_name)
         if selected_dir:
             self.selected_dir = selected_dir
             if not os.path.exists(f"{self.dir_name}/{self.selected_dir}"):
