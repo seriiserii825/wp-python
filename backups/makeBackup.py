@@ -9,7 +9,6 @@ from backups.listBackup import listBackup
 
 def makeBackup(path_to_project=''):
     current_dir = os.getcwd()
-    os.system("yarn && yarn build")
     os.system("rm -rf node_modules")
     print(colored("node_modules deleted", "red"));
     deleteBackup()
