@@ -22,6 +22,7 @@ def pluginsFunc():
             {"admin-columns-pro": "admin-columns-pro-5.4.3.zip"},
             {"ac-addon-acf-2.6.4": "ac-addon-acf-2.6.4.zip"},
             {"classic-editor": False},
+            {"debug-log-manager": False},
             {"tinymce-advanced": False},
             {"stops-core-theme-and-plugin-updates": False},
             {"safe-svg": False},
