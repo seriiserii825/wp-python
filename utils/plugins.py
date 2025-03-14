@@ -64,7 +64,9 @@ def pluginsFunc():
         "contact-form-7",
         "contact-form-7-honeypot",
         "contact-form-7-honeypot-2-1",
-        "seo-by-rank-math"
+        "seo-by-rank-math",
+        "wpglobus",
+        "wpglobus-plus",
     ]
 
 
@@ -183,13 +185,12 @@ def pluginsFunc():
                     os.system("wp plugin uninstall " + key)
 
     def menu():
-        print(colored("1. List", "yellow"))
-        print(colored("2. Install Base Plugins", "green"))
-        print(colored("3. Install Plugins", "green"))
-        print(colored("4. Uninstall", "blue"))
-        print(colored("5. Update", "blue"))
-        print(colored("6. Exit", "red"))
-
+        print("[green]1. List")
+        print("2[green]. Install Base Plugins")
+        print("3[green]. Install Plugins")
+        print("4[red]. Uninstall")
+        print("5[blue]. Update")
+        print("6[red]. Exit")
         action = input("Choose action: ")
         if action == "1":
             listInstalledPlugins()
