@@ -53,6 +53,19 @@ def pluginsFunc():
             {"wp-smushit": False},
             ]
 
+    exclude_update = [
+        "all-in-one-wp-migration",
+        "all-in-one-wp-migration-7-79",
+        "advanced-custom-fields-pro",
+        "advanced-custom-fields-pro-6_0_6",
+        "advanced-custom-fields-pro-6_2_6_1",
+        "admin-columns-pro",
+        "contact-form-7",
+        "contact-form-7-honeypot",
+        "contact-form-7-honeypot-2-1",
+        "seo-by-rank-math"
+    ]
+
 
     def listInstalledPlugins():
         os.system("wp plugin list")
@@ -120,6 +133,21 @@ def pluginsFunc():
                     else:
                         os.system("wp plugin install ~/Documents/plugins-wp/" + value + " --activate")
 
+    def updatePlugins(exclude_update):
+        installed_plugins = getInstalledPlugins()
+        all_plugins = []
+        for plugin in installed_plugins:
+            if plugin not in exclude_update:
+                all_plugins.append(plugin)
+        all_plugins.sort()
+        for plugin in all_plugins:
+            print(plugin)
+
+        want_update = input("Do you want to update all plugins? (y/n): ")
+        if want_update == "y":
+            for plugin in all_plugins:
+                os.system("wp plugin update " + plugin)
+
     def uninstallPlugins(plugins):
         installed_plugins = getInstalledPlugins()
         if len(installed_plugins) == 0:
@@ -140,7 +168,8 @@ def pluginsFunc():
         print(colored("2. Install Base Plugins", "green"))
         print(colored("3. Install Plugins", "green"))
         print(colored("4. Uninstall", "blue"))
-        print(colored("5. Exit", "red"))
+        print(colored("5. Update", "blue"))
+        print(colored("6. Exit", "red"))
 
         action = input("Choose action: ")
         if action == "1":
@@ -156,6 +185,8 @@ def pluginsFunc():
             uninstallPlugins(plugins)
             menu()
         elif action == "5":
+            updatePlugins(exclude_update)
+        elif action == "6":
             exit()
         else:
             print("Wrong action!")
