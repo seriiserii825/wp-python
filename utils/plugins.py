@@ -2,6 +2,7 @@
 import os
 from termcolor import colored
 from libs.select import selectMultiple
+from rich import print
 
 def pluginsFunc():
     base_plugins = [
@@ -135,13 +136,31 @@ def pluginsFunc():
 
     def updatePlugins(exclude_update):
         installed_plugins = getInstalledPlugins()
+        print(f'installed_plugins: {installed_plugins}')
+        exclude_update.sort()
+        installed_plugins.sort()
+        print("[red]Excluded plugins:")
+        print("=====================================")
+        for plugin in exclude_update:
+            print(plugin)
+        print("=====================================")
+
+        print("[green]Installed plugins:")
+        print("=====================================")
+        for plugin in installed_plugins:
+            print(plugin)
+        print("=====================================")
+
         all_plugins = []
         for plugin in installed_plugins:
             if plugin not in exclude_update:
                 all_plugins.append(plugin)
         all_plugins.sort()
+        print("[blue] To install")
+        print("=====================================")
         for plugin in all_plugins:
             print(plugin)
+        print("=====================================")
 
         want_update = input("Do you want to update all plugins? (y/n): ")
         if want_update == "y":
