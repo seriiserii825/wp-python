@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from termcolor import colored
+from simple_term_menu import TerminalMenu
 from acf.acf import acfFunc
 from init import init, resetSettings
 from menu.contactForms import contactForms
@@ -11,41 +11,32 @@ from utils.themes import wpThemesFunc
 from utils.wp_images import wpImages
 from wp_files.files import mainMenu
 
-print(colored("1) Init", "green"))
-print(colored("1.1) Reset", "red"))
-print(colored("2) Files", "blue"))
-print(colored("3) Acf", "yellow"))
-print(colored("4) Backups", "green"))
-print(colored("5) Plugins", "blue"))
-print(colored("6) Themes", "green"))
-print(colored("7) Pages", "blue"))
-print(colored("7.1) Posts", "blue"))
-print(colored("8) Images", "blue"))
-print(colored("9) Contact form", "green"))
-print(colored("10) Exit", "red"))
+menu_items = ["Init", "Reset", "Files", "Acf", "Backups", "Plugins", "Themes", "Pages", "Posts", "Images", "Contact form", "Exit"]
 
-choice = input("Enter your choice: ")
-if choice == '1':
+terminal_menu = TerminalMenu(menu_items)
+menu_entry_index = terminal_menu.show()
+
+if menu_entry_index == 0:
     init()
-if choice == '1.1':
+if menu_entry_index == 1:
     resetSettings()
-elif choice == '2':
+elif menu_entry_index == 2:
     mainMenu()
-elif choice == '3':
+elif menu_entry_index == 3:
     acfFunc()
-elif choice == '4':
+elif menu_entry_index == 4:
     aiwmFunc()
-elif choice == '5':
+elif menu_entry_index == 5:
     pluginsFunc()
-elif choice == '6':
+elif menu_entry_index == 6:
     wpThemesFunc()
-elif choice == '7':
+elif menu_entry_index == 7:
     wpPages()
-elif choice == '7.1':
+elif menu_entry_index == 8:
     wpPages(post_type=True)
-elif choice == '8':
+elif menu_entry_index == 9:
     wpImages()
-elif choice == '9':
+elif menu_entry_index == 10:
     contactForms()
-else:
+elif menu_entry_index == 11:
     exit()
