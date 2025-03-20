@@ -9,6 +9,7 @@ class ScssFile(CreateFile):
     def createFile(self, file_name = '', dir_name = ''):
         if dir_name == '' and file_name == '':
             self.file_name = self.getFileName()
+            self.dir_name = f"src/scss/blocks/{self.selected_dir}"
         else:
             self.dir_name = dir_name
             if not os.path.exists(f"{self.dir_name}"):
