@@ -25,4 +25,17 @@ class ScssFile(CreateFile):
 
     def appendToMyScss(self, file_path):
         self.dir_name = self.dir_name.split('/')[2:][0]
-        FilesHandle(self.dir_name).appendToFile("src/scss/my.scss", f'@import "{file_path}";\n')
+        # check inside my.scss if exists @import or @use
+        to_use = '@import'
+
+        with open("src/scss/my.scss", "r") as f:
+            lines = f.readlines()
+            for line in lines:
+                # if exists string @use in line
+                if "@use" in line:
+                    to_use = '@use'
+                    break
+        if to_use == '@use':
+            FilesHandle(self.dir_name).appendToFile("src/scss/my.scss", f'@use "{file_path}";\n')
+        else:
+            FilesHandle(self.dir_name).appendToFile("src/scss/my.scss", f'@import "{file_path}";\n')
