@@ -15,7 +15,7 @@ menu_items = [
     "Acf",
     "Backups",
     "Contact form",
-    "Exit"
+    "Exit",
     "Files",
     "Images",
     "Init",
