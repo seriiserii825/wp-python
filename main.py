@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-from simple_term_menu import TerminalMenu
 from acf.acf import acfFunc
 from init import init, resetSettings
 from menu.contactForms import contactForms
@@ -10,33 +9,48 @@ from utils.plugins import pluginsFunc
 from utils.themes import wpThemesFunc
 from utils.wp_images import wpImages
 from wp_files.files import mainMenu
+from pyfzf.pyfzf import FzfPrompt
 
-menu_items = ["Init", "Reset", "Files", "Acf", "Backups", "Plugins", "Themes", "Pages", "Posts", "Images", "Contact form", "Exit"]
+menu_items = [
+    "Acf",
+    "Backups",
+    "Contact form",
+    "Exit"
+    "Files",
+    "Images",
+    "Init",
+    "Pages",
+    "Plugins",
+    "Posts",
+    "Reset",
+    "Themes",
+]
 
-terminal_menu = TerminalMenu(menu_items)
-menu_entry_index = terminal_menu.show()
 
-if menu_entry_index == 0:
+fzf = FzfPrompt()
+menu_entry = fzf.prompt(menu_items)
+
+if menu_entry[0] == "Init":
     init()
-if menu_entry_index == 1:
+if menu_entry[0] == "Reset":
     resetSettings()
-elif menu_entry_index == 2:
+elif menu_entry[0] == "Files":
     mainMenu()
-elif menu_entry_index == 3:
+elif menu_entry[0] == "Acf":
     acfFunc()
-elif menu_entry_index == 4:
+elif menu_entry[0] == "Backups":
     aiwmFunc()
-elif menu_entry_index == 5:
+elif menu_entry[0] == "Plugins":
     pluginsFunc()
-elif menu_entry_index == 6:
+elif menu_entry[0] == "Themes":
     wpThemesFunc()
-elif menu_entry_index == 7:
+elif menu_entry[0] == "Pages":
     wpPages()
-elif menu_entry_index == 8:
+elif menu_entry[0] == "Posts":
     wpPages(post_type=True)
-elif menu_entry_index == 9:
+elif menu_entry[0] == "Images":
     wpImages()
-elif menu_entry_index == 10:
+elif menu_entry[0] == "Contact form":
     contactForms()
-elif menu_entry_index == 11:
-    exit()
+else:
+    exit("Goodbye!")
