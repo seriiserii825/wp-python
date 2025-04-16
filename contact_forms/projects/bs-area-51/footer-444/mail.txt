@@ -1,0 +1,18 @@
+array (
+  'active' => true,
+  'subject' => '[_site_title] "nick@gmail.com"',
+  'sender' => '[_site_title] <wordpress@lc-area-51.local>',
+  'recipient' => '[_site_admin_email]',
+  'body' => 'Da: Mario Rossi tinny@mail.com
+Telefono: 0411234565
+
+Corpo del messaggio:
+Hello
+
+-- 
+Questa è una notifica che segnala l\'invio di un modulo di contatto dal vostro sito web ([_site_title] [_site_url]).',
+  'additional_headers' => 'Reply-To: serii@mail.com',
+  'attachments' => '',
+  'use_html' => false,
+  'exclude_blank' => false,
+)
