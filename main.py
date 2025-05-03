@@ -26,7 +26,7 @@ menu_items = [
     "Themes",
 ]
 
-# menu
+# menu main
 fzf = FzfPrompt()
 menu_entry = fzf.prompt(menu_items)
 
