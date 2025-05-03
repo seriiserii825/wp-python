@@ -11,6 +11,7 @@ from utils.wp_images import wpImages
 from wp_files.files import mainMenu
 from pyfzf.pyfzf import FzfPrompt
 
+# This script is a menu-driven program that allows the user to perform various WordPress-related tasks.
 menu_items = [
     "Acf",
     "Backups",
