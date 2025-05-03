@@ -11,6 +11,7 @@ from utils.wp_images import wpImages
 from wp_files.files import mainMenu
 from pyfzf.pyfzf import FzfPrompt
 
+# main manu
 menu_items = [
     "Acf",
     "Backups",
@@ -26,7 +27,7 @@ menu_items = [
     "Themes",
 ]
 
-# menu
+# menu main
 fzf = FzfPrompt()
 menu_entry = fzf.prompt(menu_items)
 
