@@ -1,7 +1,7 @@
 import os
-from termcolor import colored
 from rich import print
 from libs.select import selectMultiple
+
 
 class ImagesClass:
     def __init__(self):
@@ -14,7 +14,8 @@ class ImagesClass:
         for item in files:
             if item.endswith(".jpg") or item.endswith(".png") or item.endswith(".svg"):
                 return True
-        exit(colored("No images found in Downloads folder!", "red"))
+        print(f"[red]No images found in Downloads folder!")
+        exit()
 
     def replaceSpaceWithUnderscore(self):
         files = os.listdir(self.downloads_dir)
@@ -32,20 +33,32 @@ class ImagesClass:
             if item.endswith(".jpg") or item.endswith(".png") or item.endswith(".svg"):
                 images.append(item)
         sorted_images = sorted(images)
-        print(colored("Images in Downloads folder:", "blue"))
         return sorted_images
+
+    def optimizeImage(self, image):
+        os.system(
+            f"jpegoptim --strip-all --all-progressive -ptm 80 ~/Downloads/{image}")
+
+    def uploadImage(self, image: str):
+        os.system("wp media import ~/Downloads/" + image + " --title=" + image)
 
     def importImages(self, images):
         for image in images:
             if image.endswith(".jpg"):
-                os.system(f"jpegoptim --strip-all --all-progressive -ptm 80 ~/Downloads/{image}")
-                os.system("wp media import ~/Downloads/" + image + " --title=" + image)
+                self.optimizeImage(image)
+                self.uploadImage(image)
+            elif image.endswith(".png"):
+                convert_png = input('Do you want to convert "{image}" png to jpg, (y/n)? ')
+                if (convert_png == 'y'):
+                    os.system("mogrify -format jpg ~/Downloads/" + image)
+                    new_image = image.replace(".png", ".jpg")
+                    os.system("rm ~/Downloads/" + image)
+                    self.optimizeImage(image)
+                    self.uploadImage(new_image)
+                else:
+                    self.uploadImage(image)
             else:
-                os.system("mogrify -format jpg ~/Downloads/" + image)
-                new_image = image.replace(".png", ".jpg")
-                os.system("rm ~/Downloads/" + image)
-                os.system(f"jpegoptim --strip-all --all-progressive -ptm 80 ~/Downloads/{new_image}")
-                os.system("wp media import ~/Downloads/" + new_image + " --title=" + new_image)
+                self.uploadImage(image)
 
     def uploadAll(self):
         images = self.getImages()
