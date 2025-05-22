@@ -10,7 +10,8 @@ if not os.path.exists("style.css"):
 def wpImages():
     print(colored("1) Upload all", "green"))
     print(colored("2) Select", "blue"))
-    print(colored("3) Exit", "red"))
+    print(colored("3) Delete Image", "red"))
+    print(colored("4) Exit", "red"))
     image_class = ImagesClass()
     image_class.replaceSpaceWithUnderscore()
 
@@ -21,7 +22,10 @@ def wpImages():
     elif choice == "2":
         image_class.selectImages()
         wpImages()
-    elif choice == "6":
+    elif choice == "3":
+        image_class.deleteImage()
+        wpImages()
+    elif choice == "4":
         exit(colored("Goodbye!", "red"))
     else:
         exit(colored("Goodbye!", "red"))

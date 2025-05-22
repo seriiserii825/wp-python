@@ -9,6 +9,16 @@ class ImagesClass:
         self.checkIfImagesInDownloads()
         self.replaceSpaceWithUnderscore()
 
+    def showImages(self):
+        os.system('wp post list --post_type=attachment')
+
+    def deleteImage(self):
+        self.showImages()
+        image_id = input('Enter the image ID you want to delete: ')
+        if image_id.isdigit():
+            os.system(f'wp post delete {image_id} --force')
+        self.showImages()
+        
     def checkIfImagesInDownloads(self):
         files = os.listdir(self.downloads_dir)
         for item in files:
@@ -53,12 +63,13 @@ class ImagesClass:
                     os.system("mogrify -format jpg ~/Downloads/" + image)
                     new_image = image.replace(".png", ".jpg")
                     os.system("rm ~/Downloads/" + image)
-                    self.optimizeImage(image)
+                    self.optimizeImage(new_image)
                     self.uploadImage(new_image)
                 else:
                     self.uploadImage(image)
             else:
                 self.uploadImage(image)
+        self.showImages()
 
     def uploadAll(self):
         images = self.getImages()
