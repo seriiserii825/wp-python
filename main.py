@@ -6,6 +6,7 @@ from menu.contactForms import contactForms
 from utils.aiwm import aiwmFunc
 from utils.pages import wpPages
 from utils.plugins import pluginsFunc
+from utils.taxonomies import taxonomies
 from utils.themes import wpThemesFunc
 from utils.wp_images import wpImages
 from wp_files.files import mainMenu
@@ -25,6 +26,7 @@ menu_items = [
     "Posts",
     "Reset",
     "Themes",
+    "Taxonomies"
 ]
 
 # menu main
@@ -53,5 +55,7 @@ elif menu_entry[0] == "Images":
     wpImages()
 elif menu_entry[0] == "Contact form":
     contactForms()
+elif menu_entry[0] == "Taxonomies":
+    taxonomies()
 else:
     exit("Goodbye!")
