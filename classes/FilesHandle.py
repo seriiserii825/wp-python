@@ -1,5 +1,6 @@
 import os
 from rich import print
+from classes.MyTable import MyTable
 from libs.select import selectOne
 from libs.selectWithFzf import selectWithFzf
 from pyfzf.pyfzf import FzfPrompt
@@ -9,13 +10,14 @@ class FilesHandle:
         self.basepath = basepath if basepath != '' else '.'
 
     def listFiles(self):
-        print("Existing files:")
-        print(f"[green]List files in ================= {self.basepath}")
+        files = []
         for entry in os.listdir(self.basepath):
             if os.path.isfile(os.path.join(self.basepath, entry)):
-                print(f"[blue]{entry}")
+                files.append([len(files) + 1, entry])
 
-        print(f"[green]List files in ================= {self.basepath}")
+        tb = MyTable()
+        tb.show("Files", ["Id","File name"], files)
+
 
     def listDir(self):
         print(f"[green]Listing directories in ================ {self.basepath}")

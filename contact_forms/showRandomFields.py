@@ -1,3 +1,4 @@
+from classes.MyTable import MyTable
 from contact_forms.getRandomFields import getRandomFields
 from libs.richTable import richTable
 
@@ -10,4 +11,5 @@ def showRandomFields():
     for random_field in random_fields:
         values = ', '.join(random_field['value'])
         table_rows.append([random_field['name'], values])
-    richTable(table_title, table_columns, table_rows)
+    tb = MyTable()
+    tb.show(table_title, table_columns, table_rows)
