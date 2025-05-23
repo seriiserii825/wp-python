@@ -1,4 +1,4 @@
-from libs.richTable import richTable
+from classes.MyTable import MyTable
 
 
 def showContactFormFields(all_fields, required_fields, submited_fields):
@@ -17,4 +17,6 @@ def showContactFormFields(all_fields, required_fields, submited_fields):
             table_rows.append([field, field, field])
         else:
             table_rows.append([field, '[red]No required', field])
-    richTable(table_title, table_columns, table_rows)
+    my_table = MyTable()
+    my_table.show(table_title, table_columns, table_rows)
+    # richTable(table_title, table_columns, table_rows)

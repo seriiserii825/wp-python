@@ -1,6 +1,5 @@
 from classes.MyTable import MyTable
 from contact_forms.getRandomFields import getRandomFields
-from libs.richTable import richTable
 
 def showRandomFields():
     random_fields = getRandomFields()
