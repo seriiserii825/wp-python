@@ -141,3 +141,43 @@ class MySelenium():
         wps_hide_login.click()
         self.driver.close()
 
+    def deleteBackupInChrome(self):
+        pr = Project(self.theme_name)
+        project = pr.getProject()
+        project_login = project['login']
+        project_password = project['password']
+        project_url = project['url']
+        print(f"Project url: {project_url}")
+        sitem_login = pr.getLoginUrl(False)
+        while True:
+            req = requests.get(sitem_login)
+            if req.status_code != requests.codes['ok']:
+                sitem_login = pr.getLoginUrl()
+                break
+            else:
+                break
+        self.driver.get(sitem_login)
+        self.waitForCaptcha()
+        login_element = self.driver.find_element(By.ID, "user_login")
+        login_element.send_keys(project_login)
+        password_element = self.driver.find_element(By.ID, "user_pass")
+        password_element.send_keys(project_password)
+        login_button = self.driver.find_element(By.ID, "wp-submit")
+        login_button.click()
+        backups_url = f"{project_url}/wp-admin/admin.php?page=ai1wm_backups"
+        self.driver.get(backups_url)
+        number_of_backups = input("[green]Enter number of backups to delete: ")
+        if number_of_backups == "":
+            exit("[red]Number of backups is empty!")
+        print(f"Number of backups: {number_of_backups}")
+        for i in range(int(number_of_backups)):
+            WebDriverWait(self.driver, 300000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table.ai1wm-backups tr:last-of-type .ai1wm-backup-dots")))
+            ai1wm_backup_dots = self.driver.find_element(By.CSS_SELECTOR, f"table.ai1wm-backups tr:nth-of-type({number_of_backups}) .ai1wm-backup-dots")
+            ai1wm_backup_dots.click()
+            WebDriverWait(self.driver, 300000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-delete")))
+            ai1wm_backup_delete = self.driver.find_element(By.CSS_SELECTOR, f"table.ai1wm-backups tr:nth-of-type({number_of_backups}) .ai1wm-backup-delete")
+            ai1wm_backup_delete.click()
+            WebDriverWait(self.driver, 1000000).until(EC.alert_is_present())
+            self.driver.switch_to.alert.accept()
+            time.sleep(3)
+

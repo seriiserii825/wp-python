@@ -77,7 +77,8 @@ class Backup:
         pass
 
     def deleteBackupInChrome(self):
-        pass
+        ms = MySelenium()
+        ms.deleteBackupInChrome()
 
     def getLastBackupPath(self):
         os.chdir(self.backup_dir_abs_path)
