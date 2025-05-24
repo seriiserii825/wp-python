@@ -2,17 +2,6 @@
 import os
 
 from termcolor import colored
-
-from backups.createAndCopyToMnt import createAndCopyToMnt
-from backups.deleteBackup import deleteBackup
-from backups.deleteBackupInChrome import deleteBackupInChrome
-from backups.downloadBackup import downloadBackup
-from backups.listBackup import listBackup
-from backups.makeBackup import makeBackup
-from backups.makeBackupInChrome import makeBackupInChrome
-from backups.restoreBackup import restoreBackup
-from backups.restoreBackupInChrome import restoreBackupInChrome
-from backups.restoreFromDownloads import restoreFromDownloads
 from classes.Backup import Backup
 
 is_installed_plugins = os.path.exists("../../plugins/all-in-one-wp-migration");
@@ -34,8 +23,6 @@ def aiwmFunc():
         print(colored("4) Restore from Downloads", "blue"))
         print(colored("5) Restore in Browser", "blue"))
         print(colored("5.1) Delete in Browser", "red"))
-        print(colored("6) Download Backup", "yellow"))
-        print(colored("7) Delete backups", "red"))
         print(colored("8) Exit", "red"))
 
         choice = input("Make your choice:")
@@ -71,12 +58,6 @@ def aiwmFunc():
         elif choice == "5.1":
             bp = Backup()
             bp.deleteBackupInChrome()
-            menu()
-        elif choice == "6":
-            downloadBackup()
-            menu()
-        elif choice == "7":
-            deleteBackup()
             menu()
         else:
             exit(colored("Goodbye!", "red"))
