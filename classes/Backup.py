@@ -1,6 +1,7 @@
 import os
 import subprocess
 
+from pick import pick
 from classes.FilesHandle import FilesHandle
 from classes.MySelenium import MySelenium
 from utils.runCommand import runCommand
@@ -53,7 +54,11 @@ class Backup:
         os.system("wp ai1wm list-backups")
 
     def restoreBackup(self):
-        pass
+        self.listBackup()
+        fh = FilesHandle(self.backup_dir_abs_path)
+        selected_backup = fh.chooseFile(self.backup_dir_abs_path, '.wpress')
+        os.system(f"wp ai1wm restore {selected_backup}")
+
 
     def restoreBackupInChrome(self):
         pass

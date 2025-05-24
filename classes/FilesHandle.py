@@ -74,12 +74,16 @@ class FilesHandle:
         selected_item = fzf.prompt(items)
         return selected_item[0]
 
-    def chooseFile(self, path_to_dir=''):
+    def chooseFile(self, path_to_dir='', extension=None):
         self.showOrderFilesByCTime(path_to_dir)
         choosed_files = []
         for entry in os.listdir(self.basepath):
             if os.path.isfile(os.path.join(self.basepath, entry)):
-                choosed_files.append(entry)
+                if extension:
+                    if entry.endswith(extension):
+                        choosed_files.append(entry)
+                else:
+                    choosed_files.append(entry)
         if len(choosed_files) == 0:
             exit("[red]No files found")
         else:
