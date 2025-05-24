@@ -42,13 +42,12 @@ def aiwmFunc():
         if choice == "1":
             backup = Backup()
             backup.listBackup()
-            backup.deleteMore3Backups()
-            backup.listBackup()
-            backup.makeBackup()
-            backup.listBackup()
             menu()
         elif choice == "2":
-            makeBackup()
+            backup = Backup()
+            backup.deleteMore3Backups()
+            backup.makeBackup()
+            backup.listBackup()
             menu()
         elif choice == "2.1":
             createAndCopyToMnt()
