@@ -2,6 +2,7 @@ import os
 import subprocess
 
 from classes.FilesHandle import FilesHandle
+from classes.MySelenium import MySelenium
 from utils.runCommand import runCommand
 
 
@@ -9,6 +10,7 @@ class Backup:
     def __init__(self):
         self.backup_dir_abs_path= os.path.abspath("../../ai1wm-backups")
         print(f"self.backup_dir_abs_path=: {self.backup_dir_abs_path=}")
+        self.driver = None
 
     def makeBackup(self):
         self.listBackup()
@@ -44,7 +46,8 @@ class Backup:
             print("[green]Backups less than 3")
 
     def makeBackupInChrome(self):
-        pass
+        ms = MySelenium()
+        ms.makeBackupInChrome()
 
     def listBackup(self):
         os.system("wp ai1wm list-backups")
@@ -115,3 +118,4 @@ class Backup:
 
     def menu(self):
         pass
+

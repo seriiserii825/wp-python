@@ -1,0 +1,77 @@
+import os
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException
+import requests
+import time
+
+from classes.Project import Project
+
+class MySelenium():
+    def __init__(self):
+        service = Service(executable_path='/usr/bin/chromedriver')
+        options = webdriver.ChromeOptions() 
+        options.add_argument("user-data-dir=/home/serii/.config/google-chrome/My-profile") #Path to your chrome profile
+        self.driver = webdriver.Chrome(service=service, options=options)
+        current_dir_path = os.getcwd()
+        self.theme_name = os.path.basename(current_dir_path)
+
+    def every_downloads_chrome(self, driver):
+        if not driver.current_url.startswith("chrome://downloads"):
+            driver.get("chrome://downloads/")
+        return driver.execute_script("""
+            const items = document.querySelector('downloads-manager')
+                .shadowRoot.getElementById('downloadsList').items;
+            if (items.every(e => e.state === "COMPLETE"))
+                return items.map(e => e.fileUrl || e.file_url);
+        """)
+
+    def makeBackupInChrome(self):
+        pr = Project(self.theme_name)
+        project = pr.getProject()
+        project_login = project['login']
+        project_password = project['password']
+        project_url = project['url']
+        sitem_login = pr.getLoginUrl(False)
+        while True:
+            req = requests.get(sitem_login)
+            if req.status_code != requests.codes['ok']:
+                sitem_login = pr.getLoginUrl()
+                break
+            else:
+                break
+        self.driver.get(sitem_login)
+        self.waitForCaptcha()
+        login_element = self.driver.find_element(By.ID, "user_login")
+        login_element.send_keys(project_login)
+        password_element = self.driver.find_element(By.ID, "user_pass")
+        password_element.send_keys(project_password)
+        login_button = self.driver.find_element(By.ID, "wp-submit")
+        login_button.click()
+        backups_url = f"{project_url}/wp-admin/admin.php?page=ai1wm_export"
+        self.driver.get(backups_url)
+        WebDriverWait(self.driver, 30000000).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".ai1wm-button-export")))
+        ai1wm_backup_dots = self.driver.find_element(By.CSS_SELECTOR, ".ai1wm-button-export")
+        ai1wm_backup_dots.click()
+        WebDriverWait(self.driver, 30000000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#ai1wm-export-file")))
+        ai1wm_backup_restore = self.driver.find_element(By.CSS_SELECTOR, "#ai1wm-export-file")
+        time.sleep(2)
+        ai1wm_backup_restore.click()
+        WebDriverWait(self.driver, 3000000000).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".ai1wm-modal-container .ai1wm-button-green")))
+        button_green = self.driver.find_element(By.CSS_SELECTOR, ".ai1wm-modal-container .ai1wm-button-green")
+        button_green.click()
+        WebDriverWait(self.driver, 120, 1).until(self.every_downloads_chrome)
+        self.driver.close()
+        time.sleep(10000000)
+
+    def waitForCaptcha(self):
+        try:
+            WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".aiowps-captcha-answer")))
+            aiowps_captcha_answer = self.driver.find_element(By.CSS_SELECTOR, ".aiowps-captcha-answer")
+            if aiowps_captcha_answer:
+                time.sleep(10)
+        except TimeoutException:
+            return

@@ -52,9 +52,9 @@ def aiwmFunc():
         elif choice == "2.1":
             bp = Backup()
             bp.createAndCopyToMnt()
-            menu()
         elif choice == "2.2":
-            makeBackupInChrome()
+            bp = Backup()
+            bp.makeBackupInChrome()
             menu()
         elif choice == "3":
             restoreBackup()
