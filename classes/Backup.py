@@ -35,7 +35,7 @@ class Backup:
             os.system(f"cp {latest_file} ~/Downloads")
             if path_to_project != "":
                 os.system(f"cp {latest_file} {path_to_project}")
-        print(colored(f"Backup file: {latest_file}", "blue"))
+        print(f"[blue]Backup file: {latest_file}")
         #go to current_dir
         os.chdir(current_dir)
         self.listBackup()
@@ -50,16 +50,16 @@ class Backup:
             if file.endswith('.wpress'):
                 backups_array.append(file)
         if (len(backups_array) == 0):
-            print(colored("No backups found!", "red"))
+            print("[red]No backups found!")
         elif(len(backups_array) >2):
             backup_to_delete = backups_array[2:]
-            print(colored(f"Backups to delete: ", "red"))
+            print(f"[red]Backups to delete: ")
             for file in backup_to_delete:
                 print(file)
             for file in backup_to_delete:
                 os.system(f"rm {file}")
         else:
-            print(colored("Backups less than 3", "green"))
+            print("[green]Backups less than 3")
 
 
 
