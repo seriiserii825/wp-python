@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from rich import print
 from classes.MyTable import MyTable
 from libs.select import selectOne
@@ -27,10 +28,14 @@ class FilesHandle:
                     directories.append(entry.name)
         directories.sort()
         tb = MyTable()
-        tb.show("Directories", ["Id", "Directory name"], [[i + 1, dir_name] for i, dir_name in enumerate(directories)])
+        tb.show("View Folders", ["Id", "Directory name"], [[i + 1, dir_name] for i, dir_name in enumerate(directories)])
 
-    def createOrChooseDirectory(self):
-        self.listDir()
+    def createOrChooseDirectory(self, path_to_dir=''):
+        if path_to_dir:
+            self.basepath = path_to_dir
+        else:
+            self.basepath = os.getcwd()
+        self.listDir(self.basepath)
         select_or_create = selectOne(["Select", "Create"])
         if select_or_create == "Create":
             dir_name = input("Enter directory name:")
@@ -44,7 +49,6 @@ class FilesHandle:
         else:
             selected_dir = self.chooseDir()
             return selected_dir
-
 
     def chooseDir(self):
         choosed_dir = []
@@ -70,7 +74,8 @@ class FilesHandle:
         selected_item = fzf.prompt(items)
         return selected_item[0]
 
-    def chooseFile(self):
+    def chooseFile(self, path_to_dir=''):
+        self.showOrderFilesByCTime(path_to_dir)
         choosed_files = []
         for entry in os.listdir(self.basepath):
             if os.path.isfile(os.path.join(self.basepath, entry)):
@@ -84,3 +89,27 @@ class FilesHandle:
         with open(file_path, "a") as f:
             f.write(text)
         os.system(f"bat {file_path}")
+
+    def showOrderFilesByCTime(self, dir_path):
+        current_path = os.getcwd()
+        os.chdir(dir_path)
+
+        files = os.listdir()
+        # Collect (filename, ctime) tuples
+        file_ctimes = [(f, os.path.getctime(f)) for f in files if os.path.isfile(f)]
+
+        # Sort by ctime in reverse order
+        file_ctimes.sort(key=lambda x: x[1], reverse=True)
+
+        os.chdir(current_path)  # Restore original working directory
+
+        tb = MyTable()
+        tb_title = "Files sorted by creation time"
+        tb_headers = ["Id", "File name", "Created at"]
+        tb_rows = []
+
+        for i, (file, ctime) in enumerate(file_ctimes):
+            ctime_human = datetime.fromtimestamp(ctime).strftime('%Y-%m-%d %H:%M:%S')
+            tb_rows.append([i + 1, file, ctime_human])
+
+        tb.show(tb_title, tb_headers, tb_rows)

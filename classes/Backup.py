@@ -2,24 +2,29 @@ import os
 import subprocess
 
 from classes.FilesHandle import FilesHandle
+from utils.runCommand import runCommand
 
 
 class Backup:
     def __init__(self):
-        pass
+        self.backup_dir_abs_path= os.path.abspath("../../ai1wm-backups")
+        print(f"self.backup_dir_abs_path=: {self.backup_dir_abs_path=}")
 
-    def makeBackup(self, path_to_project=''):
+    def makeBackup(self):
+        self.listBackup()
         current_dir = os.getcwd()
         os.system("rm -rf node_modules")
         try:
             subprocess.run("wp ai1wm backup", shell=True, check=True)
-            print("Command was successful")
         except subprocess.CalledProcessError as e:
             print(f"Command failed with return code {e.returncode}")
+        self.deleteMore3Backups()
+        self.listBackup()
         os.chdir(current_dir)
+        self.lastBackupToDownloads()
 
     def deleteMore3Backups(self):
-        os.chdir("../../ai1wm-backups")
+        os.chdir(self.backup_dir_abs_path)
         backup_files = os.listdir()
         backup_files.sort(key=lambda x: os.path.getctime(x), reverse=True)
         backups_array = []
@@ -59,25 +64,51 @@ class Backup:
     def deleteBackupInChrome(self):
         pass
 
+    def getLastBackupPath(self):
+        os.chdir(self.backup_dir_abs_path)
+        backup_files = os.listdir()
+        backup_files.sort(key=lambda x: os.path.getctime(x), reverse=True)
+        if len(backup_files) == 0:
+            print("[red]No backups found!")
+        else:
+            return backup_files[0]
+
+    def lastBackupToDownloads(self):
+        last_backup = self.getLastBackupPath()
+        if last_backup:
+            backup_path = f"{self.backup_dir_abs_path}/{last_backup}"
+            destination = os.path.expanduser("~/Downloads")
+            runCommand(["cp", backup_path, destination])
+
+            print(f"[green]Last backup copied to ~/Downloads/{last_backup}")
+        else:
+            print("[red]No backups found to copy.")
+
+    def lastBackupToMnt(self, mnt_path):
+        last_backup = self.getLastBackupPath()
+        if last_backup:
+            backup_path = f"{self.backup_dir_abs_path}/{last_backup}"
+            runCommand(["cp", backup_path, mnt_path])
+        else:
+            print("[red]No backups found to copy.")
+
     def createAndCopyToMnt(self):
         directory_exists = os.path.isdir('/mnt/Projects')
         if directory_exists:
             path_to_dir = '/mnt/Projects'
             fh = FilesHandle(path_to_dir)
-            fh.listDir(path_to_dir)
-        #     selected_dir = createOrChooseDirectory(path_to_dir)
-        #     path_to_selected_dir = path_to_dir + "/" + selected_dir
-        #     listDir(path_to_selected_dir)
-        #     selected_project = createOrChooseDirectory(path_to_selected_dir)
-        #     path_to_selected_dir = path_to_selected_dir + "/" + selected_project
-        #     sorted_files = orderFiles(path_to_selected_dir)
-        #     makeBackup(path_to_selected_dir)
-        #     print(f"[blue]Backup file copied to {path_to_selected_dir}")
-        #     for file in sorted_files:
-        #         print(file)
-        # else:
-        #     exit("[red]Directory /mnt/Projects not exists!")
-
+            selected_dir = fh.createOrChooseDirectory(path_to_dir)
+            path_to_selected_dir = path_to_dir + "/" + selected_dir
+            fh.listDir(path_to_selected_dir)
+            selected_project = fh.createOrChooseDirectory(path_to_selected_dir)
+            path_to_selected_dir = path_to_selected_dir + "/" + selected_project
+            fh.showOrderFilesByCTime(path_to_selected_dir)
+            self.makeBackup()
+            self.lastBackupToMnt(path_to_selected_dir)
+            fh.showOrderFilesByCTime(path_to_selected_dir)
+            exit("[green]Backup created and copied to /mnt/Projects/{selected_project}")
+        else:
+            exit("[red]Directory /mnt/Projects not exists!")
 
     def aiwmFunc(self):
         pass
