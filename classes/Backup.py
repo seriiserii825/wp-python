@@ -64,7 +64,13 @@ class Backup:
         pass
 
     def restoreFromDownloads(self):
-        pass
+        self.listBackup()
+        downloads_dir = os.path.expanduser("~/Downloads")
+        fh = FilesHandle(self.backup_dir_abs_path)
+        print(f"downloads_dir: {downloads_dir}")
+        fh.listFiles(downloads_dir)
+        selected_backup = fh.chooseFile(downloads_dir, '.wpress')
+        os.system(f"wp ai1wm restore {selected_backup}")
 
     def downloadBackup(self):
         pass

@@ -10,7 +10,9 @@ class FilesHandle:
     def __init__(self, basepath: str):
         self.basepath = basepath if basepath != '' else '.'
 
-    def listFiles(self):
+    def listFiles(self, path_to_list=''):
+        if path_to_list:
+            self.basepath = path_to_list
         files = []
         for entry in os.listdir(self.basepath):
             if os.path.isfile(os.path.join(self.basepath, entry)):
@@ -97,6 +99,7 @@ class FilesHandle:
     def showOrderFilesByCTime(self, dir_path):
         current_path = os.getcwd()
         os.chdir(dir_path)
+        print(f"Listing files in ================ {dir_path}")
 
         files = os.listdir()
         # Collect (filename, ctime) tuples
