@@ -17,18 +17,17 @@ class FilesHandle:
         tb = MyTable()
         tb.show("Files", ["Id","File name"], files)
 
-    def listDir(self):
-        print(f"[green]Listing directories in ================ {self.basepath}")
+    def listDir(self, path_to_list=''):
         directories = []
+        if path_to_list:
+            self.basepath = path_to_list
         with os.scandir(self.basepath) as entries:
             for entry in entries:
                 if entry.is_dir():
                     directories.append(entry.name)
         directories.sort()
-        for directory in directories:
-            print(f"[blue]{directory}")
-        print(f"[green]Listing directories in ================ {self.basepath}")
-
+        tb = MyTable()
+        tb.show("Directories", ["Id", "Directory name"], [[i + 1, dir_name] for i, dir_name in enumerate(directories)])
 
     def createOrChooseDirectory(self):
         self.listDir()

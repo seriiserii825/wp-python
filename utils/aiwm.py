@@ -50,7 +50,8 @@ def aiwmFunc():
             backup.listBackup()
             menu()
         elif choice == "2.1":
-            createAndCopyToMnt()
+            bp = Backup()
+            bp.createAndCopyToMnt()
             menu()
         elif choice == "2.2":
             makeBackupInChrome()

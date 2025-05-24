@@ -1,6 +1,8 @@
 import os
 import subprocess
 
+from classes.FilesHandle import FilesHandle
+
 
 class Backup:
     def __init__(self):
@@ -58,7 +60,24 @@ class Backup:
         pass
 
     def createAndCopyToMnt(self):
-        pass
+        directory_exists = os.path.isdir('/mnt/Projects')
+        if directory_exists:
+            path_to_dir = '/mnt/Projects'
+            fh = FilesHandle(path_to_dir)
+            fh.listDir(path_to_dir)
+        #     selected_dir = createOrChooseDirectory(path_to_dir)
+        #     path_to_selected_dir = path_to_dir + "/" + selected_dir
+        #     listDir(path_to_selected_dir)
+        #     selected_project = createOrChooseDirectory(path_to_selected_dir)
+        #     path_to_selected_dir = path_to_selected_dir + "/" + selected_project
+        #     sorted_files = orderFiles(path_to_selected_dir)
+        #     makeBackup(path_to_selected_dir)
+        #     print(f"[blue]Backup file copied to {path_to_selected_dir}")
+        #     for file in sorted_files:
+        #         print(file)
+        # else:
+        #     exit("[red]Directory /mnt/Projects not exists!")
+
 
     def aiwmFunc(self):
         pass
