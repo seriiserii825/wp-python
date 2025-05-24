@@ -14,10 +14,8 @@ class FilesHandle:
         for entry in os.listdir(self.basepath):
             if os.path.isfile(os.path.join(self.basepath, entry)):
                 files.append([len(files) + 1, entry])
-
         tb = MyTable()
         tb.show("Files", ["Id","File name"], files)
-
 
     def listDir(self):
         print(f"[green]Listing directories in ================ {self.basepath}")
