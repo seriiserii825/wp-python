@@ -61,7 +61,8 @@ class Backup:
 
 
     def restoreBackupInChrome(self):
-        pass
+        ms = MySelenium()
+        ms.restoreBackupInChrome()
 
     def restoreFromDownloads(self):
         self.listBackup()

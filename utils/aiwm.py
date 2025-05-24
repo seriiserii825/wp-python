@@ -65,7 +65,8 @@ def aiwmFunc():
             bp.restoreFromDownloads()
             menu()
         elif choice == "5":
-            restoreBackupInChrome()
+            bp = Backup()
+            bp.restoreBackupInChrome()
             menu()
         elif choice == "5.1":
             deleteBackupInChrome()
