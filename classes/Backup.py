@@ -1,18 +1,13 @@
 import os
 import subprocess
-
-from pick import pick
 from classes.FilesHandle import FilesHandle
 from classes.MySelenium import MySelenium
 from utils.runCommand import runCommand
-
-
 class Backup:
     def __init__(self):
         self.backup_dir_abs_path= os.path.abspath("../../ai1wm-backups")
         print(f"self.backup_dir_abs_path=: {self.backup_dir_abs_path=}")
         self.driver = None
-
     def makeBackup(self):
         self.listBackup()
         current_dir = os.getcwd()
@@ -25,7 +20,6 @@ class Backup:
         self.listBackup()
         os.chdir(current_dir)
         self.lastBackupToDownloads()
-
     def deleteMore3Backups(self):
         os.chdir(self.backup_dir_abs_path)
         backup_files = os.listdir()
@@ -45,25 +39,19 @@ class Backup:
                 os.system(f"rm {file}")
         else:
             print("[green]Backups less than 3")
-
     def makeBackupInChrome(self):
         ms = MySelenium()
         ms.makeBackupInChrome()
-
     def listBackup(self):
         os.system("wp ai1wm list-backups")
-
     def restoreBackup(self):
         self.listBackup()
         fh = FilesHandle(self.backup_dir_abs_path)
         selected_backup = fh.chooseFile(self.backup_dir_abs_path, '.wpress')
         os.system(f"wp ai1wm restore {selected_backup}")
-
-
     def restoreBackupInChrome(self):
         ms = MySelenium()
         ms.restoreBackupInChrome()
-
     def restoreFromDownloads(self):
         self.listBackup()
         downloads_dir = os.path.expanduser("~/Downloads")
@@ -72,14 +60,9 @@ class Backup:
         fh.listFiles(downloads_dir)
         selected_backup = fh.chooseFile(downloads_dir, '.wpress')
         os.system(f"wp ai1wm restore {selected_backup}")
-
-    def downloadBackup(self):
-        pass
-
     def deleteBackupInChrome(self):
         ms = MySelenium()
         ms.deleteBackupInChrome()
-
     def getLastBackupPath(self):
         os.chdir(self.backup_dir_abs_path)
         backup_files = os.listdir()
@@ -88,18 +71,15 @@ class Backup:
             print("[red]No backups found!")
         else:
             return backup_files[0]
-
     def lastBackupToDownloads(self):
         last_backup = self.getLastBackupPath()
         if last_backup:
             backup_path = f"{self.backup_dir_abs_path}/{last_backup}"
             destination = os.path.expanduser("~/Downloads")
             runCommand(["cp", backup_path, destination])
-
             print(f"[green]Last backup copied to ~/Downloads/{last_backup}")
         else:
             print("[red]No backups found to copy.")
-
     def lastBackupToMnt(self, mnt_path):
         last_backup = self.getLastBackupPath()
         if last_backup:
@@ -107,7 +87,6 @@ class Backup:
             runCommand(["cp", backup_path, mnt_path])
         else:
             print("[red]No backups found to copy.")
-
     def createAndCopyToMnt(self):
         directory_exists = os.path.isdir('/mnt/Projects')
         if directory_exists:
@@ -125,10 +104,3 @@ class Backup:
             exit("[green]Backup created and copied to /mnt/Projects/{selected_project}")
         else:
             exit("[red]Directory /mnt/Projects not exists!")
-
-    def aiwmFunc(self):
-        pass
-
-    def menu(self):
-        pass
-
