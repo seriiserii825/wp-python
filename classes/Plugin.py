@@ -1,0 +1,102 @@
+import os
+from rich import print
+from classes.FilesHandle import FilesHandle
+from data.base_plugins import base_plugins
+from data.plugins import plugins
+
+class Plugin():
+    def __init__(self):
+        self.base_plugins = base_plugins
+        self.plugins = plugins
+        self.abs_path_plugins = os.path.abspath("../../plugins")
+        self.installed_plugins = self.getInstalledPlugins()
+        self.not_installed_plugins = self.getNotInstalledPlugins(self.plugins)
+        self.not_installed_base_plugins = self.getNotInstalledPlugins(self.base_plugins)
+
+    def listInstalledPlugins(self):
+        os.system("wp plugin list")
+        
+    def getInstalledPlugins(self):
+        installedPlugins = []
+        current_dir = os.getcwd()
+        os.chdir(self.abs_path_plugins)
+        for plugin in os.listdir():
+            path = os.path.join(".", plugin)
+            if os.path.isdir(path):
+                installedPlugins.append(plugin)
+        os.chdir(current_dir)
+        return installedPlugins
+
+    def getNotInstalledPlugins(self, plugins: list):
+        self.installed_plugins.sort()
+        not_installed_plugins = []
+        for plugin in plugins:
+            for key, _ in plugin.items():
+                if key not in self.installed_plugins:
+                    not_installed_plugins.append(plugin)
+
+        if len(not_installed_plugins) == 0:
+            print("[red]All plugins are installed!")
+            return []
+        else:
+            return not_installed_plugins
+
+    def haveUninstalledPlugins(self):
+        if len(self.not_installed_plugins) == 0:
+            print("[red]All base plugins are installed!")
+            exit()
+
+    def installPlugins(self, plugins: list):
+        for plugin in plugins:
+            for key, value in plugin.items():
+                print(f"Key: {key}, Value: {value}")
+                if key in plugin:
+                    print(f"Plugin {key} is already installed!")
+                    if value == False:
+                        os.system("wp plugin install " + key + " --activate")
+                    else:
+                        os.system("wp plugin install ~/Documents/plugins-wp/" + value + " --activate")
+
+    def installBasePlugins(self):
+        self.haveUninstalledPlugins()
+        self.installPlugins(self.base_plugins)
+
+    def pluginsToStrList(self, plugins: list):
+        plugins_str_list = []
+        for plugin in plugins:
+            for key, _ in plugin.items():
+                    plugins_str_list.append(key)
+        return plugins_str_list
+
+    def pluginsFromStrListToDict(self, plugins: list):
+        plugins_dict = []
+        for plugin in plugins:
+            for item in self.not_installed_plugins:
+                for key, _ in item.items():
+                    if key == plugin:
+                        plugins_dict.append(item)
+        return plugins_dict
+
+    def installOtherPlugins(self):
+        self.haveUninstalledPlugins()
+        current_dir = os.getcwd()
+        fh = FilesHandle(current_dir)
+        plugins = self.pluginsToStrList(self.not_installed_plugins)
+        selected_plugins = fh.selectMultiple(plugins)
+
+        if len(selected_plugins) == 0:
+            print("[red]No plugins selected!")
+            exit()
+
+        plugins = self.pluginsFromStrListToDict(selected_plugins)
+        self.installPlugins(plugins)
+
+    def uninstallPlugins(self):
+        self.installed_plugins.sort()
+        fh = FilesHandle(os.getcwd())
+        selected_plugins = fh.selectMultiple(self.installed_plugins)
+        for plugin in plugins:
+            for key, _ in plugin.items():
+                if key in selected_plugins:
+                    os.system("wp plugin deactivate " + key)
+                    os.system("wp plugin uninstall " + key)

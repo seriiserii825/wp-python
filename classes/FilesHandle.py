@@ -1,4 +1,5 @@
 import os
+from simple_term_menu import TerminalMenu
 from datetime import datetime
 from rich import print
 from classes.MyTable import MyTable
@@ -120,3 +121,16 @@ class FilesHandle:
             tb_rows.append([i + 1, file, ctime_human])
 
         tb.show(tb_title, tb_headers, tb_rows)
+
+    def selectMultiple(self,options):
+        terminal_menu = TerminalMenu(options,
+                                     multi_select=True,
+                                     show_multi_select_hint=True,
+                                     show_search_hint=True,
+                                     preview_command="bat --color=always {}", preview_size=0.75
+                                     )
+        menu_entry_indices = terminal_menu.show()
+        # print(menu_entry_indices)
+        # print(terminal_menu.chosen_menu_entries)
+        return terminal_menu.chosen_menu_entries
+
