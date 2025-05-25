@@ -36,7 +36,6 @@ class Plugin():
                     not_installed_plugins.append(plugin)
 
         if len(not_installed_plugins) == 0:
-            print("[red]All plugins are installed!")
             return []
         else:
             return not_installed_plugins
@@ -51,7 +50,6 @@ class Plugin():
             for key, value in plugin.items():
                 print(f"Key: {key}, Value: {value}")
                 if key in plugin:
-                    print(f"Plugin {key} is already installed!")
                     if value == False:
                         os.system("wp plugin install " + key + " --activate")
                     else:
@@ -60,6 +58,19 @@ class Plugin():
     def installBasePlugins(self):
         self.haveUninstalledPlugins()
         self.installPlugins(self.base_plugins)
+    def installOtherPlugins(self):
+        self.haveUninstalledPlugins()
+        current_dir = os.getcwd()
+        fh = FilesHandle(current_dir)
+        plugins = self.pluginsToStrList(self.not_installed_plugins)
+        selected_plugins = fh.selectMultiple(plugins)
+
+        if len(selected_plugins) == 0:
+            print("[red]No plugins selected!")
+            exit()
+
+        plugins = self.pluginsFromStrListToDict(selected_plugins)
+        self.installPlugins(plugins)
 
     def pluginsToStrList(self, plugins: list):
         plugins_str_list = []
@@ -76,20 +87,6 @@ class Plugin():
                     if key == plugin:
                         plugins_dict.append(item)
         return plugins_dict
-
-    def installOtherPlugins(self):
-        self.haveUninstalledPlugins()
-        current_dir = os.getcwd()
-        fh = FilesHandle(current_dir)
-        plugins = self.pluginsToStrList(self.not_installed_plugins)
-        selected_plugins = fh.selectMultiple(plugins)
-
-        if len(selected_plugins) == 0:
-            print("[red]No plugins selected!")
-            exit()
-
-        plugins = self.pluginsFromStrListToDict(selected_plugins)
-        self.installPlugins(plugins)
 
     def uninstallPlugins(self):
         self.installed_plugins.sort()
