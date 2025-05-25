@@ -56,9 +56,11 @@ class Backup:
         self.listBackup()
         downloads_dir = os.path.expanduser("~/Downloads")
         fh = FilesHandle(self.backup_dir_abs_path)
-        print(f"downloads_dir: {downloads_dir}")
         fh.listFiles(downloads_dir)
         selected_backup = fh.chooseFile(downloads_dir, '.wpress')
+        print(f"selected_backup: {selected_backup}")
+        os.system(f'cp ~/Downloads/{selected_backup} "{self.backup_dir_abs_path}"')
+        self.listBackup()
         os.system(f"wp ai1wm restore {selected_backup}")
     def deleteBackupInChrome(self):
         ms = MySelenium()

@@ -10,7 +10,7 @@ plugins = [
         {"stops-core-theme-and-plugin-updates": False},
         {"safe-svg": False},
         {"contact-form-7": False},
-        {"contact-form-7-honeypot": "contact-form-7-honeypot-2-1.zip"},
+        {"contact-form-7-honeypot": False},
         {"wp-mail-smtp": False},
         {"cookie-notice": False},
         {"wps-hide-login": False},
