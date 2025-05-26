@@ -1,0 +1,27 @@
+array (
+  'active' => true,
+  'subject' => '[_site_title] "Iscrizionie bambini - Landing"',
+  'sender' => '[_site_title] <no-reply@lc-circolo-tennis.local>',
+  'recipient' => 'corsi2425ctmassa@gmail.com',
+  'body' => 'Da: Francesco Gialli
+Oggetto: Iscrizionie bambini - Landing
+
+Cognome e Nome Marco Verdi
+Codice Fiscale: 12345678906
+Nato a: Torino
+Data di nascita: 06/06/1990
+Residente in: Milano Via Milano 2 40100 VE
+Sesso: M
+
+Cellurlare: 3331234562
+Email: test@mail.com
+
+
+-- 
+Questa è una notifica che un modulo di contatto è stato inviato sul tuo sito web ([_site_title] [_site_url]).',
+  'additional_headers' => 'Reply-To: webmaster@altuofianco.it
+Bcc: [_site_admin_email]',
+  'attachments' => '',
+  'use_html' => false,
+  'exclude_blank' => true,
+)

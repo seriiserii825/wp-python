@@ -1,0 +1,25 @@
+
+<div class="form__group">
+    [text* your-name placeholder "Nome e Cognome*"]
+</div>
+<div class="form__group">
+    [text* your-phone placeholder "Telefono"]
+</div>
+<div class="form__group">
+    [email* your-email placeholder "Email"]
+</div>
+<div class="form__group form__group--textarea">
+    [textarea* your-message placeholder "Messaggio"]
+</div>
+
+<div class="form__footer">
+    <div class="form__privacy">
+        [acceptance acceptance-223] Cliccando su invia dichiari di aver preso visione e di accettare la nostra <a href="/privacy-policy/" target="_blank">privacy policy</a> [/acceptance]
+    </div>
+    <div class="form__submit">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
+      <path d="M13.5855 6.39779L8.52297 11.4603C8.41742 11.5658 8.27427 11.6251 8.125 11.6251C7.97573 11.6251 7.83258 11.5658 7.72703 11.4603C7.62148 11.3547 7.56219 11.2116 7.56219 11.0623C7.56219 10.9131 7.62148 10.7699 7.72703 10.6644L11.8298 6.56232H0.8125C0.663316 6.56232 0.520242 6.50306 0.414753 6.39757C0.309263 6.29208 0.25 6.14901 0.25 5.99982C0.25 5.85064 0.309263 5.70757 0.414753 5.60208C0.520242 5.49659 0.663316 5.43732 0.8125 5.43732H11.8298L7.72703 1.33529C7.62148 1.22975 7.56219 1.08659 7.56219 0.937324C7.56219 0.788057 7.62148 0.644904 7.72703 0.539356C7.83258 0.433808 7.97573 0.374512 8.125 0.374512C8.27427 0.374512 8.41742 0.433808 8.52297 0.539356L13.5855 5.60186C13.6378 5.6541 13.6793 5.71613 13.7076 5.78442C13.7359 5.85271 13.7504 5.9259 13.7504 5.99982C13.7504 6.07375 13.7359 6.14694 13.7076 6.21523C13.6793 6.28351 13.6378 6.34555 13.5855 6.39779Z" fill="#8C52FF"/>
+    </svg>
+    [submit "Invia"]
+  </div>
+</div>

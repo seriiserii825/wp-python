@@ -1,0 +1,115 @@
+<div class="form-row">
+    <div class="form-group">
+    <span class="form-span">Cognome e Nome</span>
+        [text* nome placeholder "  "]
+        <div class="form-descr">
+            (genitore o esercente la responsabilità di genitorialità)
+        </div>
+    </div>
+    <div class="form-group">
+
+    <span class="form-span">Codice Fiscale</span>
+        [text* codice-fiscale placeholder "  "]
+    </div>
+    <div class="form-group">
+       <span class="form-span">Nato a</span>
+    [text* nato-a placeholder "  "]</div>
+    <div class="form-group">
+       <span class="form-span">Data di nascita</span>
+       [date* data-di-nascita placeholder "  "]
+       
+      [honeypot honeypot-850 timecheck_value:4 validautocomplete:true timecheck_enabled:true]
+    </div>
+</div>
+<div class="form-row-label">Residente in:</div>
+<div class="form-row">
+    <div class="form-group">
+
+        <span class="form-span">Città</span>
+        [text* citta placeholder "  "]
+    </div>
+
+    <div class="form-group">
+        <span class="form-span">Indirizzo</span>
+         [text* indirizzo placeholder "  "]
+    </div>
+
+    <div class="form-group">
+
+        <span class="form-span">CAP</span>
+        [text* cap placeholder "  "]
+    </div>
+
+    <div class="form-group">
+        <span class="form-span">Provincia</span>
+        [text* provincia placeholder "  "]
+    </div>
+</div>
+<div class="form-row-label">In qualità di:</div>
+<div class="form-row form-row--lg">
+    [radio responsabile "genitore/i" "esercente/i la responsabilità
+    genitoriale/affidatari/o"]
+</div>
+
+<div class="form-row">
+    <div class="form-group">
+        <span class="form-span">Cognome e Nome</span>
+        [text* nome-bambino placeholder "  "]
+        <div class="form-descr">(del/la bimba/o)</div>
+    </div>
+    <div class="form-group">
+        <span class="form-span">Codice Fiscale</span>
+        [text* codice-fiscale-bambino placeholder "  "]
+    </div>
+    <div class="form-group">
+        <span class="form-span">Nato a</span>
+        [text* bambino-nato-a placeholder "  "]
+    </div>
+    <div class="form-group">
+        <span class="form-span">Data di nascita</span>
+        [date* data-nascita-bambino placeholder "  "]
+        
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group">
+        <div class="form-group-label">Sesso</div>
+        [radio sesso "Maschio" "Femmina"]
+    </div>
+
+    <div class="form-group">
+        <div class="form-group-label">Recapiti</div>
+        <span class="form-span">Cell. Padre</span>
+        [tel* tel-padre placeholder "  "]
+    </div>
+    <div class="form-group">
+        <div class="form-group-label">Recapiti</div>
+        <span class="form-span">Cell. Madre</span>
+        [tel* tel-madre placeholder "  "]
+    </div>
+    <div class="form-group">
+        <div class="form-group-label">Recapiti</div>
+        <span class="form-span">Cell. Nonni</span>
+        [tel* tel-nonni placeholder "  "]
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group">
+        <div class="form-group-label">Recapiti</div>
+        <span class="form-span">Email Padre</span>
+        [email* email-padre placeholder "  "]
+    </div>
+    <div class="form-group">
+        <div class="form-group-label">Recapiti</div>
+        <span class="form-span">Email Madre</span>
+        [email* email-madre placeholder "  "]
+    </div>
+
+    <div class="form-footer">
+        <div class="privacy">
+            [acceptance acceptance-223] Ho letto e preso visione del <a download href="/wp-content/uploads/2024/04/MODULO-CODICE-COMPORTAMENTALE-_2024.04.07.pdf" target="_blank">Codice Comportamentale del Circolo.</a> Cliccando su invia dichiari di aver preso visione [/acceptance]
+        </div>
+        [submit class:btn class:btn--dark "Iniva e scarica i moduli di iscrizione"]
+    </div>
+</div>

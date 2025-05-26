@@ -1,0 +1,24 @@
+<div class="form__group">
+    [text* your-name placeholder "Nome e Cognome*"]
+</div>
+<div class="form__group">
+    [text* your-phone placeholder "Telefono"]
+</div>
+<div class="form__group">
+    [email* your-email placeholder "Email"]
+</div>
+<div class="form__group form__group--textarea">
+    [textarea* your-message placeholder "Messaggio"]
+</div>
+<div class="form__footer">
+    <div class="form__privacy">
+        [acceptance acceptance-223] Cliccando su invia dichiari di aver preso visione e di accettare la nostra <a href="/privacy-policy/" target="_blank">privacy policy</a> [/acceptance]
+    </div>
+<div class="form__submit">
+    [submit "Invia"]
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" fill="none">
+  <path d="M16.7071 8.20711C17.0976 7.81658 17.0976 7.18342 16.7071 6.79289L10.3431 0.428932C9.95262 0.0384078 9.31946 0.0384078 8.92893 0.428932C8.53841 0.819457 8.53841 1.45262 8.92893 1.84315L14.5858 7.5L8.92893 13.1569C8.53841 13.5474 8.53841 14.1805 8.92893 14.5711C9.31946 14.9616 9.95262 14.9616 10.3431 14.5711L16.7071 8.20711ZM0 8.5H16V6.5H0V8.5Z" fill="white"/>
+</svg>
+
+</div>
+</div>

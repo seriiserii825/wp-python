@@ -1,0 +1,30 @@
+<div class="form__group">[text* your-name placeholder "Nome*"]</div>
+<div class="form__group">[text* your-surname placeholder "Cognome*"]</div>
+<div class="form__group">[text* your-phone placeholder "Telefono*"]</div>
+<div class="form__group">[email* your-email placeholder "Email*"]</div>
+<div class="form__group form__group--textarea">
+  [textarea* your-message placeholder "Messaggio*"]
+</div>
+[honeypot honeypot-463 validautocomplete:true timecheck_enabled:true]
+<div class="form__footer">
+  <div class="form__privacy">
+    [acceptance acceptance-223] Cliccando su invia dichiari di aver preso
+    visione e di accettare la nostra
+    <a href="/privacy-policy/" target="_blank">privacy policy</a> [/acceptance]
+  </div>
+  <div class="form__submit">
+    [submit "Invia"]
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="23"
+      height="22"
+      viewBox="0 0 23 22"
+      fill="none"
+    >
+      <path
+        d="M21.6114 7.3613L18.8614 10.1113C18.7324 10.2403 18.5574 10.3128 18.375 10.3128C18.1925 10.3128 18.0176 10.2403 17.8885 10.1113C17.7595 9.9823 17.6871 9.80733 17.6871 9.62489C17.6871 9.44246 17.7595 9.26749 17.8885 9.13849L19.4655 7.56239H18.375C15.0518 7.56239 14.3711 9.19521 13.5092 11.2646C12.6214 13.3958 11.6143 15.8124 7.37496 15.8124H7.28902C7.12169 16.4605 6.72374 17.0253 6.16976 17.4009C5.61579 17.7766 4.94383 17.9373 4.27983 17.853C3.61583 17.7686 3.00539 17.445 2.56292 16.9428C2.12046 16.4406 1.87634 15.7942 1.87634 15.1249C1.87634 14.4556 2.12046 13.8092 2.56292 13.307C3.00539 12.8048 3.61583 12.4812 4.27983 12.3968C4.94383 12.3125 5.61579 12.4732 6.16976 12.8489C6.72374 13.2245 7.12169 13.7893 7.28902 14.4374H7.37496C10.6982 14.4374 11.3788 12.8046 12.2407 10.7352C13.1328 8.60396 14.1357 6.18739 18.375 6.18739H19.4655L17.8885 4.6113C17.7595 4.4823 17.6871 4.30733 17.6871 4.12489C17.6871 3.94246 17.7595 3.76749 17.8885 3.63849C18.0176 3.50948 18.1925 3.43701 18.375 3.43701C18.5574 3.43701 18.7324 3.50948 18.8614 3.63849L21.6114 6.38849C21.6753 6.45234 21.726 6.52816 21.7606 6.61162C21.7952 6.69508 21.813 6.78455 21.813 6.87489C21.813 6.96524 21.7952 7.0547 21.7606 7.13817C21.726 7.22163 21.6753 7.29745 21.6114 7.3613Z"
+        fill="#19B5FE"
+      />
+    </svg>
+  </div>
+</div>

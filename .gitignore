@@ -8,8 +8,6 @@ venv
 *.so
 
 # Distribution / packaging
-contacts/
-contact_forms/
 bin/
 build/
 develop-eggs/

@@ -1,0 +1,20 @@
+array (
+  'active' => true,
+  'subject' => '[_site_title] da Paolo Bianchi',
+  'sender' => '[_site_title] <no-reply@lc-circolo-tennis.local>',
+  'recipient' => 'info@lc-circolo-tennis.local',
+  'body' => 'Da: Francesco Gialli
+Email: tinny@mail.com
+Tel: 0551234563
+
+Corpo del messaggio:
+Good morning
+
+-- 
+Questa è una notifica che un modulo di contatto è stato inviato sul tuo sito web ([_site_title] [_site_url]).',
+  'additional_headers' => 'Reply-To: serii@mail.com
+Bcc: [_site_admin_email]',
+  'attachments' => '',
+  'use_html' => false,
+  'exclude_blank' => false,
+)
