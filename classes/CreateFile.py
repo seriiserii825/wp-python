@@ -37,7 +37,7 @@ class CreateFile:
     def createOrChooseDirectory(self):
         if getLayoutType(self.type)['create_dir']:
             files_handle = FilesHandle(self.dir_name)
-            selected_dir = files_handle.createOrChooseDirectory()
+            selected_dir = files_handle.createOrChooseDirectory(self.dir_name)
             return selected_dir
         else:
             return None

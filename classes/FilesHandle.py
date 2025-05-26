@@ -10,6 +10,7 @@ from pyfzf.pyfzf import FzfPrompt
 class FilesHandle:
     def __init__(self, basepath: str):
         self.basepath = basepath if basepath != '' else '.'
+        print(f"self.basepath: {self.basepath}")
 
     def listFiles(self, path_to_list=''):
         if path_to_list:
@@ -78,7 +79,11 @@ class FilesHandle:
         return selected_item[0]
 
     def chooseFile(self, path_to_dir='', extension=None):
-        self.showOrderFilesByCTime(path_to_dir)
+        if path_to_dir:
+            self.basepath = path_to_dir
+        else:
+            self.basepath = os.getcwd()
+        self.showOrderFilesByCTime(self.basepath)
         choosed_files = []
         for entry in os.listdir(self.basepath):
             if os.path.isfile(os.path.join(self.basepath, entry)):
