@@ -15,24 +15,19 @@ class FilesHandle:
     def listFiles(self, path_to_list=''):
         if path_to_list:
             self.basepath = path_to_list
-        files = []
+        print(f"[green]Listing files in ================ {self.basepath}")
         for entry in os.listdir(self.basepath):
             if os.path.isfile(os.path.join(self.basepath, entry)):
-                files.append([len(files) + 1, entry])
-        tb = MyTable()
-        tb.show("Files", ["Id","File name"], files)
+                print(entry)
 
     def listDir(self, path_to_list=''):
-        directories = []
         if path_to_list:
             self.basepath = path_to_list
+        print(f"[blue]Listing directories in ================ {self.basepath}")
         with os.scandir(self.basepath) as entries:
             for entry in entries:
                 if entry.is_dir():
-                    directories.append(entry.name)
-        directories.sort()
-        tb = MyTable()
-        tb.show("View Folders", ["Id", "Directory name"], [[i + 1, dir_name] for i, dir_name in enumerate(directories)])
+                    print(entry.name)
 
     def createOrChooseDirectory(self, path_to_dir=''):
         if path_to_dir:
