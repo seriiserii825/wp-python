@@ -3,6 +3,8 @@ from rich import print
 from classes.FilesHandle import FilesHandle
 from data.base_plugins import base_plugins
 from data.plugins import plugins
+import subprocess
+
 
 class Plugin():
     def __init__(self):
@@ -11,11 +13,21 @@ class Plugin():
         self.abs_path_plugins = os.path.abspath("../../plugins")
         self.installed_plugins = self.getInstalledPlugins()
         self.not_installed_plugins = self.getNotInstalledPlugins(self.plugins)
-        self.not_installed_base_plugins = self.getNotInstalledPlugins(self.base_plugins)
+        self.not_installed_base_plugins = self.getNotInstalledPlugins(
+            self.base_plugins)
+
+    def runWp(self, command: str):
+        command_arr = command.split(" ")
+        result = subprocess.run(
+            ["docker-compose", "run", "--rm", "wpcli"] + command_arr,
+            capture_output=True,
+            text=True
+        )
+        print(result.stdout)
 
     def listInstalledPlugins(self):
-        os.system("wp plugin list")
-        
+        self.runWp("plugin list --format=csv")
+
     def getInstalledPlugins(self):
         installedPlugins = []
         current_dir = os.getcwd()
@@ -51,13 +63,16 @@ class Plugin():
                 print(f"Key: {key}, Value: {value}")
                 if key in plugin:
                     if value == False:
-                        os.system("wp plugin install " + key + " --activate")
+                        self.runWp("plugin install " + key + " --activate")
                     else:
-                        os.system("wp plugin install ~/Documents/plugins-wp/" + value + " --activate")
+                        os.system(
+                            f"{self.wp} plugin install ~/Documents/plugins-wp/" + value + " --activate")
+                        self.runWp("plugin install ~/Documents/plugins-wp/" + value + " --activate")
 
     def installBasePlugins(self):
         self.haveUninstalledPlugins()
         self.installPlugins(self.base_plugins)
+
     def installOtherPlugins(self):
         self.haveUninstalledPlugins()
         current_dir = os.getcwd()
@@ -76,7 +91,7 @@ class Plugin():
         plugins_str_list = []
         for plugin in plugins:
             for key, _ in plugin.items():
-                    plugins_str_list.append(key)
+                plugins_str_list.append(key)
         return plugins_str_list
 
     def pluginsFromStrListToDict(self, plugins: list):
@@ -95,5 +110,5 @@ class Plugin():
         for plugin in plugins:
             for key, _ in plugin.items():
                 if key in selected_plugins:
-                    os.system("wp plugin deactivate " + key)
-                    os.system("wp plugin uninstall " + key)
+                    self.runWp("plugin deactivate " + key)
+                    self.runWp("plugin uninstall " + key)
