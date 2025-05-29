@@ -1,12 +1,12 @@
 import os
 from rich import print
 from classes.FilesHandle import FilesHandle
+from classes.WpCli import WpCli
 from data.base_plugins import base_plugins
 from data.plugins import plugins
-import subprocess
 
 
-class Plugin():
+class Plugin(WpCli):
     def __init__(self):
         self.base_plugins = base_plugins
         self.plugins = plugins
@@ -15,15 +15,6 @@ class Plugin():
         self.not_installed_plugins = self.getNotInstalledPlugins(self.plugins)
         self.not_installed_base_plugins = self.getNotInstalledPlugins(
             self.base_plugins)
-
-    def runWp(self, command: str):
-        command_arr = command.split(" ")
-        result = subprocess.run(
-            ["docker-compose", "run", "--rm", "wpcli"] + command_arr,
-            capture_output=True,
-            text=True
-        )
-        print(result.stdout)
 
     def listInstalledPlugins(self):
         self.runWp("plugin list --format=csv")
