@@ -56,13 +56,16 @@ class Plugin(WpCli):
                     if value == False:
                         self.runWp("plugin install " + key + " --activate")
                     else:
-                        os.system(
-                            f"{self.wp} plugin install ~/Documents/plugins-wp/" + value + " --activate")
-                        self.runWp("plugin install ~/Documents/plugins-wp/" + value + " --activate")
+                        self.runWp("plugin install /plugins/" + value + " --activate")
 
     def installBasePlugins(self):
-        self.haveUninstalledPlugins()
-        self.installPlugins(self.base_plugins)
+        plugins_to_install = self.getNotInstalledPlugins(self.base_plugins)
+        self.listPluginsToInstall(plugins_to_install)
+        self.installPlugins(plugins_to_install)
+
+    def listPluginsToInstall(self, plugins: list):
+        for plugin in plugins:
+            print(f"[green]{plugin}[/green]")
 
     def installOtherPlugins(self):
         self.haveUninstalledPlugins()
