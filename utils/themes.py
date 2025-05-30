@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 import os
 from termcolor import colored
-
 from libs.select import selectMultiple, selectOne
+from classes.WpCli import WpCli
 
 def wpThemesFunc():
+    wp_cli = WpCli()
     def listThemes():
-        os.system("wp theme list")
+        wp_cli.runWp("theme list")
 
     listThemes()
 
@@ -24,14 +25,14 @@ def wpThemesFunc():
     def activateTheme():
         theme = selectOne(getThemes())
         if theme:
-            os.system("wp theme activate " + theme)
+            wp_cli.runWp("theme activate " + theme)
         else:
             exit(colored("No theme selected", "red"))
 
     def deactivateTheme():
         theme = selectOne(getThemes())
         if theme:
-            os.system("wp theme deactivate " + theme)
+            wp_cli.runWp("theme deactivate " + theme)
         else:
             exit(colored("No theme selected", "red"))
 
@@ -42,12 +43,19 @@ def wpThemesFunc():
             exit(colored("No theme selected", "red"))
         else:
             for index, value in enumerate(themes):
-                os.system("wp theme delete " + value)
+                wp_cli.runWp("theme delete " + value)
 
     def searchTheme():
-        os.system("wp theme search " + input("Enter theme name:"))
+        theme_name = input("Enter theme name:")
+        if not theme_name:
+            exit(colored("No theme name provided", "red"))
+        wp_cli.runWp("theme search " + theme_name)
+
     def installTheme():
-        os.system("wp theme install " + input("Enter theme name:"))
+        theme_name = input("Enter theme name:")
+        if not theme_name:
+            exit(colored("No theme name provided", "red"))
+        wp_cli.runWp("theme install " + theme_name + " --activate")
 
     def menu():
         print(colored("1) Search", "green"))
