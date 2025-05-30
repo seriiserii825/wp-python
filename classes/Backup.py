@@ -74,7 +74,7 @@ class Backup(WpCli):
         fh.listFiles(downloads_dir)
         selected_backup = fh.chooseFile(downloads_dir, '.wpress')
         os.system(
-            f'cp ~/Downloads/{selected_backup} "{self.backup_dir_abs_path}"')
+            f'sudo cp ~/Downloads/{selected_backup} "{self.backup_dir_abs_path}"')
         self.listBackup()
         # os.system(f"wp ai1wm restore {selected_backup}")
         self.runWp("ai1wm restore " + selected_backup)
