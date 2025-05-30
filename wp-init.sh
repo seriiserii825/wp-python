@@ -1,57 +1,28 @@
 #!/bin/bash
 
-has_wp=$(which wp)
-if [ -z "$has_wp" ]; then
-  curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-  chmod +x wp-cli.phar
-  sudo mv wp-cli.phar /usr/local/bin/wp
-fi
-
 if [[ ! -f style.css ]]; then
   echo "${tmagenta}Go to wp theme folder${treset}"
   exit 1
 fi
 
-clipboard=$(xclip -o -selection clipboard)
-# echo $clipboard
-if [[ "$clipboard" != *"mysqld"* ]]; then
-  echo "${tmagenta}Go to localwp database and copy socket path!${treset}"
-  exit 1
-fi
-
 theme_url=$(pwd)
+echo "${tmagenta}Theme URL: ${theme_url}${treset}"
 
-if [[ ! -f .mysql_sock ]]
-then
-  touch .mysql_sock
-  echo "$clipboard" > .mysql_sock
-else
-  echo "$clipboard" > .mysql_sock
-fi
-
-cd ../../../../../
-
-if [[ ! -f wp-cli.local.yml ]]
-then
-  rm wp-cli*
-  echo "${tgreen}need to enter mysql code from clipboard${treset}"
-  curl -O https://raw.githubusercontent.com/salcode/wpcli-localwp-setup/main/wpcli-localwp-setup  && bash wpcli-localwp-setup && rm -rf ./wpcli-localwp-setup
-fi
-
-
-cd app/public/wp-content/plugins
+echo "${tmagenta}Go to wp root folder${treset}"
+cd ../../plugins
+pwd
 
 # check if exists directory advanced-custom-fields-wpcli
 if [[ ! -d advanced-custom-fields-wpcli ]]; then
   echo "${tgreen}Installing ACF plugin${treset}"
   git clone https://github.com/hoppinger/advanced-custom-fields-wpcli.git
   echo "${tgreen}Activating ACF plugin${treset}"
+  sleep 2
   wp plugin activate advanced-custom-fields-wpcli
 else
   echo "${tgreen}ACF plugin already installed${treset}"
   wp plugin activate advanced-custom-fields-wpcli
 fi
-
 
 echo "${tgreen}Go to theme folder${treset}"
 
@@ -70,11 +41,3 @@ function add_plugin_path( \$paths ) {
   }
 TEST
 fi
-
-wp acf
-if [ $? -eq 0 ]; then
-  echo OK
-else
-  echo "Has an error"
-fi
-

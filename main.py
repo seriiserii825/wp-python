@@ -27,7 +27,6 @@ def menu():
         "Pages",
         "Plugins",
         "Posts",
-        "Reset",
         "Themes",
         "Taxonomies"
     ]
@@ -37,8 +36,6 @@ def menu():
 
     if menu_entry[0] == "Init":
         init()
-    if menu_entry[0] == "Reset":
-        resetSettings()
     elif menu_entry[0] == "Files":
         mainMenu()
     elif menu_entry[0] == "Acf":
