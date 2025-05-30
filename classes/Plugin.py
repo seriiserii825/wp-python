@@ -17,7 +17,7 @@ class Plugin(WpCli):
             self.base_plugins)
 
     def listInstalledPlugins(self):
-        self.runWp("plugin list --format=csv")
+        self.runWp("plugin list")
 
     def getInstalledPlugins(self):
         installedPlugins = []
