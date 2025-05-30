@@ -101,8 +101,11 @@ class Plugin(WpCli):
         self.installed_plugins.sort()
         fh = FilesHandle(os.getcwd())
         selected_plugins = fh.selectMultiple(self.installed_plugins)
-        for plugin in plugins:
-            for key, _ in plugin.items():
-                if key in selected_plugins:
-                    self.runWp("plugin deactivate " + key)
-                    self.runWp("plugin uninstall " + key)
+        print(f"selected_plugins: {selected_plugins}")
+        print(f'self.installPlugins: {self.installPlugins}')
+        for plugin in self.installed_plugins:
+            if plugin in selected_plugins:
+                print(f"[red]Uninstalling {plugin}...[/red]")
+                self.runWp("plugin deactivate " + plugin)
+                self.runWp("plugin uninstall " + plugin)
+        self.listInstalledPlugins()
