@@ -1,22 +1,23 @@
 import os
 from rich import print
+from classes.WpCli import WpCli
 from libs.select import selectMultiple
 
 
-class ImagesClass:
+class ImagesClass(WpCli):
     def __init__(self):
         self.downloads_dir = os.path.expanduser('~') + "/Downloads"
         self.checkIfImagesInDownloads()
         self.replaceSpaceWithUnderscore()
 
     def showImages(self):
-        os.system('wp post list --post_type=attachment')
+        self.runWp('post list --post_type=attachment')
 
     def deleteImage(self):
         self.showImages()
         image_id = input('Enter the image ID you want to delete: ')
         if image_id.isdigit():
-            os.system(f'wp post delete {image_id} --force')
+            self.runWp('post delete ' + image_id + ' --force')
         self.showImages()
         
     def checkIfImagesInDownloads(self):
@@ -50,7 +51,7 @@ class ImagesClass:
             f"jpegoptim --strip-all --all-progressive -ptm 80 ~/Downloads/{image}")
 
     def uploadImage(self, image: str):
-        os.system("wp media import ~/Downloads/" + image + " --title=" + image)
+        self.runWp(f"media import /Downloads/{image} --title={image}")
 
     def importImages(self, images):
         for image in images:
