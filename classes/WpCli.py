@@ -2,7 +2,7 @@ import os
 import subprocess
 class WpCli():
     def runWp(self, command: str):
-        os.system(f"docker-compose run --rm wpcli {command}")
+        os.system(f"HOST_UID=$(id -u) HOST_GID=$(id -g) docker-compose run --rm wpcli {command}")
         # command_arr = command.split(" ")
         # full_cmd = ["docker-compose", "run", "--rm", "wpcli"] + command_arr
         #
