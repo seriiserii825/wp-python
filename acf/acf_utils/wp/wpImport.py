@@ -1,7 +1,7 @@
-import os
-
+from classes.WpCli import WpCli
 
 def wpImport():
-    os.system("wp acf clean")
-    os.system("wp acf import --all")
+    wp_cli = WpCli()
+    wp_cli.runWp("acf clean")
+    wp_cli.runWp("acf import --all")
 
