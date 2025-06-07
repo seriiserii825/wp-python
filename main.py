@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from acf.acf import acfFunc
-from init import init, resetSettings
+from init import init
 from menu.contactForms import contactForms
 from utils.aiwm import aiwmFunc
 from utils.pages import wpPages
@@ -15,7 +15,7 @@ from pyfzf.pyfzf import FzfPrompt
 
 
 def menu():
-# main manu
+    # main manu
     menu_items = [
         "Acf",
         "Backups",
@@ -59,6 +59,6 @@ def menu():
     else:
         exit("Goodbye!")
 
+
 if __name__ == "__main__":
     parseArgs("backup", aiwmFunc, menu)
-
