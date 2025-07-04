@@ -1,4 +1,5 @@
 from termcolor import colored
+
 from acf.acf_utils.fields.addField import addField
 from acf.acf_utils.fields.breadcrumbs import breadcrumbs
 from acf.acf_utils.fields.chooseRepeaterField import chooseRepeaterField
@@ -7,17 +8,16 @@ from acf.acf_utils.fields.editField import editField
 from acf.acf_utils.fields.getFields import getFields
 from acf.acf_utils.group.copyGroup import copyGroup
 from acf.acf_utils.group.repeaterFieldsMenu import repeaterFieldsMenu
-
 from acf.acf_utils.group.showAll import showAll
 from acf.acf_utils.wp.wpExport import wpExport
 from acf.acf_utils.wp.wpImport import wpImport
 
 
 def groupMenu(file_path, group_index):
-    print('----------------------------- Group Menu -----------------------------')
+    print("----------------------------- Group Menu -----------------------------")
     fields = getFields(file_path)
     group = fields[0][int(group_index)]
-    breadcrumbs(group['label'])
+    breadcrumbs(group["label"])
     showAll(file_path, group_index)
     print(colored("1) Show All:", "yellow"))
     print(colored("1.1) Copy Group:", "yellow"))

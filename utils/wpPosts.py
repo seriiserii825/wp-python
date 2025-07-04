@@ -3,10 +3,13 @@ import os
 from simple_term_menu import subprocess
 from termcolor import colored
 
+
 def createOne(post_type="page"):
     title = input("Enter the title: ")
-    command = f"wp post create --post_type={post_type} --post_status=publish --post_title='{title}'"
+    command = f"wp post create --post_type={post_type} \
+            --post_status=publish --post_title='{title}'"
     os.system(command)
+
 
 def createMultiple(post_type="page"):
     titles = input("Enter the titles separated by commas: ")
@@ -14,14 +17,17 @@ def createMultiple(post_type="page"):
     titles = titles.split(",")
     for title in titles:
         title = title.strip()
-        command = f"wp post create --post_type={post_type} --post_status=publish --post_title='{title}'"
+        command = f"wp post create --post_type={post_type} \
+                --post_status=publish --post_title='{title}'"
         os.system(command)
+
 
 def deleteOne(post_type="page"):
     command = f"wp post list --post_type={post_type}"
     os.system(command)
     ids = input("Enter the id of the page you want to delete: ")
     os.system(f"wp post delete {ids} --force")
+
 
 def deleteMultiple(post_type="page"):
     command = f"wp post list --post_type={post_type}"
@@ -31,9 +37,11 @@ def deleteMultiple(post_type="page"):
     for id in ids:
         os.system(f"wp post delete {id} --force")
 
+
 def listPages(post_type="page"):
     command = f"wp post list --post_type={post_type}"
     os.system(command)
+
 
 def duplicate(post_type="page"):
     command = f"wp post list --post_type={post_type}"
@@ -53,6 +61,7 @@ def wpPosts():
         print("Post type is required")
         exit()
     listPages(post_type)
+
     def menu():
         print(colored("1) List pages", "green"))
         print(colored("1.1) Duplicate", "blue"))
@@ -90,9 +99,9 @@ def wpPosts():
 
     menu()
 
+
 def ignore():
     listPages()
-    user = os.getenv('USER')
+    user = os.getenv("USER")
     path_to_wp_init = "/home/" + str(user) + "/Documents/python/wp-python/utils/info.sh"
     subprocess.run(["bash", path_to_wp_init])
-

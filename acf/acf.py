@@ -1,22 +1,25 @@
 import os
+
 from termcolor import colored
 
 from acf.acf_utils.group.duplicateGroup import duplicateGroup
+
 current_dir = os.getcwd()
 script_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(script_dir)
+from acf.acf_utils.group.addGroup import addGroup
 from acf.acf_utils.group.chooseGroup import chooseGroup
+from acf.acf_utils.group.copyGroup import copyGroup
+from acf.acf_utils.group.deleteGroup import deleteGroup
 from acf.acf_utils.group.editGroup import editGroup
 from acf.acf_utils.group.groupMenu import groupMenu
 from acf.acf_utils.group.showAll import showAll
-from acf.acf_utils.group.addGroup import addGroup
-from acf.acf_utils.group.deleteGroup import deleteGroup
-from acf.acf_utils.group.copyGroup import copyGroup
 from acf.acf_utils.section.newSection import newSection
 from acf.acf_utils.wp.wpExport import wpExport
 from acf.acf_utils.wp.wpImport import wpImport
-from acf.acf_utils.group.showGroups import showGroups
+
 os.chdir(current_dir)
+
 
 def acfFunc():
     def getFullPath():
@@ -26,6 +29,7 @@ def acfFunc():
         file_path = file_path.replace("\n", "")
         os.chdir("..")
         return file_path
+
     wpExport()
 
     print(colored("Welcome to ACF CLI", "green"))
@@ -45,9 +49,10 @@ def acfFunc():
         exit()
     else:
         file_path = getFullPath()
+
         def mainMenu(file_path):
             showAll(file_path)
-            print('----------------------------- Menu -----------------------------')
+            print("----------------------------- Menu -----------------------------")
             print(colored("1) Show All:", "yellow"))
             print(colored("2) Choose Group:", "green"))
             print(colored("3) Add Group:", "green"))
@@ -59,7 +64,7 @@ def acfFunc():
             print(colored("8) Export:", "yellow"))
             print(colored("9) Exit:", "red"))
             action = input("Enter your choice: ")
-            print('----------------------------- Menu -----------------------------')
+            print("----------------------------- Menu -----------------------------")
             if action == "1":
                 showAll(file_path)
                 mainMenu(file_path)
@@ -95,4 +100,5 @@ def acfFunc():
                 exit()
             else:
                 exit()
+
         mainMenu(file_path)

@@ -1,13 +1,21 @@
 import os
+
 from termcolor import colored
+
 from libs.listFilesWithPrefix import listFilesWithPrefix
 from wp_files.wp_files.checkPhpPageLayout import checkPhpPageLayout
+
+
 def createPhpPage():
-    path_to_page_layout = 'template-parts/layouts/php-page.php'
+    path_to_page_layout = "template-parts/layouts/php-page.php"
     checkPhpPageLayout(path_to_page_layout)
     listFilesWithPrefix("./", ["page-", "single-"])
-    file_name = input("Enter file name, "+ colored("like", "red") +" page-servizi or single-servizi: ")
-    if file_name == '':
+    file_name = input(
+        "Enter file name, "
+        + colored("like", "red")
+        + " page-servizi or single-servizi: "
+    )
+    if file_name == "":
         print(colored("File name is required", "red"))
         exit()
     else:
@@ -20,5 +28,5 @@ def createPhpPage():
             else:
                 with open(file_path, "w") as f:
                     f.write(layout)
-                    print(colored("File created: "+file_path, "green"))
+                    print(colored("File created: " + file_path, "green"))
         os.system(f"bat {file_path}")

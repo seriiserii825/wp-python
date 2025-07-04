@@ -1,18 +1,21 @@
 import os
-from simple_term_menu import TerminalMenu
 from datetime import datetime
+
+from pyfzf.pyfzf import FzfPrompt
 from rich import print
+from simple_term_menu import TerminalMenu
+
 from classes.MyTable import MyTable
 from libs.select import selectOne
 from libs.selectWithFzf import selectWithFzf
-from pyfzf.pyfzf import FzfPrompt
+
 
 class FilesHandle:
     def __init__(self, basepath: str):
-        self.basepath = basepath if basepath != '' else '.'
+        self.basepath = basepath if basepath != "" else "."
         print(f"self.basepath: {self.basepath}")
 
-    def listFiles(self, path_to_list=''):
+    def listFiles(self, path_to_list=""):
         if path_to_list:
             self.basepath = path_to_list
         print(f"[green]Listing files in ================ {self.basepath}")
@@ -20,7 +23,7 @@ class FilesHandle:
             if os.path.isfile(os.path.join(self.basepath, entry)):
                 print(entry)
 
-    def listDir(self, path_to_list=''):
+    def listDir(self, path_to_list=""):
         if path_to_list:
             self.basepath = path_to_list
         print(f"[blue]Listing directories in ================ {self.basepath}")
@@ -29,7 +32,7 @@ class FilesHandle:
                 if entry.is_dir():
                     print(entry.name)
 
-    def createOrChooseDirectory(self, path_to_dir=''):
+    def createOrChooseDirectory(self, path_to_dir=""):
         if path_to_dir:
             self.basepath = path_to_dir
         else:
@@ -38,7 +41,7 @@ class FilesHandle:
         select_or_create = selectOne(["Select", "Create"])
         if select_or_create == "Create":
             dir_name = input("Enter directory name:")
-            if dir_name == '':
+            if dir_name == "":
                 print("Directory name is required")
                 exit()
             else:
@@ -73,7 +76,7 @@ class FilesHandle:
         selected_item = fzf.prompt(items)
         return selected_item[0]
 
-    def chooseFile(self, path_to_dir='', extension=None):
+    def chooseFile(self, path_to_dir="", extension=None):
         if path_to_dir:
             self.basepath = path_to_dir
         else:
@@ -117,20 +120,21 @@ class FilesHandle:
         tb_rows = []
 
         for i, (file, ctime) in enumerate(file_ctimes):
-            ctime_human = datetime.fromtimestamp(ctime).strftime('%Y-%m-%d %H:%M:%S')
+            ctime_human = datetime.fromtimestamp(ctime).strftime("%Y-%m-%d %H:%M:%S")
             tb_rows.append([i + 1, file, ctime_human])
 
         tb.show(tb_title, tb_headers, tb_rows)
 
-    def selectMultiple(self,options):
-        terminal_menu = TerminalMenu(options,
-                                     multi_select=True,
-                                     show_multi_select_hint=True,
-                                     show_search_hint=True,
-                                     preview_command="bat --color=always {}", preview_size=0.75
-                                     )
-        menu_entry_indices = terminal_menu.show()
+    def selectMultiple(self, options):
+        terminal_menu = TerminalMenu(
+            options,
+            multi_select=True,
+            show_multi_select_hint=True,
+            show_search_hint=True,
+            preview_command="bat --color=always {}",
+            preview_size=0.75,
+        )
+        terminal_menu.show()
         # print(menu_entry_indices)
         # print(terminal_menu.chosen_menu_entries)
         return terminal_menu.chosen_menu_entries
-

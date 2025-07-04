@@ -2,6 +2,7 @@ import os
 
 from termcolor import colored
 
+
 def listDir(path):
     print(colored(f"Listing directories in ================ {path}", "blue"))
     directories = []

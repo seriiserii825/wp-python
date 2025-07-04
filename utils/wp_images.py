@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import os
+
 from termcolor import colored
+
 from classes.ImagesClass import ImagesClass
 
 if not os.path.exists("style.css"):
@@ -29,4 +31,3 @@ def wpImages():
         exit(colored("Goodbye!", "red"))
     else:
         exit(colored("Goodbye!", "red"))
-

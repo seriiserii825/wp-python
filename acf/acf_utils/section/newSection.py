@@ -1,6 +1,8 @@
 import json
 import os
+
 from termcolor import colored
+
 from acf.acf_utils.group.getGroupId import getGroupId
 from acf.acf_utils.select.selectSectionType import selectSectionType
 from acf.acf_utils.wp.getWpPages import getWpPages
@@ -11,7 +13,7 @@ from acf.acf_utils.wp.wpImport import wpImport
 
 def newSection():
     section_name = input("Enter section name: ")
-    file_name = section_name.replace(" ", "-").lower()+".json"
+    file_name = section_name.replace(" ", "-").lower() + ".json"
     file_path = f"acf/{file_name}"
     if os.path.exists(file_path):
         print(colored("Section already exists", "red"))
@@ -44,40 +46,38 @@ def newSection():
     os.system(f"touch {file_path}")
     os.system(f"echo '[]' > {file_path}")
     if section_name != "":
-        with open(file_path, 'r') as file:
+        with open(file_path, "r") as file:
             # read
             data = json.load(file)
             new_data = {}
-            new_data['ID'] = False
-            new_data['key'] = group_id
-            new_data['title'] = section_name
-            new_data['fields'] = []
-            new_data['location'] = [
+            new_data["ID"] = False
+            new_data["key"] = group_id
+            new_data["title"] = section_name
+            new_data["fields"] = []
+            new_data["location"] = [
                 [
                     {
                         "param": section_type_slug,
                         "operator": "==",
-                        "value": f"{section_type_value}"
+                        "value": f"{section_type_value}",
                     }
                 ]
             ]
-            new_data['menu_order'] = 0
-            new_data['position'] = "normal"
-            new_data['style'] = "default"
-            new_data['label_placement'] = "top"
-            new_data['instruction_placement'] = "label"
-            new_data['hide_on_screen'] = ""
-            new_data['active'] = True
-            new_data['description'] = ""
-            new_data['show_in_rest'] = 0
-            new_data['_valid'] = True
+            new_data["menu_order"] = 0
+            new_data["position"] = "normal"
+            new_data["style"] = "default"
+            new_data["label_placement"] = "top"
+            new_data["instruction_placement"] = "label"
+            new_data["hide_on_screen"] = ""
+            new_data["active"] = True
+            new_data["description"] = ""
+            new_data["show_in_rest"] = 0
+            new_data["_valid"] = True
             data.append(new_data)
-            
 
             newData = json.dumps(data, indent=4)
-        with open(file_path, 'w') as file:
+        with open(file_path, "w") as file:
             # write
             file.write(newData)
         print(colored("Section created successfully", "green"))
         wpImport()
-

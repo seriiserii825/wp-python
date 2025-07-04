@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+from pyfzf.pyfzf import FzfPrompt
+
 from acf.acf import acfFunc
 from init import init, resetSettings
 from menu.contactForms import contactForms
@@ -11,11 +13,10 @@ from utils.taxonomies import taxonomies
 from utils.themes import wpThemesFunc
 from utils.wp_images import wpImages
 from wp_files.files import mainMenu
-from pyfzf.pyfzf import FzfPrompt
 
 
 def menu():
-# main manu
+    # main manu
     menu_items = [
         "Acf",
         "Backups",
@@ -29,7 +30,7 @@ def menu():
         "Posts",
         "Reset",
         "Themes",
-        "Taxonomies"
+        "Taxonomies",
     ]
 
     fzf = FzfPrompt()
@@ -62,6 +63,6 @@ def menu():
     else:
         exit("Goodbye!")
 
+
 if __name__ == "__main__":
     parseArgs("backup", aiwmFunc, menu)
-

@@ -6,7 +6,8 @@ from termcolor import colored
 
 def createOne(post_type="page"):
     title = input("Enter the title: ")
-    command = f"wp post create --post_type={post_type} --post_status=publish --post_title='{title}'"
+    command = f"wp post create --post_type={post_type} \
+            --post_status=publish --post_title='{title}'"
     os.system(command)
 
 
@@ -16,7 +17,8 @@ def createMultiple(post_type="page"):
     titles = titles.split(",")
     for title in titles:
         title = title.strip()
-        command = f"wp post create --post_type={post_type} --post_status=publish --post_title='{title}'"
+        command = f"wp post create --post_type={post_type} \
+                --post_status=publish --post_title='{title}'"
         os.system(command)
 
 
@@ -28,22 +30,26 @@ def deleteOne(post_type="page"):
 
 
 def deleteMultiple(post_type="page"):
-    print(f'post_type: {post_type}')
-    multiple_or_all = input(
-        "Do you want to delete multiple posts or all? (m/a): ")
+    print(f"post_type: {post_type}")
+    multiple_or_all = input("Do you want to delete multiple posts or all? (m/a): ")
     if multiple_or_all == "m":
         command = f"wp post list --post_type={post_type}"
         os.system(command)
         ids = input(
-            "Enter the ids of the pages you want to delete separated by commas: ")
+            "Enter the ids of the pages you want to delete separated by commas: "
+        )
         ids = ids.split(",")
         for id in ids:
             os.system(f"wp post delete {id} --force")
     elif multiple_or_all == "a":
         command = f"wp post list --post_type={post_type}"
         os.system(command)
-        all_ids = os.popen(
-            f"wp post list --post_type={post_type} --field=ID").read().strip().split("\n")
+        all_ids = (
+            os.popen(f"wp post list --post_type={post_type} --field=ID")
+            .read()
+            .strip()
+            .split("\n")
+        )
         for id in all_ids:
             os.system(f"wp post delete {id} --force")
     else:
@@ -58,8 +64,7 @@ def listPages(post_type="page"):
 def duplicate(post_type="page"):
     command = f"wp post list --post_type={post_type}"
     os.system(command)
-    ids = input(
-        "Enter the id of the posts you want to duplicate, separated by comma: ")
+    ids = input("Enter the id of the posts you want to duplicate, separated by comma: ")
     ids = ids.split(",")
     for id in ids:
         command = f"wp post create --from-post={id}"
@@ -125,7 +130,6 @@ def wpPages(post_type=False):
 
 def ignore():
     listPages()
-    user = os.getenv('USER')
-    path_to_wp_init = "/home/" + \
-        str(user) + "/Documents/python/wp-python/utils/info.sh"
+    user = os.getenv("USER")
+    path_to_wp_init = "/home/" + str(user) + "/Documents/python/wp-python/utils/info.sh"
     subprocess.run(["bash", path_to_wp_init])

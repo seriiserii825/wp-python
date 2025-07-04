@@ -1,14 +1,11 @@
 import json
+
 from termcolor import colored
+
 from acf.acf_utils.fields.getFieldId import getFieldId
 from acf.acf_utils.fields.getFields import getFields
-from acf.acf_utils.group.addGroupLayout import addGroupLayout
-from acf.acf_utils.group.getGroupByGroupId import getGroupByGroupId
-from acf.acf_utils.group.getGroupId import getGroupId
-from acf.acf_utils.group.getGroupPathById import getGroupPathById
 from acf.acf_utils.group.getGroups import getGroups
 from acf.acf_utils.section.sectionHasGroup import sectionHasGroup
-from acf.acf_utils.tabs.getTabs import getTabs
 from acf.acf_utils.tabs.newTab import newTab
 
 
@@ -32,21 +29,21 @@ def duplicateGroup(file_path):
         if sectionHasGroup(file_path, new_group_name):
             print(colored("Group already exists!!!", "red"))
             return
-        with open(file_path, 'r') as file:
+        with open(file_path, "r") as file:
             # read
             data = json.load(file)
             new_group = group
-            new_group['key'] = new_group_id
-            new_group['label'] = new_group_label
-            new_group['name'] = new_group_name
-            new_group['sub_fields'] = group['sub_fields']
+            new_group["key"] = new_group_id
+            new_group["label"] = new_group_label
+            new_group["name"] = new_group_name
+            new_group["sub_fields"] = group["sub_fields"]
             ## change all group['subfields'] keys
-            for i in new_group['sub_fields']:
-                i['key'] = getFieldId()
+            for i in new_group["sub_fields"]:
+                i["key"] = getFieldId()
             new_tab = newTab(new_group_label)
-            data[0]['fields'].append(new_tab)
-            data[0]['fields'].append(new_group)
+            data[0]["fields"].append(new_tab)
+            data[0]["fields"].append(new_group)
             newData = json.dumps(data, indent=4)
-        with open(file_path, 'w') as file:
+        with open(file_path, "w") as file:
             file.write(newData)
             print(colored("Group duplicated successfully!", "green"))

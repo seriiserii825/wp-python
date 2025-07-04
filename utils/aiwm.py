@@ -2,18 +2,28 @@
 import os
 
 from termcolor import colored
+
 from classes.Backup import Backup
 
-is_installed_plugins = os.path.exists("../../plugins/all-in-one-wp-migration");
+is_installed_plugins = os.path.exists("../../plugins/all-in-one-wp-migration")
 if not is_installed_plugins:
-    os.system("wp plugin install ~/Documents/plugins-wp/all-in-one-wp-migration-7-79.zip --activate")
+    os.system(
+        "wp plugin install \
+                ~/Documents/plugins-wp/all-in-one-wp-migration-7-79.zip --activate"
+    )
 
-is_installed_unlimited = os.path.exists("../../plugins/all-in-one-wp-migration-unlimited-extension");
+is_installed_unlimited = os.path.exists(
+    "../../plugins/all-in-one-wp-migration-unlimited-extension"
+)
 if not is_installed_unlimited:
-    os.system("wp plugin install ~/Documents/plugins-wp/unlimited/all-in-one-wp-migration-unlimited-extension-2.51.zip --activate")
+    os.system(
+        "wp plugin install \
+        ~/Documents/plugins-wp/unlimited/\
+        all-in-one-wp-migration-unlimited-extension-2.51.zip --activate"
+    )
+
 
 def aiwmFunc():
-
     def menu():
         print(colored("1) List", "green"))
         print(colored("2) Create", "yellow"))
@@ -63,4 +73,3 @@ def aiwmFunc():
             exit(colored("Goodbye!", "red"))
 
     menu()
-

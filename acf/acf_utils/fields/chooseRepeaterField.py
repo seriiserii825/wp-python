@@ -1,5 +1,5 @@
-from acf.acf_utils.fields.getFields import getFields
 from acf.acf_utils.fields.getRepeteaterFields import getRepeaterFields
+
 
 def chooseRepeaterField(file_path, group_index):
     repeater_fields = getRepeaterFields(file_path, group_index)

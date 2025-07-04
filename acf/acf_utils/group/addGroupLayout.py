@@ -1,5 +1,6 @@
 from termcolor import colored
 
+
 def addGroupLayout():
     print(colored("Group layout(Leave blank for block): ", "green"))
     print(colored("1) block", "blue"))

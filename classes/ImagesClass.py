@@ -1,24 +1,26 @@
 import os
+
 from rich import print
+
 from libs.select import selectMultiple
 
 
 class ImagesClass:
     def __init__(self):
-        self.downloads_dir = os.path.expanduser('~') + "/Downloads"
+        self.downloads_dir = os.path.expanduser("~") + "/Downloads"
         self.checkIfImagesInDownloads()
         self.replaceSpaceWithUnderscore()
 
     def showImages(self):
-        os.system('wp post list --post_type=attachment')
+        os.system("wp post list --post_type=attachment")
 
     def deleteImage(self):
         self.showImages()
-        image_id = input('Enter the image ID you want to delete: ')
+        image_id = input("Enter the image ID you want to delete: ")
         if image_id.isdigit():
-            os.system(f'wp post delete {image_id} --force')
+            os.system(f"wp post delete {image_id} --force")
         self.showImages()
-        
+
     def checkIfImagesInDownloads(self):
         files = os.listdir(self.downloads_dir)
         for item in files:
@@ -47,7 +49,8 @@ class ImagesClass:
 
     def optimizeImage(self, image):
         os.system(
-            f"jpegoptim --strip-all --all-progressive -ptm 80 ~/Downloads/{image}")
+            f"jpegoptim --strip-all --all-progressive -ptm 80 ~/Downloads/{image}"
+        )
 
     def uploadImage(self, image: str):
         os.system("wp media import ~/Downloads/" + image + " --title=" + image)
@@ -58,8 +61,10 @@ class ImagesClass:
                 self.optimizeImage(image)
                 self.uploadImage(image)
             elif image.endswith(".png"):
-                convert_png = input('Do you want to convert "{image}" png to jpg, (y/n)? ')
-                if (convert_png == 'y'):
+                convert_png = input(
+                    'Do you want to convert "{image}" png to jpg, (y/n)? '
+                )
+                if convert_png == "y":
                     os.system("mogrify -format jpg ~/Downloads/" + image)
                     new_image = image.replace(".png", ".jpg")
                     os.system("rm ~/Downloads/" + image)

@@ -1,11 +1,12 @@
 import os
+
 from termcolor import colored
 
 
 def checkInterfaceLayout(layout_path):
     if not os.path.exists(layout_path):
         print(colored("Creating inteface layout file...", "green"))
-        with open(layout_path, 'w') as f:
+        with open(layout_path, "w") as f:
             layout_code = """
               export interface IDefault {
 

@@ -1,11 +1,12 @@
 import os
+
 from termcolor import colored
 
 
 def checkRestApiLayout(layout_path):
     if not os.path.exists(layout_path):
         print(colored("Creating rest-api layout file...", "green"))
-        with open(layout_path, 'w') as f:
+        with open(layout_path, "w") as f:
             layout_code = """
 <?php
 if (!defined('ABSPATH')) {
