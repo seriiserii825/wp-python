@@ -68,9 +68,7 @@ class Section:
         print(f"pages: {pages}")
 
         columns = ["Index", "ID", "Title"]
-        rows = [
-            [str(pages.index(i)), f"{i.ID}", i.post_title] for i in pages
-        ]
+        rows = [[str(pages.index(i)), f"{i.ID}", i.post_title] for i in pages]
 
         SectionMenu.display("New Section", columns, rows)
         index = SectionMenu.choose_option()
@@ -114,4 +112,3 @@ class Section:
         with open(Section.file_path, "w") as file:
             # write
             file.write(newData)
-
