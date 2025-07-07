@@ -1,8 +1,11 @@
-from utils.getGoogleData import getGoogleData
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
 import smtp.settings
+from utils.getGoogleData import getGoogleData
+
+
 def loginSmtp():
     driver = smtp.settings.driver
     google_data = getGoogleData()

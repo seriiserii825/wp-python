@@ -1,8 +1,11 @@
 import os
-from termcolor import colored
-from libs.listFiles import listFiles
 
+from termcolor import colored
+
+from libs.listFiles import listFiles
 from wp_files.wp_files.checkInterfaceLayout import checkInterfaceLayout
+
+
 def createInterfaceFile():
     js_layout_path='template-parts/layouts/interface.ts'
     checkInterfaceLayout(js_layout_path)

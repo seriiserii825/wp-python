@@ -1,8 +1,11 @@
 import os
-from termcolor import colored
-from libs.listFiles import listFiles
 
+from termcolor import colored
+
+from libs.listFiles import listFiles
 from wp_files.wp_files.checkPiniaLayout import checkPiniaLayout
+
+
 def createPiniaFile():
     layout_path='template-parts/layouts/default-pinia.ts'
     checkPiniaLayout(layout_path)

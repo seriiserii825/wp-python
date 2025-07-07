@@ -1,7 +1,11 @@
 import os
+
 from termcolor import colored
+
 from libs.listFilesWithPrefix import listFilesWithPrefix
 from wp_files.wp_files.checkPhpPageLayout import checkPhpPageLayout
+
+
 def createPhpPage():
     path_to_page_layout = 'template-parts/layouts/php-page.php'
     checkPhpPageLayout(path_to_page_layout)

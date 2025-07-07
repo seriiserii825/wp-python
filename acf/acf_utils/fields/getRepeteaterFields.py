@@ -1,5 +1,6 @@
 import json
 
+
 def getRepeaterFields(file_path, group_index):
     repeater_fields = []
     f = open(file_path,)

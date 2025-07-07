@@ -1,9 +1,12 @@
 import os
+
 from termcolor import colored
+
 from libs.buffer import addToClipBoardFile, getFromClipBoard
 from libs.file import writeToFile
 from libs.getFilePathWithoutExtenstion import getFilePathWithoutExtension
 from libs.listFiles import listFiles
+
 
 def createPhpIcon():
     clipboard = getFromClipBoard()

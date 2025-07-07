@@ -1,5 +1,6 @@
 from acf.acf_utils.fields.getFieldId import getFieldId
 
+
 def newField(field_name, field_slug, field_type, field_width, field_options = []):
     field_id = getFieldId()
     field = {}

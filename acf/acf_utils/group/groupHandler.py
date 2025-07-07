@@ -1,9 +1,10 @@
 import json
-from termcolor import colored
+
 from acf_utils.fields.getFields import getFields
 from acf_utils.group.getGroups import getGroups
 from acf_utils.section.sectionHasGroup import sectionHasGroup
 from acf_utils.tabs.getTabs import getTabs
+from termcolor import colored
 
 
 def groupHandler(file_path, delete=False):

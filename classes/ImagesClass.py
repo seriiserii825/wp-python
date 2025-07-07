@@ -1,5 +1,7 @@
 import os
+
 from rich import print
+
 from libs.select import selectMultiple
 
 
@@ -58,7 +60,8 @@ class ImagesClass:
                 self.optimizeImage(image)
                 self.uploadImage(image)
             elif image.endswith(".png"):
-                convert_png = input('Do you want to convert "{image}" png to jpg, (y/n)? ')
+                print(f'{image}: image')
+                convert_png = input('Do you want to convert png to jpg, (y/n)? ')
                 if (convert_png == 'y'):
                     os.system("mogrify -format jpg ~/Downloads/" + image)
                     new_image = image.replace(".png", ".jpg")

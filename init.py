@@ -1,5 +1,6 @@
-import subprocess
 import os
+import subprocess
+
 
 def init():
     user = os.getenv('USER')

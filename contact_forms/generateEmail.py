@@ -1,8 +1,11 @@
 import os
 import random
+
 from rich import print
+
 from contact_forms.getRandomFields import getRandomFields
 from contact_forms.sendEmail import sendEmail
+
 
 def generateEmail(all_fields, form_files_paths, project_folder):
     form_mail_path = form_files_paths['mail']

@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-from classes.Plugin import Plugin
 from rich import print
+
+from classes.Plugin import Plugin
+
 
 def pluginsFunc():
     def menu():

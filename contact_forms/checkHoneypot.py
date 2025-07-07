@@ -1,5 +1,7 @@
 from rich import print
 from rich.panel import Panel
+
+
 def checkHoneypot(form_files_paths):
     fields = []
     form_html = form_files_paths['html']

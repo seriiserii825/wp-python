@@ -1,5 +1,7 @@
 import os
+
 from pyfzf.pyfzf import FzfPrompt
+
 
 def showAllTaxonomies():
     os.system("wp taxonomy list")

@@ -1,5 +1,5 @@
-from termcolor import colored
 from acf_utils.group.getGroups import getGroups
+from termcolor import colored
 
 
 def selectFieldByGroup(file_path, group_index):

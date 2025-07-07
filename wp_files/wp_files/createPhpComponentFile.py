@@ -1,8 +1,11 @@
 import os
+
 from termcolor import colored
+
 from libs.listFiles import listFiles
 from wp_files.wp_files.checkPhpComponentLayout import checkPhpComponentLayout
 from wp_files.wp_files.createScssFile import createScssFile
+
 
 def createPhpComponentFile():
     php_component_layout_path = 'template-parts/layouts/php-component.php'

@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+from pyfzf.pyfzf import FzfPrompt
+
 from acf.acf import acfFunc
 from init import init, resetSettings
 from menu.contactForms import contactForms
@@ -11,7 +13,6 @@ from utils.taxonomies import taxonomies
 from utils.themes import wpThemesFunc
 from utils.wp_images import wpImages
 from wp_files.files import mainMenu
-from pyfzf.pyfzf import FzfPrompt
 
 
 def menu():

@@ -1,5 +1,6 @@
 from acf_utils.fields.getFieldId import getFieldId
 
+
 def newRepeaterField(field_name, field_slug, field_type, field_width):
     field_id = getFieldId()
     field = {}

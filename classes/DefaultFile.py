@@ -1,5 +1,6 @@
 from classes.CreateFile import CreateFile
 
+
 class DefaultFile(CreateFile):
     def __init__(self, type: str, selected_dir = None):
         super().__init__(type, selected_dir)

@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 import os
+
 from termcolor import colored
 
 from libs.select import selectMultiple, selectOne
+
 
 def wpThemesFunc():
     def listThemes():

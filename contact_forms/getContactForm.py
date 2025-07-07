@@ -1,7 +1,9 @@
 import os
-import contact_forms.contact_settins as contact_settings
 
+import contact_forms.contact_settins as contact_settings
 from libs.selectWithFzf import selectWithFzf
+
+
 def getContactForm(project_folder):
     csv_file = contact_settings.contact_forms_csv_path
     os.system(f"wp post list --post_type=wpcf7_contact_form --format=csv --allow-root > {csv_file}")

@@ -1,4 +1,6 @@
 import json
+
+
 def getFields(file_path):
     fields = []
     f = open(file_path,)

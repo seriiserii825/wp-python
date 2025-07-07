@@ -1,10 +1,11 @@
-import smtp.settings
 import time
-from utils.checkElem import checkElem
+
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+import smtp.settings
+from utils.checkElem import checkElem
 
 
 def findOrCreateProject():

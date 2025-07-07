@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 
+
 def filesSpaceToUnderscores():
     for filename in os.listdir("."):
         new_file = filename.replace(' ', '-')

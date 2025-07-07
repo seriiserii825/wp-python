@@ -1,6 +1,8 @@
-import os
 import csv
+import os
+
 from termcolor import colored
+
 
 def getGoogleData():
     ROOT_DIR = os.path.dirname(

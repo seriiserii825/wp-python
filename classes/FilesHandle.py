@@ -1,11 +1,14 @@
 import os
-from simple_term_menu import TerminalMenu
 from datetime import datetime
+
+from pyfzf.pyfzf import FzfPrompt
 from rich import print
+from simple_term_menu import TerminalMenu
+
 from classes.MyTable import MyTable
 from libs.select import selectOne
 from libs.selectWithFzf import selectWithFzf
-from pyfzf.pyfzf import FzfPrompt
+
 
 class FilesHandle:
     def __init__(self, basepath: str):
@@ -129,7 +132,7 @@ class FilesHandle:
                                      show_search_hint=True,
                                      preview_command="bat --color=always {}", preview_size=0.75
                                      )
-        menu_entry_indices = terminal_menu.show()
+        terminal_menu.show()
         # print(menu_entry_indices)
         # print(terminal_menu.chosen_menu_entries)
         return terminal_menu.chosen_menu_entries

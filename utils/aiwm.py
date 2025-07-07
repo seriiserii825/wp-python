@@ -2,6 +2,7 @@
 import os
 
 from termcolor import colored
+
 from classes.Backup import Backup
 
 is_installed_plugins = os.path.exists("../../plugins/all-in-one-wp-migration");

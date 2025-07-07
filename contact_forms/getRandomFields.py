@@ -1,5 +1,6 @@
 import os
 
+
 def getRandomFields():
     file_name = 'random_fields.csv';
     file_path = os.path.join(os.path.dirname(__file__), file_name)

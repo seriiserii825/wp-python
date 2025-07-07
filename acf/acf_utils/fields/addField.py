@@ -1,7 +1,8 @@
 import json
+
 from acf.acf_utils.fields.fieldTypes import fieldTypes
-from acf.acf_utils.fields.getRepeteaterFields import getRepeaterFields
 from acf.acf_utils.fields.newField import newField
+
 
 def addField(file_path, group_index, field_index = False):
     # print(f"field_index: {field_index}")

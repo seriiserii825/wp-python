@@ -1,6 +1,7 @@
 from classes.MyTable import MyTable
 from contact_forms.getRandomFields import getRandomFields
 
+
 def showRandomFields():
     random_fields = getRandomFields()
     random_fields = sorted(random_fields, key=lambda k: k['name'])

@@ -1,5 +1,6 @@
 import json
 
+
 def getGroups(file_path):
     groups = []
     f = open(file_path,)

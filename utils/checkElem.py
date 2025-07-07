@@ -1,8 +1,11 @@
-from termcolor import colored
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from termcolor import colored
+
 import smtp.settings
+
+
 def checkElem(selector, delay = 3, click = False):
     driver = smtp.settings.driver
     try:
@@ -12,6 +15,6 @@ def checkElem(selector, delay = 3, click = False):
             element.click()
         else:
             return element
-    except Exception as e:
+    except Exception:
         print(colored(f"Element not found: {selector}", "red"))
         return False

@@ -1,6 +1,8 @@
-import os
 import csv
+import os
+
 from termcolor import colored
+
 
 def getProjects(theme_name):
     projects = ()

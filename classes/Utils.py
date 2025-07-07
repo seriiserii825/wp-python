@@ -1,5 +1,6 @@
 import re
 
+
 class Utils:
     @staticmethod
     def camelToKebabCase(s):

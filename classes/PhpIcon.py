@@ -1,5 +1,7 @@
 import pyperclip
+
 from classes.CreateFile import CreateFile
+
 
 class PhpIcon(CreateFile):
     def __init__(self, type: str, selected_dir = None):

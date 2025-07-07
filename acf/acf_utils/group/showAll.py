@@ -1,5 +1,5 @@
 import json
-from prettytable import PrettyTable
+
 from termcolor import colored
 
 

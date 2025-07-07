@@ -1,9 +1,11 @@
-from termcolor import colored
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from utils.checkElem import checkElem
+from selenium.webdriver.support.ui import WebDriverWait
+from termcolor import colored
+
 import smtp.settings
+from utils.checkElem import checkElem
+
 
 def apiSection():
     driver = smtp.settings.driver

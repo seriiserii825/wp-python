@@ -1,6 +1,8 @@
 import os
+
 from classes.CreateFile import CreateFile
 from classes.FilesHandle import FilesHandle
+
 
 class ScssFile(CreateFile):
     def __init__(self, type: str, selected_dir = None):

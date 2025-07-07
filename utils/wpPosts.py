@@ -3,6 +3,7 @@ import os
 from simple_term_menu import subprocess
 from termcolor import colored
 
+
 def createOne(post_type="page"):
     title = input("Enter the title: ")
     command = f"wp post create --post_type={post_type} --post_status=publish --post_title='{title}'"

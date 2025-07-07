@@ -3,6 +3,7 @@ import json
 from acf.acf_utils.fields.getFields import getFields
 from acf.acf_utils.group.showGroups import showGroups
 
+
 def deleteField(file_path, group_index):
     fields = getFields(file_path)
     showGroups(file_path, True)  # show groups with fields

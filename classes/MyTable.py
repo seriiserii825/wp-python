@@ -1,6 +1,7 @@
 from rich.console import Console
 from rich.table import Table
 
+
 class MyTable:
     """
     table_title = "Contact Form Fields"

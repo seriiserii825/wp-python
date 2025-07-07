@@ -1,7 +1,10 @@
 import os
+
 from rich import print
+
 from classes.FilesHandle import FilesHandle
 from utils.layout_types import layout_types
+
 getLayoutType = lambda type: next((layout for layout in layout_types if layout['type'] == type))
 class CreateFile:
     def __init__(self, type: str, selected_dir = None):

@@ -1,8 +1,10 @@
 import os
+
 from termcolor import colored
 
 from wp_files.wp_files.checkJsLayout import checkJsLayout
 from wp_files.wp_files.createOrChooseDirectory import createOrChooseDirectory
+
 
 def createJsFile():
     js_layout_path='template-parts/layouts/js-layout.ts'

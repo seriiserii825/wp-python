@@ -1,8 +1,11 @@
 import os
+
 from rich import print
+
 from classes.FilesHandle import FilesHandle
 from data.base_plugins import base_plugins
 from data.plugins import plugins
+
 
 class Plugin():
     def __init__(self):

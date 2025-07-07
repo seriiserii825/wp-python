@@ -1,5 +1,7 @@
 import subprocess
+
 from rich import print
+
 
 def runCommand(command_list, silent=False):
     """

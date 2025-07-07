@@ -1,6 +1,8 @@
 import os
+
 import plyer
 import pyperclip
+
 
 def addToClipBoard(text):
     pyperclip.copy(text.strip())
