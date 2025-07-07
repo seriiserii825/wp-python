@@ -1,19 +1,15 @@
-from acf.acf_utils.section.SectionMenu import SectionMenu
 from classes.Acf.Section import Section
 
 
 def newSection():
-    section_name = Section.add_name()
-    file_name = Section.get_file_name(section_name)
-    try:
-        file_path = Section.get_file_path(file_name)
-    except FileNotFoundError as e:
-        print(f"Error: {e}")
+    Section.add_name()
+    choice = Section.choose_type()
+
+    if choice == 1:
+        Section.new_acf_page()
+    else:
+        print("Invalid choice. Please try again.")
         return
-
-    SectionMenu.display()
-    choice = SectionMenu.choose_option()
-
 
     # print(colored("Select section type", "green"))
     # print("1) Page")
