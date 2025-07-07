@@ -17,7 +17,9 @@ from contact_forms.showContactFormFields import showContactFormFields
 from contact_forms.showContactFormFiles import showContactFormFiles
 
 
-def submenu(form_files_paths, all_fields, required_fields, submited_fields, project_folder):
+def submenu(
+    form_files_paths, all_fields, required_fields, submited_fields, project_folder
+):
     print("[blue]1. Show contact form fields")
     print("[green]2. Show files")
     print("[blue]3. Show random_fields")
@@ -26,31 +28,60 @@ def submenu(form_files_paths, all_fields, required_fields, submited_fields, proj
 
     option = input("Select an option: ")
     if option == "1":
-        showContactFormFields(all_fields,required_fields, submited_fields)
-        submenu(form_files_paths, all_fields, required_fields, submited_fields, project_folder)
+        showContactFormFields(all_fields, required_fields, submited_fields)
+        submenu(
+            form_files_paths,
+            all_fields,
+            required_fields,
+            submited_fields,
+            project_folder,
+        )
     elif option == "2":
         showContactFormFiles(form_files_paths)
-        submenu(form_files_paths, all_fields, required_fields, submited_fields, project_folder)
+        submenu(
+            form_files_paths,
+            all_fields,
+            required_fields,
+            submited_fields,
+            project_folder,
+        )
     elif option == "3":
         showRandomFields()
-        submenu(form_files_paths, all_fields, required_fields, submited_fields, project_folder)
+        submenu(
+            form_files_paths,
+            all_fields,
+            required_fields,
+            submited_fields,
+            project_folder,
+        )
     elif option == "4":
         generateEmail(all_fields, form_files_paths, project_folder)
-        submenu(form_files_paths, all_fields, required_fields, submited_fields, project_folder)
+        submenu(
+            form_files_paths,
+            all_fields,
+            required_fields,
+            submited_fields,
+            project_folder,
+        )
     else:
         print("[red]Invalid option")
         exit()
+
 
 def menu():
     project_folder = createProjectsFolder()
     form = getContactForm(project_folder)
     form_files_paths = formToFiles(form)
     checkHoneypot(form_files_paths)
-    all_fields = getRequiredFileds(form_files_paths)['all_fields']
-    required_fields = getRequiredFileds(form_files_paths)['required_fields']
+    all_fields = getRequiredFileds(form_files_paths)["all_fields"]
+    required_fields = getRequiredFileds(form_files_paths)["required_fields"]
     submited_fields = getSubmitedFields(form_files_paths)
     random_fields = getRandomFields()
     checkRandomFields(all_fields, random_fields, submited_fields)
-    submenu(form_files_paths, all_fields, required_fields, submited_fields, project_folder)
+    submenu(
+        form_files_paths, all_fields, required_fields, submited_fields, project_folder
+    )
+
+
 def contactForms():
     menu()

@@ -94,4 +94,3 @@ def mainMenu():
         exit(colored("Goodbye!", "red"))
     else:
         mainMenu()
-

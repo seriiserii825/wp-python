@@ -14,10 +14,10 @@ from acf.acf_utils.wp.wpImport import wpImport
 
 
 def groupMenu(file_path, group_index):
-    print('----------------------------- Group Menu -----------------------------')
+    print("----------------------------- Group Menu -----------------------------")
     fields = getFields(file_path)
     group = fields[0][int(group_index)]
-    breadcrumbs(group['label'])
+    breadcrumbs(group["label"])
     showAll(file_path, group_index)
     print(colored("1) Show All:", "yellow"))
     print(colored("1.1) Copy Group:", "yellow"))

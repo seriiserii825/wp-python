@@ -7,7 +7,6 @@ def getWpTaxonomies():
     data = json.loads(json_taxonomies)
     taxonomies = []
     for taxonomy in data:
-        taxonomy_name = taxonomy['name']
+        taxonomy_name = taxonomy["name"]
         taxonomies.append(taxonomy_name)
     return taxonomies
-

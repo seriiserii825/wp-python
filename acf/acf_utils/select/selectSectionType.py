@@ -11,7 +11,7 @@ def selectSectionType(types, type="page"):
         if type_index == "":
             print(colored("Item not selected", "red"))
             return
-        return types[int(type_index)]['ID']
+        return types[int(type_index)]["ID"]
     else:
         for i in types:
             # show index
@@ -21,4 +21,3 @@ def selectSectionType(types, type="page"):
             print(colored("Item not selected", "red"))
             return
         return types[int(type_index)]
-

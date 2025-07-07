@@ -6,11 +6,13 @@ from termcolor import colored
 import smtp.settings
 
 
-def checkElem(selector, delay = 3, click = False):
+def checkElem(selector, delay=3, click=False):
     driver = smtp.settings.driver
     try:
-        WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.CSS_SELECTOR, selector)))
-        element = driver.find_element(By.CSS_SELECTOR, selector) 
+        WebDriverWait(driver, delay).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, selector))
+        )
+        element = driver.find_element(By.CSS_SELECTOR, selector)
         if click:
             element.click()
         else:

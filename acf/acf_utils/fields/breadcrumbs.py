@@ -1,8 +1,8 @@
 from termcolor import colored
 
 
-def breadcrumbs(level_1, level_2 = '', level_3 ='', level_4 = '', level_5 = ''):
-    print('----------------------------- Breadcrumbs -----------------------------')
+def breadcrumbs(level_1, level_2="", level_3="", level_4="", level_5=""):
+    print("----------------------------- Breadcrumbs -----------------------------")
     if level_1:
         print(colored(f"Breadcrumbs: {level_1} |", "blue"))
     if level_2:
@@ -13,4 +13,4 @@ def breadcrumbs(level_1, level_2 = '', level_3 ='', level_4 = '', level_5 = ''):
         print(f"Breadcrumbs: {level_1} | {level_2} | {level_3} | {level_4}")
     if level_5:
         print(f"Breadcrumbs: {level_1} | {level_2} | {level_3} | {level_4} | {level_5}")
-    print('----------------------------- Breadcrumbs -----------------------------')
+    print("----------------------------- Breadcrumbs -----------------------------")

@@ -8,8 +8,8 @@ from acf.acf_utils.fields.newField import newField
 def editSubField(file_path, group_index, field_index):
     fields = getFields(file_path)
     group = fields[0][int(group_index)]
-    group_sub_fields = group['sub_fields']
-    sub_fields = group_sub_fields[int(field_index)]['sub_fields']
+    group_sub_fields = group["sub_fields"]
+    sub_fields = group_sub_fields[int(field_index)]["sub_fields"]
     if len(sub_fields) == 0:
         print("No sub fields found")
         return
@@ -23,7 +23,7 @@ def editSubField(file_path, group_index, field_index):
     field_name = input("Enter field name: ")
 
     if field_name == "":
-        field_name = sub_fields[int(sub_field_index)]['label']
+        field_name = sub_fields[int(sub_field_index)]["label"]
         field_slug = field_name.replace(" ", "_").lower()
     else:
         field_slug = field_name.replace(" ", "_").lower()
@@ -39,10 +39,12 @@ def editSubField(file_path, group_index, field_index):
     if field_width == "":
         field_width = "100"
     field = newField(field_name, field_slug, field_type, field_width)
-    with open(file_path, 'r') as file:
+    with open(file_path, "r") as file:
         # read
         data = json.load(file)
-        data[0]['fields'][group_index]['sub_fields'][int(field_index)]['sub_fields'][int(sub_field_index)] = field
+        data[0]["fields"][group_index]["sub_fields"][int(field_index)]["sub_fields"][
+            int(sub_field_index)
+        ] = field
         newData = json.dumps(data, indent=4)
-    with open(file_path, 'w') as file:
+    with open(file_path, "w") as file:
         file.write(newData)

@@ -2,11 +2,7 @@ import os
 
 
 def createProjectsFolder():
-    ROOT_DIR = os.path.dirname(
-        os.path.dirname(
-            os.path.abspath(__file__)
-        )
-    )
+    ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     # create in root in contact_forms folder projects if not exists
     projects_path = os.path.join(ROOT_DIR, "contact_forms/projects")
     if not os.path.exists(projects_path):
@@ -21,4 +17,3 @@ def createProjectsFolder():
     if not os.path.exists(project_folder):
         os.makedirs(project_folder)
     return project_folder
-

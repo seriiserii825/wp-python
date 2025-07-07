@@ -2,7 +2,7 @@ from rich import print
 
 
 def checkRandomFields(all_fields, random_fields, submited_fields):
-    random_fields_names = [field['name'] for field in random_fields]
+    random_fields_names = [field["name"] for field in random_fields]
     submited_fields.sort()
     random_fields_names.sort()
     all_fields.sort()

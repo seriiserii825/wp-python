@@ -13,7 +13,8 @@ class MyTable:
         else:
             table_rows.append([field, '[red]No required', field])
     """
-    def show(self,title, columns, rows):
+
+    def show(self, title, columns, rows):
         """
         Show a table with the given title, columns, and rows.
         """
@@ -27,5 +28,3 @@ class MyTable:
 
         console = Console()
         console.print(table)
-        
-

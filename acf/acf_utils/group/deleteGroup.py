@@ -19,17 +19,16 @@ def deleteGroup(file_path):
         group_index = int(group_index)
         group = fields[0][int(group_index)]
         # print(tabs)
-        key = 'label'
-        val = group['label']
+        key = "label"
+        val = group["label"]
         tab = next((d for d in tabs if d.get(key) == val), None)
-        tab_index = tab['index']
-        with open(file_path, 'r') as file:
+        tab_index = tab["index"]
+        with open(file_path, "r") as file:
             data = json.load(file)
-            del data[0]['fields'][group_index]
-            del data[0]['fields'][tab_index]
+            del data[0]["fields"][group_index]
+            del data[0]["fields"][tab_index]
             newData = json.dumps(data, indent=4)
 
-        with open(file_path, 'w') as file:
+        with open(file_path, "w") as file:
             # write
             file.write(newData)
-

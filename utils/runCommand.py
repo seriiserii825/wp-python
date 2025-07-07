@@ -20,10 +20,13 @@ def runCommand(command_list, silent=False):
             check=True,
             stdout=subprocess.PIPE if silent else None,
             stderr=subprocess.PIPE if silent else None,
-            text=True
+            text=True,
         )
     except subprocess.CalledProcessError as e:
-        print(f"[red]Error: Command '{' '.join(command_list)}' failed with code {e.returncode}")
+        print(
+            f"[red]Error: Command '{' '.join(command_list)}' \
+                    failed with code {e.returncode}"
+        )
         if silent:
             print("[red][stderr]:", e.stderr.strip())
         exit(1)

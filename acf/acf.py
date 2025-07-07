@@ -20,6 +20,7 @@ from acf.acf_utils.wp.wpImport import wpImport
 
 os.chdir(current_dir)
 
+
 def acfFunc():
     def getFullPath():
         os.chdir("acf")
@@ -28,6 +29,7 @@ def acfFunc():
         file_path = file_path.replace("\n", "")
         os.chdir("..")
         return file_path
+
     wpExport()
 
     print(colored("Welcome to ACF CLI", "green"))
@@ -47,9 +49,10 @@ def acfFunc():
         exit()
     else:
         file_path = getFullPath()
+
         def mainMenu(file_path):
             showAll(file_path)
-            print('----------------------------- Menu -----------------------------')
+            print("----------------------------- Menu -----------------------------")
             print(colored("1) Show All:", "yellow"))
             print(colored("2) Choose Group:", "green"))
             print(colored("3) Add Group:", "green"))
@@ -61,7 +64,7 @@ def acfFunc():
             print(colored("8) Export:", "yellow"))
             print(colored("9) Exit:", "red"))
             action = input("Enter your choice: ")
-            print('----------------------------- Menu -----------------------------')
+            print("----------------------------- Menu -----------------------------")
             if action == "1":
                 showAll(file_path)
                 mainMenu(file_path)
@@ -97,4 +100,5 @@ def acfFunc():
                 exit()
             else:
                 exit()
+
         mainMenu(file_path)

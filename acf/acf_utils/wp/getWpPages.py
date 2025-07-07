@@ -10,4 +10,3 @@ def getWpPages():
         page_name = page
         pages.append(page_name)
     return pages
-

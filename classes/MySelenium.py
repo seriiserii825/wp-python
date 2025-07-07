@@ -12,19 +12,21 @@ from selenium.webdriver.support.ui import WebDriverWait
 from classes.Project import Project
 
 
-class MySelenium():
+class MySelenium:
     def __init__(self):
-        self.service = Service(executable_path='/usr/bin/chromedriver')
-        self.options = webdriver.ChromeOptions() 
-        self.options.add_argument("user-data-dir=/home/serii/.config/google-chrome/My-profile") #Path to your chrome profile
+        self.service = Service(executable_path="/usr/bin/chromedriver")
+        self.options = webdriver.ChromeOptions()
+        self.options.add_argument(
+            "user-data-dir=/home/serii/.config/google-chrome/My-profile"
+        )  # Path to your chrome profile
         self.driver = webdriver.Chrome(service=self.service, options=self.options)
         current_dir_path = os.getcwd()
         self.theme_name = os.path.basename(current_dir_path)
         self.pr = Project(self.theme_name)
         self.project = self.pr.getProject()
-        self.project_login = self.project['login']
-        self.project_password = self.project['password']
-        self.project_url = self.project['url']
+        self.project_login = self.project["login"]
+        self.project_password = self.project["password"]
+        self.project_url = self.project["url"]
         self.sitem_login = self.pr.getLoginUrl(False)
 
     def every_downloads_chrome(self, driver):
@@ -40,7 +42,7 @@ class MySelenium():
     def loginToSite(self):
         while True:
             req = requests.get(self.sitem_login)
-            if req.status_code != requests.codes['ok']:
+            if req.status_code != requests.codes["ok"]:
                 self.sitem_login = f"{self.project_url}/wp-admin"
                 break
             else:
@@ -58,15 +60,29 @@ class MySelenium():
         login_button.click()
         backups_url = f"{self.project_url}/wp-admin/admin.php?page=ai1wm_export"
         self.driver.get(backups_url)
-        WebDriverWait(self.driver, 30000000).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".ai1wm-button-export")))
-        ai1wm_backup_dots = self.driver.find_element(By.CSS_SELECTOR, ".ai1wm-button-export")
+        WebDriverWait(self.driver, 30000000).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".ai1wm-button-export"))
+        )
+        ai1wm_backup_dots = self.driver.find_element(
+            By.CSS_SELECTOR, ".ai1wm-button-export"
+        )
         ai1wm_backup_dots.click()
-        WebDriverWait(self.driver, 30000000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#ai1wm-export-file")))
-        ai1wm_backup_restore = self.driver.find_element(By.CSS_SELECTOR, "#ai1wm-export-file")
+        WebDriverWait(self.driver, 30000000).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "#ai1wm-export-file"))
+        )
+        ai1wm_backup_restore = self.driver.find_element(
+            By.CSS_SELECTOR, "#ai1wm-export-file"
+        )
         time.sleep(2)
         ai1wm_backup_restore.click()
-        WebDriverWait(self.driver, 3000000000).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".ai1wm-modal-container .ai1wm-button-green")))
-        button_green = self.driver.find_element(By.CSS_SELECTOR, ".ai1wm-modal-container .ai1wm-button-green")
+        WebDriverWait(self.driver, 3000000000).until(
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, ".ai1wm-modal-container .ai1wm-button-green")
+            )
+        )
+        button_green = self.driver.find_element(
+            By.CSS_SELECTOR, ".ai1wm-modal-container .ai1wm-button-green"
+        )
         button_green.click()
         WebDriverWait(self.driver, 120, 1).until(self.every_downloads_chrome)
         self.driver.close()
@@ -74,8 +90,14 @@ class MySelenium():
 
     def waitForCaptcha(self):
         try:
-            WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".aiowps-captcha-answer")))
-            aiowps_captcha_answer = self.driver.find_element(By.CSS_SELECTOR, ".aiowps-captcha-answer")
+            WebDriverWait(self.driver, 1).until(
+                EC.presence_of_element_located(
+                    (By.CSS_SELECTOR, ".aiowps-captcha-answer")
+                )
+            )
+            aiowps_captcha_answer = self.driver.find_element(
+                By.CSS_SELECTOR, ".aiowps-captcha-answer"
+            )
             if aiowps_captcha_answer:
                 time.sleep(10)
         except TimeoutException:
@@ -93,16 +115,45 @@ class MySelenium():
         login_button.click()
         backups_url = f"{self.project_url}/wp-admin/admin.php?page=ai1wm_backups"
         self.driver.get(backups_url)
-        WebDriverWait(self.driver, 3000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-dots")))
-        ai1wm_backup_dots = self.driver.find_element(By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-dots")
+        WebDriverWait(self.driver, 3000).until(
+            EC.presence_of_element_located(
+                (
+                    By.CSS_SELECTOR,
+                    "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-dots",
+                )
+            )
+        )
+        ai1wm_backup_dots = self.driver.find_element(
+            By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-dots"
+        )
         ai1wm_backup_dots.click()
-        WebDriverWait(self.driver, 3000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-restore")))
-        ai1wm_backup_restore = self.driver.find_element(By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-restore")
+        WebDriverWait(self.driver, 3000).until(
+            EC.presence_of_element_located(
+                (
+                    By.CSS_SELECTOR,
+                    "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-restore",
+                )
+            )
+        )
+        ai1wm_backup_restore = self.driver.find_element(
+            By.CSS_SELECTOR,
+            "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-restore",
+        )
         ai1wm_backup_restore.click()
-        WebDriverWait(self.driver, 3000).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".ai1wm-import-modal-actions .ai1wm-button-green")))
-        button_green = self.driver.find_element(By.CSS_SELECTOR, ".ai1wm-import-modal-actions .ai1wm-button-green")
+        WebDriverWait(self.driver, 3000).until(
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, ".ai1wm-import-modal-actions .ai1wm-button-green")
+            )
+        )
+        button_green = self.driver.find_element(
+            By.CSS_SELECTOR, ".ai1wm-import-modal-actions .ai1wm-button-green"
+        )
         button_green.click()
-        WebDriverWait(self.driver, 3000).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".ai1wm-import-modal-content-done")))
+        WebDriverWait(self.driver, 3000).until(
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, ".ai1wm-import-modal-content-done")
+            )
+        )
         time.sleep(1)
         self.driver.close()
         self.driver = webdriver.Chrome(service=self.service, options=self.options)
@@ -117,13 +168,21 @@ class MySelenium():
         login_button.click()
         save_permalink_url = f"{self.project_url}/wp-admin/options-permalink.php"
         self.driver.get(save_permalink_url)
-        WebDriverWait(self.driver, 3000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#submit")))
+        WebDriverWait(self.driver, 3000).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "#submit"))
+        )
         submit_button = self.driver.find_element(By.CSS_SELECTOR, "#submit")
         submit_button.click()
         plugins_url = f"{self.project_url}/wp-admin/plugins.php"
         self.driver.get(plugins_url)
-        WebDriverWait(self.driver, 3000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#activate-wps-hide-login")))
-        wps_hide_login = self.driver.find_element(By.CSS_SELECTOR, "#activate-wps-hide-login")
+        WebDriverWait(self.driver, 3000).until(
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, "#activate-wps-hide-login")
+            )
+        )
+        wps_hide_login = self.driver.find_element(
+            By.CSS_SELECTOR, "#activate-wps-hide-login"
+        )
         wps_hide_login.click()
         self.driver.close()
 
@@ -144,13 +203,35 @@ class MySelenium():
             exit("[red]Number of backups is empty!")
         print(f"Number of backups: {number_of_backups}")
         for i in range(int(number_of_backups)):
-            WebDriverWait(self.driver, 300000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table.ai1wm-backups tr:last-of-type .ai1wm-backup-dots")))
-            ai1wm_backup_dots = self.driver.find_element(By.CSS_SELECTOR, f"table.ai1wm-backups tr:nth-of-type({number_of_backups}) .ai1wm-backup-dots")
+            WebDriverWait(self.driver, 300000).until(
+                EC.presence_of_element_located(
+                    (
+                        By.CSS_SELECTOR,
+                        "table.ai1wm-backups tr:last-of-type .ai1wm-backup-dots",
+                    )
+                )
+            )
+            ai1wm_backup_dots = self.driver.find_element(
+                By.CSS_SELECTOR,
+                f"table.ai1wm-backups tr:nth-of-type({number_of_backups})\
+                        .ai1wm-backup-dots",
+            )
             ai1wm_backup_dots.click()
-            WebDriverWait(self.driver, 300000).until(EC.presence_of_element_located((By.CSS_SELECTOR, "table.ai1wm-backups tr:nth-of-type(2) .ai1wm-backup-delete")))
-            ai1wm_backup_delete = self.driver.find_element(By.CSS_SELECTOR, f"table.ai1wm-backups tr:nth-of-type({number_of_backups}) .ai1wm-backup-delete")
+            WebDriverWait(self.driver, 300000).until(
+                EC.presence_of_element_located(
+                    (
+                        By.CSS_SELECTOR,
+                        "table.ai1wm-backups tr:nth-of-type(2)\
+                                .ai1wm-backup-delete",
+                    )
+                )
+            )
+            ai1wm_backup_delete = self.driver.find_element(
+                By.CSS_SELECTOR,
+                f"table.ai1wm-backups tr:nth-of-type({number_of_backups})\
+                        .ai1wm-backup-delete",
+            )
             ai1wm_backup_delete.click()
             WebDriverWait(self.driver, 1000000).until(EC.alert_is_present())
             self.driver.switch_to.alert.accept()
             time.sleep(3)
-

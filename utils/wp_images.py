@@ -31,4 +31,3 @@ def wpImages():
         exit(colored("Goodbye!", "red"))
     else:
         exit(colored("Goodbye!", "red"))
-

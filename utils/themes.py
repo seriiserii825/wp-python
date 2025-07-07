@@ -15,13 +15,13 @@ def wpThemesFunc():
     def getThemes():
         themes = []
         current_dir = os.getcwd()
-        parent_dir = os.path.abspath(os.path.join(current_dir, '..'))
+        parent_dir = os.path.abspath(os.path.join(current_dir, ".."))
         dirs = next(os.walk(parent_dir))[1]
         for theme in dirs:
             themes.append(theme)
         return themes
 
-# getThemes()
+    # getThemes()
 
     def activateTheme():
         theme = selectOne(getThemes())
@@ -48,6 +48,7 @@ def wpThemesFunc():
 
     def searchTheme():
         os.system("wp theme search " + input("Enter theme name:"))
+
     def installTheme():
         os.system("wp theme install " + input("Enter theme name:"))
 
@@ -85,4 +86,3 @@ def wpThemesFunc():
             exit(colored("Goodbye!", "red"))
 
     menu()
-

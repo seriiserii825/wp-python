@@ -7,7 +7,7 @@ from data.base_plugins import base_plugins
 from data.plugins import plugins
 
 
-class Plugin():
+class Plugin:
     def __init__(self):
         self.base_plugins = base_plugins
         self.plugins = plugins
@@ -18,7 +18,7 @@ class Plugin():
 
     def listInstalledPlugins(self):
         os.system("wp plugin list")
-        
+
     def getInstalledPlugins(self):
         installedPlugins = []
         current_dir = os.getcwd()
@@ -56,11 +56,16 @@ class Plugin():
                     if value == False:
                         os.system("wp plugin install " + key + " --activate")
                     else:
-                        os.system("wp plugin install ~/Documents/plugins-wp/" + value + " --activate")
+                        os.system(
+                            "wp plugin install ~/Documents/plugins-wp/"
+                            + value
+                            + " --activate"
+                        )
 
     def installBasePlugins(self):
         self.haveUninstalledPlugins()
         self.installPlugins(self.base_plugins)
+
     def installOtherPlugins(self):
         self.haveUninstalledPlugins()
         current_dir = os.getcwd()
@@ -79,7 +84,7 @@ class Plugin():
         plugins_str_list = []
         for plugin in plugins:
             for key, _ in plugin.items():
-                    plugins_str_list.append(key)
+                plugins_str_list.append(key)
         return plugins_str_list
 
     def pluginsFromStrListToDict(self, plugins: list):
