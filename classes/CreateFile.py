@@ -5,9 +5,9 @@ from rich import print
 from classes.FilesHandle import FilesHandle
 from utils.layout_types import layout_types
 
-getLayoutType = lambda type: next(
-    (layout for layout in layout_types if layout["type"] == type)
-)
+
+def getLayoutType(type):
+    return next((layout for layout in layout_types if layout["type"] == type))
 
 
 class CreateFile:
@@ -86,8 +86,7 @@ class CreateFile:
             # remove empty lines
             os.system(f"sed -i '/^$/d' {self.file_path}")
             os.system(
-                f"sed -i -e 's/{self.layout_text}/{self.file_name}/g'\
-                        '{self.file_path}' "
+                f"sed -i -e 's/{self.layout_text}/{self.file_name}/g {self.file_path}' "
             )
             os.system(f"bat {self.file_path}")
 
