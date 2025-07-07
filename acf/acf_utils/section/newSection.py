@@ -1,3 +1,4 @@
+from acf.acf_utils.section.SectionMenu import SectionMenu
 from classes.Acf.Section import Section
 
 
@@ -10,10 +11,10 @@ def newSection():
         print(f"Error: {e}")
         return
 
-    print(file_path)
-    # if os.path.exists(file_path):
-    #     print(colored("Section already exists", "red"))
-    #     return
+    SectionMenu.display()
+    choice = SectionMenu.choose_option()
+
+
     # print(colored("Select section type", "green"))
     # print("1) Page")
     # print("2) Custom Post Type")

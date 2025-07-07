@@ -121,7 +121,7 @@ class FilesHandle:
 
         for i, (file, ctime) in enumerate(file_ctimes):
             ctime_human = datetime.fromtimestamp(ctime).strftime("%Y-%m-%d %H:%M:%S")
-            tb_rows.append([i + 1, file, ctime_human])
+            tb_rows.append([f"{i + 1}", file, ctime_human])
 
         tb.show(tb_title, tb_headers, tb_rows)
 
