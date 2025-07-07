@@ -1,4 +1,5 @@
 import os
+
 from classes.InputValidator import InputValidator
 
 
@@ -20,5 +21,6 @@ class Section:
             raise FileNotFoundError("The 'acf' directory does not exist.")
         if os.path.exists(file_path):
             raise FileExistsError(
-                f"The file '{file_name}' already exists in the 'acf' directory.")
+                f"The file '{file_name}' already exists in the 'acf' directory."
+            )
         return file_path
