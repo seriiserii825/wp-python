@@ -1,8 +1,7 @@
 import json
 import os
+from classes.Acf.Field import Field
 from classes.Print import Print
-import pandas as pd
-from pprint import pprint
 
 
 class SelectSection:
@@ -24,8 +23,32 @@ class SelectSection:
     @staticmethod
     def show_all():
         Print.info(SelectSection.file_path)
-        data = SelectSection.json_to_dict()
-        pprint(f"data: {data}")
+        # data = SelectSection.json_to_dict()
+        # pprint(f"data: {data}")
+        SelectSection.json_to_fields()
+
+    @staticmethod
+    def json_to_fields():
+        with open(SelectSection.file_path) as f:
+            acf_data = json.load(f)
+
+        fields_data = acf_data[0]["fields"]
+        for field_data in fields_data:
+            field = Field(field_data)
+            if field.type == "group" or field.type == "repeater":
+                name = field.name
+                key = field.key
+                label = field.label
+                type = field.type
+                Print.info(
+                    f"Name: {name}, Key: {key}, Label: {label}, Type: {type}")
+            else:
+                name = field.name
+                key = field.key
+                label = field.label
+                type = field.type
+                Print.info(
+                    f"Name: {name}, Key: {key}, Label: {label}, Type: {type}")
 
     @staticmethod
     def json_to_dict():

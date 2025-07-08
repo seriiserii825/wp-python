@@ -1,11 +1,5 @@
 from typing import List, Optional, Dict, Any
 
-from classes.Acf.GroupField import GroupField
-from classes.Acf.ImageField import ImageField
-from classes.Acf.RepeaterField import RepeaterField
-from classes.Acf.TextField import TextField
-from classes.Acf.WysiwygField import WysiwygField
-
 
 class Field:
     def __init__(self, data: Dict[str, Any], parent: Optional[str] = None):
@@ -13,8 +7,18 @@ class Field:
         self.label = data.get("label")
         self.name = data.get("name")
         self.type = data.get("type")
+        self.sub_fields = data.get("sub_fields", [])
         self.parent = parent
-        self.FIELD_TYPE_MAP = {
+
+    def parse_fields(self, fields: List[Dict[str, Any]],
+                     parent: Optional[str] = None) -> List['Field']:
+        from classes.Acf.TextField import TextField
+        from classes.Acf.ImageField import ImageField
+        from classes.Acf.WysiwygField import WysiwygField
+        from classes.Acf.GroupField import GroupField
+        from classes.Acf.RepeaterField import RepeaterField
+
+        FIELD_TYPE_MAP = {
             "text": TextField,
             "image": ImageField,
             "wysiwyg": WysiwygField,
@@ -22,11 +26,10 @@ class Field:
             "repeater": RepeaterField,
         }
 
-    def _parse_fields(self, fields: List[Dict[str, Any]], parent: Optional[str] = None) -> List[Field]:
         field_objects = []
         for field in fields:
             field_type = field.get("type")
-            cls = self.FIELD_TYPE_MAP.get(field_type, Field)
+            cls = FIELD_TYPE_MAP.get(field_type, Field)
             field_objects.append(cls(field, parent))
         return field_objects
 
