@@ -6,7 +6,9 @@ from acf.acf_utils.group.getGroupId import getGroupId
 from acf.acf_utils.section.SectionMenu import SectionMenu
 from acf.acf_utils.wp.getWpPages import getWpPages
 from acf.acf_utils.wp.getWpPosts import getWpPosts
+from acf.acf_utils.wp.getWpTaxonomies import getWpTaxonomies
 from classes.InputValidator import InputValidator
+from classes.Print import Print
 from my_types.NTPage import NTPage
 
 
@@ -52,7 +54,7 @@ class Section:
     @staticmethod
     def new_acf_page():
         page = Section.select_page()
-        print(f"page: {page}")
+        Print.info(f"page: {page}")
         Section._create_file(page_id=page.ID)
 
     @staticmethod
@@ -68,7 +70,7 @@ class Section:
             )
             for row in row_pages
         ]
-        print(f"pages: {pages}")
+        Print.info(f"pages: {pages}")
 
         columns = ["Index", "ID", "Title"]
         rows = [[str(pages.index(i)), f"{i.ID}", i.post_title] for i in pages]
@@ -80,7 +82,7 @@ class Section:
     @staticmethod
     def new_acf_custom_post_type():
         post_type = Section._select_custom_post_type()
-        print(f"post_type: {post_type}")
+        Print.info(f"post_type: {post_type}")
         Section._create_file(post_type=post_type)
 
     @staticmethod
@@ -94,7 +96,23 @@ class Section:
         return post_type
 
     @staticmethod
-    def _create_file(page_id: int = 0, post_type: str = ""):
+    def new_acf_taxonomy():
+        taxonomy = Section._select_taxonomy()
+        Print.info(f"taxonomy: {taxonomy}")
+        Section._create_file(taxonomy=taxonomy)
+
+    @staticmethod
+    def _select_taxonomy() -> str:
+        taxonomies: List[str] = getWpTaxonomies()
+        columns = ["Index", "Taxonomy"]
+        rows = [[str(taxonomies.index(i)), i] for i in taxonomies]
+        SectionMenu.display("New Section", columns, rows)
+        index = SectionMenu.choose_option()
+        taxonomy = taxonomies[index]
+        return taxonomy
+
+    @staticmethod
+    def _create_file(page_id: int = 0, post_type: str = "", taxonomy: str = ""):
         group_id = getGroupId()
         os.system(f"touch {Section.file_path}")
         new_data = {}
@@ -109,6 +127,16 @@ class Section:
                         "param": "post_type",
                         "operator": "==",
                         "value": post_type,
+                    }
+                ]
+            ]
+        elif taxonomy:
+            new_data["location"] = [
+                [
+                    {
+                        "param": "taxonomy",
+                        "operator": "==",
+                        "value": taxonomy,
                     }
                 ]
             ]

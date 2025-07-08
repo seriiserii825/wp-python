@@ -2,7 +2,7 @@ import json
 import os
 
 
-def getWpTaxonomies():
+def getWpTaxonomies() -> list[str]:
     json_taxonomies = os.popen("wp taxonomy list --fields=name --format=json").read()
     data = json.loads(json_taxonomies)
     taxonomies = []
