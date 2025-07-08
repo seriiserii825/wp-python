@@ -2,7 +2,7 @@ from classes.Acf.Section import Section
 
 
 def newSection():
-    Section.add_name()
+    Section.add_name_and_file_path()
     choice = Section.choose_type()
 
     if choice == 1:

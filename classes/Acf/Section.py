@@ -15,17 +15,18 @@ class Section:
     file_path: str = ""
 
     @staticmethod
-    def add_name():
+    def add_name_and_file_path():
         name = InputValidator.get_string("Enter section name: ")
         Section.section_name = name
-        Section.set_file_name(name)
+        Section._set_file_name(name)
+        Section._set_file_path(Section.file_name)
 
     @staticmethod
-    def set_file_name(section_name: str) -> None:
+    def _set_file_name(section_name: str) -> None:
         Section.file_name = section_name.replace(" ", "-").lower() + ".json"
 
     @staticmethod
-    def set_file_path(file_name: str):
+    def _set_file_path(file_name: str):
         Section.file_path = f"acf/{file_name}"
         if not os.path.exists("acf"):
             raise FileNotFoundError("The 'acf' directory does not exist.")
@@ -50,7 +51,7 @@ class Section:
     @staticmethod
     def new_acf_page():
         page = Section.select_page()
-        Section.create_file(slug=page.post_name)
+        Section.create_file(id=page.ID)
 
     @staticmethod
     def select_page() -> NTPage:
@@ -75,40 +76,35 @@ class Section:
         return pages[index]
 
     @staticmethod
-    def create_file(slug: str):
+    def create_file(id: int):
         group_id = getGroupId()
         os.system(f"touch {Section.file_path}")
-        os.system(f"echo '[]' > {Section.file_path}")
-        with open(Section.file_path, "r") as file:
-            # read
-            data = json.load(file)
-            new_data = {}
-            new_data["ID"] = False
-            new_data["key"] = group_id
-            new_data["title"] = Section.section_name
-            new_data["fields"] = []
-            new_data["location"] = [
-                [
-                    {
-                        "param": "page",
-                        "operator": "==",
-                        "value": slug,
-                    }
-                ]
+        new_data = {}
+        new_data["ID"] = False
+        new_data["key"] = group_id
+        new_data["title"] = Section.section_name
+        new_data["fields"] = []
+        new_data["location"] = [
+            [
+                {
+                    "param": "page",
+                    "operator": "==",
+                    "value": id,
+                }
             ]
-            new_data["menu_order"] = 0
-            new_data["position"] = "normal"
-            new_data["style"] = "default"
-            new_data["label_placement"] = "top"
-            new_data["instruction_placement"] = "label"
-            new_data["hide_on_screen"] = ""
-            new_data["active"] = True
-            new_data["description"] = ""
-            new_data["show_in_rest"] = 0
-            new_data["_valid"] = True
-            data.append(new_data)
+        ]
+        new_data["menu_order"] = 0
+        new_data["position"] = "normal"
+        new_data["style"] = "default"
+        new_data["label_placement"] = "top"
+        new_data["instruction_placement"] = "label"
+        new_data["hide_on_screen"] = ""
+        new_data["active"] = True
+        new_data["description"] = ""
+        new_data["show_in_rest"] = 0
+        new_data["_valid"] = True
 
-            newData = json.dumps(data, indent=4)
+        json_data = json.dumps(new_data, indent=4)
         with open(Section.file_path, "w") as file:
             # write
-            file.write(newData)
+            file.write(json_data)
