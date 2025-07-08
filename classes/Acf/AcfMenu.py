@@ -3,7 +3,7 @@ from typing import List
 from classes.MyTable import MyTable
 
 
-class AcfMenu():
+class AcfMenu:
     rows_count = 0
 
     @staticmethod

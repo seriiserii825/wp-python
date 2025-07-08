@@ -2,14 +2,6 @@ import os
 
 from termcolor import colored
 
-from acf.acf_utils.group.addGroup import addGroup
-from acf.acf_utils.group.chooseGroup import chooseGroup
-from acf.acf_utils.group.copyGroup import copyGroup
-from acf.acf_utils.group.deleteGroup import deleteGroup
-from acf.acf_utils.group.duplicateGroup import duplicateGroup
-from acf.acf_utils.group.editGroup import editGroup
-from acf.acf_utils.group.groupMenu import groupMenu
-from acf.acf_utils.group.showAll import showAll
 from acf.acf_utils.section.newSection import newSection
 from acf.acf_utils.wp.wpExport import wpExport
 from acf.acf_utils.wp.wpImport import wpImport
