@@ -105,6 +105,7 @@ class Section:
         new_data["_valid"] = True
 
         json_data = json.dumps(new_data, indent=4)
+        json_data = f"[{json_data}]\n"  # Wrap in a list for ACF compatibility
         with open(Section.file_path, "w") as file:
             # write
             file.write(json_data)
