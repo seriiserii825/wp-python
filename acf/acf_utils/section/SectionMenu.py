@@ -26,14 +26,14 @@ class SectionMenu:
         while True:
             try:
                 count_range = "Please enter a number: "
-                f"between 1 and {SectionMenu.rows_count}: "
+                f"between 0 and {SectionMenu.rows_count - 1}: "
                 choice = int(input(count_range))
-                if choice in range(1, SectionMenu.rows_count + 1):
+                if choice in range(0, SectionMenu.rows_count):
                     return choice
                 else:
                     print(
                         f"[red]Invalid input."
-                        f"Please enter a number between 1 and {SectionMenu.rows_count}."
+                        f"Please enter a number between 0 and {SectionMenu.rows_count - 1}."
                     )
             except ValueError:
                 print("[red] Input must be a number. Please try again.[/red]")

@@ -5,6 +5,7 @@ from typing import Any, List
 from acf.acf_utils.group.getGroupId import getGroupId
 from acf.acf_utils.section.SectionMenu import SectionMenu
 from acf.acf_utils.wp.getWpPages import getWpPages
+from acf.acf_utils.wp.getWpPosts import getWpPosts
 from classes.InputValidator import InputValidator
 from my_types.NTPage import NTPage
 
@@ -51,7 +52,8 @@ class Section:
     @staticmethod
     def new_acf_page():
         page = Section.select_page()
-        Section.create_file(id=page.ID)
+        print(f"page: {page}")
+        Section._create_file(page_id=page.ID)
 
     @staticmethod
     def select_page() -> NTPage:
@@ -76,7 +78,23 @@ class Section:
         return pages[index]
 
     @staticmethod
-    def create_file(id: int):
+    def new_acf_custom_post_type():
+        post_type = Section._select_custom_post_type()
+        print(f"post_type: {post_type}")
+        Section._create_file(post_type=post_type)
+
+    @staticmethod
+    def _select_custom_post_type() -> str:
+        row_post_types: List[str] = getWpPosts()
+        columns = ["Index", "Post Type"]
+        rows = [[str(row_post_types.index(i)), i] for i in row_post_types]
+        SectionMenu.display("New Section", columns, rows)
+        index = SectionMenu.choose_option()
+        post_type = row_post_types[index]
+        return post_type
+
+    @staticmethod
+    def _create_file(page_id: int = 0, post_type: str = ""):
         group_id = getGroupId()
         os.system(f"touch {Section.file_path}")
         new_data = {}
@@ -84,15 +102,26 @@ class Section:
         new_data["key"] = group_id
         new_data["title"] = Section.section_name
         new_data["fields"] = []
-        new_data["location"] = [
-            [
-                {
-                    "param": "page",
-                    "operator": "==",
-                    "value": id,
-                }
+        if post_type:
+            new_data["location"] = [
+                [
+                    {
+                        "param": "post_type",
+                        "operator": "==",
+                        "value": post_type,
+                    }
+                ]
             ]
-        ]
+        else:
+            new_data["location"] = [
+                [
+                    {
+                        "param": "page",
+                        "operator": "==",
+                        "value": page_id,
+                    }
+                ]
+            ]
         new_data["menu_order"] = 0
         new_data["position"] = "normal"
         new_data["style"] = "default"
