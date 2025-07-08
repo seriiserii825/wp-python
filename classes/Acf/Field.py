@@ -17,11 +17,19 @@ class Field:
         from classes.Acf.WysiwygField import WysiwygField
         from classes.Acf.GroupField import GroupField
         from classes.Acf.RepeaterField import RepeaterField
+        from classes.Acf.FileField import FileField
+        from classes.Acf.GalleryField import GalleryField
+        from classes.Acf.TabField import TabField
+        from classes.Acf.TextareaField import TextareaField
 
         FIELD_TYPE_MAP = {
             "text": TextField,
+            "textarea": TextareaField,
             "image": ImageField,
+            "gallery": GalleryField,
+            "file": FileField,
             "wysiwyg": WysiwygField,
+            "tab": TabField,
             "group": GroupField,
             "repeater": RepeaterField,
         }
@@ -32,6 +40,20 @@ class Field:
             cls = FIELD_TYPE_MAP.get(field_type, Field)
             field_objects.append(cls(field, parent))
         return field_objects
+
+    @staticmethod
+    def get_field_types() -> List[str]:
+        return [
+            "text",
+            "textarea",
+            "image",
+            "gallery",
+            "file",
+            "wysiwyg",
+            "tab",
+            "group",
+            "repeater",
+        ]
 
     def __repr__(self):
         return f"<{self.__class__.__name__}: {self.name} ({self.type})>"
