@@ -1,3 +1,4 @@
+from acf.acf_utils.wp.wpImport import wpImport
 from classes.Acf.Section import Section
 
 
@@ -7,6 +8,7 @@ def newSection():
 
     if choice == 1:
         Section.new_acf_page()
+        wpImport()
     else:
         print("Invalid choice. Please try again.")
         return
