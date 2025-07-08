@@ -33,7 +33,7 @@ class SectionMenu:
                 else:
                     print(
                         f"[red]Invalid input."
-                        f"Please enter a number between 0 and {SectionMenu.rows_count - 1}."
+                        f"Enter a number between 0 and {SectionMenu.rows_count - 1}."
                     )
             except ValueError:
                 print("[red] Input must be a number. Please try again.[/red]")
