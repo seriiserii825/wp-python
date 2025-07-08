@@ -114,8 +114,8 @@ class CreateFile:
             print(f"selected_file: {selected_file}")
             self.insertBeforeLastLine(
                 selected_file,
-                f"<?php get_template_part('{self.dir_name}/{self.selected_dir}\
-                        /{self.file_name}');?>\n",
+                f"<?php get_template_part('{self.dir_name}/{self.selected_dir}"
+                f"{self.file_name}');?>\n",
             )
 
     def insertBeforeLastLine(self, file_path, content):
