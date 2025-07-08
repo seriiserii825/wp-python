@@ -10,3 +10,6 @@ def create_field():
     SectionMenu.display("Create Field", headers, rows)
     choice = SectionMenu.choose_option()
     print(f"choice: {choice}")
+    Field.create_field(field_type=field_types[choice])
+    # if field_types[choice] == "text":
+    # from classes.Acf.TextField import TextField

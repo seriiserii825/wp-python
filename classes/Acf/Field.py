@@ -1,5 +1,8 @@
 from typing import List, Optional, Dict, Any
 
+from acf.acf_utils.group.getGroupId import getGroupId
+from classes.InputValidator import InputValidator
+
 
 class Field:
     def __init__(self, data: Dict[str, Any], parent: Optional[str] = None):
@@ -57,3 +60,37 @@ class Field:
 
     def __repr__(self):
         return f"<{self.__class__.__name__}: {self.name} ({self.type})>"
+
+    @staticmethod
+    def create_field(field_type: str):
+        new_data, x_coord, y_coord = Field._new_field_dict(field_type)
+        section = Field._section_from_json()
+        print(f"section: {section}")
+
+    @staticmethod
+    def _new_field_dict(field_type: str):
+        group_id = getGroupId()
+        label = InputValidator.get_string("Enter field label: ")
+        name = label.lower().replace(" ", "_")
+        new_data = {}
+        new_data["key"] = group_id
+        new_data["label"] = label
+        new_data["name"] = name
+        new_data["type"] = field_type
+        x_coord = InputValidator.get_int("Enter x coordinate: ")
+        y_coord = input("Enter y coordinate: ")
+        return (new_data, x_coord, y_coord)
+
+    @staticmethod
+    def _section_from_json() -> List['Field']:
+        from classes.Acf.SelectSection import SelectSection
+        SelectSection.show_all()
+        return SelectSection.json_to_fields()
+
+    def save_to_file(self):
+        pass
+        # json_data = json.dumps(new_data, indent=4)
+        # json_data = f"[{json_data}]\n"  # Wrap in a list for ACF compatibility
+        # with open(Section.file_path, "w") as file:
+        #     # write
+        #     file.write(json_data)
