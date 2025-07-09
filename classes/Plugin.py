@@ -48,23 +48,23 @@ class Plugin:
             print("[red]All base plugins are installed!")
             exit()
 
+    def installBasePlugins(self):
+        self.haveUninstalledPlugins()
+        self.installPlugins(self.base_plugins)
+
     def installPlugins(self, plugins: list):
         for plugin in plugins:
             for key, value in plugin.items():
                 print(f"Key: {key}, Value: {value}")
-                if key in plugin:
-                    if value == False:
-                        os.system("wp plugin install " + key + " --activate")
-                    else:
-                        os.system(
-                            "wp plugin install ~/Documents/plugins-wp/"
-                            + value
-                            + " --activate"
-                        )
-
-    def installBasePlugins(self):
-        self.haveUninstalledPlugins()
-        self.installPlugins(self.base_plugins)
+                # if key in plugin:
+                #     if value is False:
+                #         os.system("wp plugin install " + key + " --activate")
+                #     else:
+                #         os.system(
+                #             "wp plugin install ~/Documents/plugins-wp/"
+                #             + value
+                #             + " --activate"
+                #         )
 
     def installOtherPlugins(self):
         self.haveUninstalledPlugins()

@@ -7,20 +7,23 @@ from classes.Backup import Backup
 
 is_installed_plugins = os.path.exists("../../plugins/all-in-one-wp-migration")
 if not is_installed_plugins:
-    os.system(
-        "wp plugin install \
-                ~/Documents/plugins-wp/all-in-one-wp-migration-7-79.zip --activate"
+    command = (
+        "wp plugin install "
+        "~/Documents/plugins-wp/all-in-one-wp-migration-7-79.zip --activate"
     )
+    os.system(command)
 
 is_installed_unlimited = os.path.exists(
     "../../plugins/all-in-one-wp-migration-unlimited-extension"
 )
 if not is_installed_unlimited:
-    os.system(
-        "wp plugin install \
-        ~/Documents/plugins-wp/unlimited/\
-        all-in-one-wp-migration-unlimited-extension-2.51.zip --activate"
+    command = (
+        "wp plugin install "
+        "~/Documents/plugins-wp/unlimited/"
+        "all-in-one-wp-migration-unlimited-extension-2.51.zip --activate"
     )
+    os.system(command)
+    os.system(command)
 
 
 def aiwmFunc():
