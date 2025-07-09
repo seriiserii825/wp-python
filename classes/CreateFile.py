@@ -83,11 +83,10 @@ class CreateFile:
                 if layout:
                     f.write(layout)
                 print("File created: " + self.file_path)
-            # remove empty lines
-            os.system(f"sed -i '/^$/d' {self.file_path}")
-            os.system(
-                f"sed -i -e 's/{self.layout_text}/{self.file_name}/g {self.file_path}' "
-            )
+            command = f"sed -i '/^$/d' {self.file_path}"
+            os.system(command)
+            cmd = f"sed -i 's/{self.layout_text}/{self.file_name}/g' {self.file_path} "
+            os.system(cmd)
             os.system(f"bat {self.file_path}")
 
     def createNewFile(self, file_path):
