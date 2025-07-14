@@ -3,19 +3,20 @@ import subprocess
 
 from classes.FilesHandle import FilesHandle
 from classes.MySelenium import MySelenium
+from utils.FunctionsPhp import FunctionsPhp
 from utils.runCommand import runCommand
 
 
 class Backup:
     def __init__(self):
         self.backup_dir_abs_path = os.path.abspath("../../ai1wm-backups")
-        print(f"self.backup_dir_abs_path=: {self.backup_dir_abs_path=}")
         self.driver = None
 
     def makeBackup(self):
         self.listBackup()
         current_dir = os.getcwd()
         os.system("rm -rf node_modules")
+        FunctionsPhp.comment_autoload_in_functions_php()
         try:
             subprocess.run("wp ai1wm backup", shell=True, check=True)
         except subprocess.CalledProcessError as e:
@@ -37,7 +38,7 @@ class Backup:
             print("[red]No backups found!")
         elif len(backups_array) > 2:
             backup_to_delete = backups_array[2:]
-            print(f"[red]Backups to delete: ")
+            print("[red]Backups to delete: ")
             for file in backup_to_delete:
                 print(file)
             for file in backup_to_delete:
@@ -69,7 +70,8 @@ class Backup:
         fh.listFiles(downloads_dir)
         selected_backup = fh.chooseFile(downloads_dir, ".wpress")
         print(f"selected_backup: {selected_backup}")
-        os.system(f'cp ~/Downloads/{selected_backup} "{self.backup_dir_abs_path}"')
+        os.system(
+            f'cp ~/Downloads/{selected_backup} "{self.backup_dir_abs_path}"')
         self.listBackup()
         os.system(f"wp ai1wm restore {selected_backup}")
 
@@ -118,6 +120,7 @@ class Backup:
             self.makeBackup()
             self.lastBackupToMnt(path_to_selected_dir)
             fh.showOrderFilesByCTime(path_to_selected_dir)
-            exit("[green]Backup created and copied to /mnt/Projects/{selected_project}")
+            exit(
+                "[green]Backup created and copied to /mnt/Projects/{selected_project}")
         else:
             exit("[red]Directory /mnt/Projects not exists!")
