@@ -1,1 +1,1 @@
-/home/serii/Local Sites/lc-opera-loudspeakers/app/public/wp-content/themes/bs-opera-loudspeakers
+/home/serii/Local Sites/lc-omp/app/public/wp-content/themes/lm-omp
