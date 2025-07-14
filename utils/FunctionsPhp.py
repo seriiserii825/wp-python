@@ -20,7 +20,7 @@ class FunctionsPhp:
                 lines = file.readlines()
             with open(functions_php_path, 'w') as file:
                 for line in lines:
-                    if "autoload" in line:
+                    if "autoload" in line and not line.strip().startswith("//"):
                         file.write(f"// {line}")
                     else:
                         file.write(line)

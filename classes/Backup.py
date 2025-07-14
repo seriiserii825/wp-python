@@ -13,10 +13,10 @@ class Backup:
         self.driver = None
 
     def makeBackup(self):
+        FunctionsPhp.comment_autoload_in_functions_php()
         self.listBackup()
         current_dir = os.getcwd()
         os.system("rm -rf node_modules")
-        FunctionsPhp.comment_autoload_in_functions_php()
         try:
             subprocess.run("wp ai1wm backup", shell=True, check=True)
         except subprocess.CalledProcessError as e:
