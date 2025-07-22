@@ -1,1 +1,1 @@
-/home/serii/Local Sites/lc-erapra-veneto/app/public/wp-content/themes/bs-erapra-veneto
+/home/serii/Local Sites/lc-emporio-del-auto/app/public/wp-content/themes/bs-emporio-del-auto
