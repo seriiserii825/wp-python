@@ -1,1 +1,1 @@
-/home/serii/Local Sites/lc-casa-helen/app/public/wp-content/themes/bs-casa-helen
+/home/serii/Local Sites/lc-md-service/app/public/wp-content/themes/bs-md-service
