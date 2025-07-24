@@ -1,1 +1,1 @@
-/home/serii/Local Sites/lc-md-service/app/public/wp-content/themes/bs-md-service
+/home/serii/Local Sites/lc-cascina-spinerola/app/public/wp-content/themes/bs-cascina-spinerola
