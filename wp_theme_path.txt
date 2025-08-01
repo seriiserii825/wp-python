@@ -1,1 +1,1 @@
-/home/serii/Local Sites/lc-drstefanopetrillocom/app/public/wp-content/themes/lm-dr-stefano-petrillo
+/home/serii/Local Sites/lc-abitat-group/app/public/wp-content/themes/bs-abitat-group
